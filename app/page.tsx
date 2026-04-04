@@ -1,336 +1,84 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-
-const services = [
-  { name: "Regular Clean", price: "$80", time: "2-3 hours", icon: "🧹", desc: "Weekly or bi-weekly service" },
-  { name: "Deep Clean", price: "$150", time: "4-6 hours", icon: "✨", desc: "Thorough top-to-bottom clean" },
-  { name: "Move In/Out", price: "$200", time: "5-7 hours", icon: "📦", desc: "Complete empty home cleaning" },
-  { name: "Office Clean", price: "From $120", time: "3-5 hours", icon: "🏢", desc: "Commercial space cleaning" },
-];
+import { useState } from 'react';
 
 export default function Home() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "", service: "", message: "" });
-
-  useEffect(() => {
-    const handleMouse = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', handleMouse);
-    return () => window.removeEventListener('mousemove', handleMouse);
-  }, []);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    if (element) { element.scrollIntoView({ behavior: 'smooth' }); element.focus(); }
+    setMenuOpen(false);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert("Booking confirmed! We'll call to confirm your appointment.");
-  };
+  const services = [
+    { title: 'Residential', desc: 'Homes, apartments, and condos', icon: '\uD83C\uDFE0' },
+    { title: 'Commercial', desc: 'Offices, retail, and warehouses', icon: '\uD83D\uDCBC' },
+    { title: 'Post-Construction', desc: 'New build and renovation cleanup', icon: '\uD83D\uDD28' },
+    { title: 'Specialty', desc: 'Carpet, windows, and deep sanitization', icon: '\u2728' },
+  ];
 
   return (
-    <div className="min-h-screen bg-[#f0fdf4] overflow-hidden">
-      {/* Navigation */}
-      <nav className="fixed top-4 left-4 right-4 z-50 bg-white/80 backdrop-blur-xl rounded-full shadow-lg border border-green-100">
-        <div className="max-w-6xl mx-auto px-8 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
-              <span className="text-white text-lg">🧹</span>
+    <div className="bg-sky-50 text-gray-900 min-h-screen">
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-sky-700 text-white px-4 py-2 rounded-lg z-[100] focus-visible:outline-2 focus-visible:outline-white font-bold">Skip to main content</a>
+      <header>
+        <nav role="navigation" aria-label="Main navigation" className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
+          <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-sky-700 rounded-xl flex items-center justify-center text-white text-xl" aria-hidden="true">\uD83E\uDDF9</div>
+              <div><h1 className="text-lg font-bold text-sky-900">ProClean</h1><p className="text-[9px] text-sky-600 tracking-wider">COMMERCIAL & RESIDENTIAL</p></div>
             </div>
-            <span className="text-xl font-bold text-green-700 tracking-wider">SPARKLE</span>
+            <div className="hidden md:flex items-center gap-8">
+              {['Services','Why Us','Testimonials','Contact'].map(item => (<button key={item} onClick={() => scrollToSection(item.toLowerCase().replace(' ','-'))} aria-label={`Navigate to ${item} section`} className="text-sm text-gray-600 hover:text-sky-700 transition-colors focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2 rounded">{item}</button>))}
+              <button aria-label="Get a free cleaning quote" className="bg-sky-700 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-sky-800 transition-colors focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2">Free Quote</button>
+            </div>
+            <button aria-label={menuOpen?"Close menu":"Open menu"} aria-expanded={menuOpen} className="md:hidden text-sky-700 focus-visible:outline-2 focus-visible:outline-sky-500 rounded" onClick={() => setMenuOpen(!menuOpen)}>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">{menuOpen?<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"/>:<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16"/>}</svg>
+            </button>
           </div>
-          <div className="hidden md:flex items-center gap-8">
-            {["Services", "About", "Booking", "Contact"].map((item) => (
-              <button 
-                key={item}
-                onClick={() => scrollToSection(item.toLowerCase())} 
-                className="text-gray-600 hover:text-green-600 transition-colors text-sm font-medium"
-              >
-                {item}
-              </button>
-            ))}
-          </div>
-          <button 
-            onClick={() => scrollToSection("booking")} 
-            className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-2.5 rounded-full font-semibold hover:shadow-lg hover:shadow-green-500/30 transition-all"
-          >
-            Book Now
-          </button>
-        </div>
-      </nav>
-
-      {/* Hero */}
-      <section className="relative min-h-screen flex items-center pt-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-white to-emerald-50" />
-        
-        {/* Floating Clean Elements */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div 
-            className="absolute w-[500px] h-[500px] bg-green-200/20 rounded-full blur-3xl"
-            style={{ 
-              top: '10%', 
-              left: '15%',
-              transform: `translate(${mousePos.x * 0.02}px, ${mousePos.y * 0.02}px)` 
-            }}
-          />
-          <div 
-            className="absolute w-[400px] h-[400px] bg-emerald-200/20 rounded-full blur-3xl"
-            style={{ 
-              bottom: '10%', 
-              right: '15%',
-              transform: `translate(${-mousePos.x * 0.02}px, ${-mousePos.y * 0.02}px)` 
-            }}
-          />
-        </div>
-
-        {/* Sparkle Elements */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-32 left-20 text-3xl animate-pulse">✨</div>
-          <div className="absolute top-60 right-32 text-2xl animate-pulse delay-300">🧹</div>
-          <div className="absolute bottom-40 left-40 text-3xl animate-pulse delay-700">💎</div>
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 rounded-full mb-8">
-              <span className="text-green-600">✨</span>
-              <span className="text-green-700 text-sm font-medium">Eco-Friendly Products</span>
-            </div>
-
-            <h1 className="text-6xl md:text-7xl font-bold text-gray-800 mb-6 leading-tight">
-              Spotless<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-500">Spaces</span>
-            </h1>
-            
-            <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-lg">
-              Professional cleaning services that leave your space sparkling. 
-              Reliable, thorough, and eco-friendly.
-            </p>
-
-            <div className="flex flex-wrap gap-4">
-              <button 
-                onClick={() => scrollToSection("booking")} 
-                className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl hover:shadow-green-500/30 transition-all hover:scale-105"
-              >
-                Book Now
-              </button>
-              <button 
-                onClick={() => scrollToSection("services")} 
-                className="border-2 border-green-500 text-green-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-green-50 transition-all"
-              >
-                Our Services
-              </button>
-            </div>
-
-            <div className="flex gap-8 mt-12">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-green-600">5K+</div>
-                <div className="text-xs text-gray-500 uppercase tracking-wider">Homes Cleaned</div>
+        </nav>
+      </header>
+      <main id="main-content" role="main">
+        <section aria-labelledby="hero-heading" className="pt-24 pb-16 relative overflow-hidden">
+          <div className="absolute inset-0" aria-hidden="true"><div className="absolute top-20 right-20 w-96 h-96 bg-sky-200/40 rounded-full blur-3xl"/></div>
+          <div className="relative max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="text-sky-700 text-sm font-bold tracking-widest mb-4">TRUSTED SINCE 2008</p>
+              <h2 id="hero-heading" className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-sky-900">Professional<br/><span className="text-sky-600">Cleaning</span></h2>
+              <p className="text-xl text-gray-600 mb-8 max-w-lg">Commercial and residential cleaning with trained crews, eco-friendly products, and a 100% satisfaction guarantee.</p>
+              <div className="flex flex-wrap gap-4 mb-10">
+                <button aria-label="Get your free cleaning quote" className="bg-sky-700 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-sky-800 transition-all hover:scale-105 focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2">Free Quote</button>
+                <button aria-label="View our cleaning services" className="border-2 border-sky-700 text-sky-800 px-8 py-4 rounded-full text-lg font-bold hover:bg-sky-50 transition-all hover:scale-105 focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2">Our Services</button>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-green-600">4.9★</div>
-                <div className="text-xs text-gray-500 uppercase tracking-wider">Rating</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-green-600">100%</div>
-                <div className="text-xs text-gray-500 uppercase tracking-wider">Satisfaction</div>
+              <div className="flex items-center gap-8">
+                {[{num:'2K+',label:'Clients Served'},{num:'15+',label:'Years Experience'},{num:'4.9',label:'Google Rating'}].map((s,i) => (<div key={i}><div className="text-2xl font-bold text-sky-700">{s.num}</div><div className="text-sm text-gray-500">{s.label}</div></div>))}
               </div>
             </div>
+            <div className="relative"><div className="bg-white rounded-3xl p-8 shadow-xl"><img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=80" alt="Professional cleaning crew working in modern office space" className="w-full rounded-2xl"/></div></div>
           </div>
-
-          <div className="relative">
-            <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl shadow-green-500/20">
-              <img 
-                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80" 
-                alt="Cleaning" 
-                className="w-full h-[450px] object-cover"
-              />
-            </div>
-            <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-4 shadow-xl">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                  <span className="text-2xl">🌿</span>
-                </div>
-                <div>
-                  <div className="font-bold text-gray-800">Eco-Friendly</div>
-                  <div className="text-sm text-gray-500">Green products</div>
-                </div>
-              </div>
+        </section>
+        <section id="services" aria-labelledby="services-heading" className="py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16"><p className="text-sky-700 text-sm font-bold tracking-widest mb-4">WHAT WE CLEAN</p><h2 id="services-heading" className="text-4xl font-bold text-sky-900 mb-4">Service Types</h2></div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {services.map((s,i) => (<article key={i} className="bg-sky-50 rounded-2xl p-6 hover:shadow-lg transition-all hover:scale-105"><div className="text-4xl mb-4" aria-hidden="true">{s.icon}</div><h3 className="text-xl font-bold text-sky-900 mb-2">{s.title}</h3><p className="text-gray-500 text-sm">{s.desc}</p></article>))}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Services */}
-      <section id="services" className="py-32 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <span className="text-green-600 text-sm tracking-[0.3em] uppercase mb-4 block">What We Offer</span>
-            <h2 className="text-5xl font-bold text-gray-800">Our Services</h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service, index) => (
-              <div 
-                key={index} 
-                className="group bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 hover:shadow-xl transition-all border border-green-100 hover:border-green-300"
-              >
-                <span className="text-5xl mb-6 block">{service.icon}</span>
-                <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-green-600 transition-colors">{service.name}</h3>
-                <p className="text-gray-600 text-sm mb-4">{service.desc}</p>
-                <div className="flex justify-between items-center pt-4 border-t border-green-200">
-                  <span className="text-green-600 font-bold text-xl">{service.price}</span>
-                  <span className="text-gray-500 text-sm">{service.time}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* About */}
-      <section id="about" className="py-32 bg-gradient-to-br from-green-600 to-emerald-600 text-white">
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <span className="text-green-200 text-sm tracking-[0.3em] uppercase mb-4 block">Our Promise</span>
-            <h2 className="text-5xl font-bold mb-8">Sparkling Clean</h2>
-            <p className="text-green-100 text-lg leading-relaxed mb-8">
-              We use only eco-friendly, non-toxic products that are safe for your family and pets. 
-              Our trained professionals deliver consistent, reliable results every time.
-            </p>
-            <div className="grid grid-cols-2 gap-6">
-              <div className="bg-white/10 rounded-2xl p-6">
-                <div className="text-3xl font-bold">100%</div>
-                <div className="text-green-200 text-sm">Eco-Friendly</div>
-              </div>
-              <div className="bg-white/10 rounded-2xl p-6">
-                <div className="text-3xl font-bold">24/7</div>
-                <div className="text-green-200 text-sm">Available</div>
-              </div>
+        </section>
+        <section id="contact" aria-labelledby="contact-heading" className="py-24">
+          <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16">
+            <div><p className="text-sky-700 text-sm font-bold tracking-widest mb-4">GET STARTED</p><h2 id="contact-heading" className="text-4xl font-bold text-sky-900 mb-6">Request Your Quote</h2><p className="text-gray-600 mb-8">Tell us about your space and cleaning needs. We&#39;ll respond within 2 hours.</p></div>
+            <div className="bg-white rounded-2xl shadow-xl p-8">
+              <form noValidate className="space-y-6">
+                <div><label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Your Name</label><input id="name" type="text" aria-required="true" placeholder="Chris Clean" className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 focus:outline-none transition-colors"/></div>
+                <div><label htmlFor="service-type" className="block text-sm font-medium text-gray-700 mb-2">Service Type</label><select id="service-type" className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 focus:outline-none transition-colors"><option value="">Select service</option><option value="residential">Residential</option><option value="commercial">Commercial</option><option value="post-construction">Post-Construction</option><option value="specialty">Specialty Cleaning</option></select></div>
+                <button type="submit" aria-label="Request your free cleaning quote" className="w-full bg-sky-700 text-white py-4 rounded-xl font-bold hover:bg-sky-800 transition-all hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2">Request Quote</button>
+              </form>
             </div>
           </div>
-          <div className="relative">
-            <img 
-              src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80" 
-              alt="Team" 
-              className="rounded-2xl w-full"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Booking */}
-      <section id="booking" className="py-32 bg-[#f0fdf4]">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <span className="text-green-600 text-sm tracking-[0.3em] uppercase mb-4 block">Get Started</span>
-            <h2 className="text-5xl font-bold text-gray-800">Book Your Clean</h2>
-          </div>
-
-          <div className="bg-white rounded-3xl p-10 shadow-xl border border-green-100">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <input 
-                  type="text" 
-                  value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  className="w-full px-6 py-4 rounded-2xl border border-green-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all"
-                  placeholder="Your name"
-                  required
-                />
-                <input 
-                  type="email" 
-                  value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
-                  className="w-full px-6 py-4 rounded-2xl border border-green-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all"
-                  placeholder="Email"
-                  required
-                />
-              </div>
-              <div className="grid md:grid-cols-2 gap-6">
-                <input 
-                  type="tel" 
-                  value={formData.phone}
-                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                  className="w-full px-6 py-4 rounded-2xl border border-green-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all"
-                  placeholder="Phone"
-                />
-                <select 
-                  value={formData.service}
-                  onChange={(e) => setFormData({...formData, service: e.target.value})}
-                  className="w-full px-6 py-4 rounded-2xl border border-green-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all"
-                >
-                  <option value="">Select service</option>
-                  {services.map((s, i) => (
-                    <option key={i} value={s.name}>{s.name} - {s.price}</option>
-                  ))}
-                </select>
-              </div>
-              <textarea 
-                rows={4}
-                value={formData.message}
-                onChange={(e) => setFormData({...formData, message: e.target.value})}
-                className="w-full px-6 py-4 rounded-2xl border border-green-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all resize-none"
-                placeholder="Special requests..."
-              />
-              <button 
-                type="submit" 
-                className="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white py-5 rounded-2xl font-bold text-lg hover:shadow-xl hover:shadow-green-500/30 transition-all hover:scale-[1.02]"
-              >
-                Book Appointment
-              </button>
-            </form>
-          </div>
-
-          <div className="mt-16 grid md:grid-cols-3 gap-8 text-center">
-            <div className="bg-white rounded-2xl p-6 shadow-lg">
-              <span className="text-3xl mb-3 block">📍</span>
-              <p className="text-gray-600">123 Clean Street<br />Sparkle District, CA 90210</p>
-            </div>
-            <div className="bg-white rounded-2xl p-6 shadow-lg">
-              <span className="text-3xl mb-3 block">📞</span>
-              <p className="text-gray-600">+1 (555) 345-6789</p>
-            </div>
-            <div className="bg-white rounded-2xl p-6 shadow-lg">
-              <span className="text-3xl mb-3 block">🕐</span>
-              <p className="text-gray-600">Mon-Sun: 8AM - 8PM</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-12 bg-gray-900 text-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center gap-3 mb-4 md:mb-0">
-              <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
-                <span className="text-white">🧹</span>
-              </div>
-              <span className="text-xl font-bold tracking-wider">SPARKLE CLEAN</span>
-            </div>
-            <div className="flex gap-6">
-              {["Instagram", "Facebook", "Google"].map((social) => (
-                <a 
-                  key={social}
-                  href="#" 
-                  className="text-gray-400 hover:text-green-400 transition-colors text-sm"
-                >
-                  {social}
-                </a>
-              ))}
-            </div>
-          </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-            <p className="text-gray-500 text-sm">© 2026 Sparkle Cleaning Services. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+        </section>
+      </main>
+      <footer role="contentinfo" className="py-12 bg-sky-900"><div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6"><div className="flex items-center gap-3"><div className="w-8 h-8 bg-sky-700 rounded-lg flex items-center justify-center text-white" aria-hidden="true">\uD83E\uDDF9</div><span className="text-white font-bold">ProClean Company</span></div><p className="text-sky-300 text-sm">Licensed & Insured | Since 2008</p></div></footer>
     </div>
   );
 }
