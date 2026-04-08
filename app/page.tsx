@@ -147,7 +147,7 @@ export default function Home() {
               </div>
             </div>
             <div className="bg-white rounded-2xl shadow-xl p-8">
-              <form noValidate className="space-y-6">
+              <form onSubmit={(e) => e.preventDefault()} noValidate className="space-y-6">
                 <div><label htmlFor="contact-name" className="block text-sm font-medium text-gray-700 mb-2">Your Name</label><input id="contact-name" type="text" aria-required="true" placeholder="Chris Clean" className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 focus:outline-none transition-colors"/></div>
                 <div><label htmlFor="contact-email" className="block text-sm font-medium text-gray-700 mb-2">Email</label><input id="contact-email" type="email" aria-required="true" placeholder="chris@example.com" className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 focus:outline-none transition-colors"/></div>
                 <div><label htmlFor="contact-service-type" className="block text-sm font-medium text-gray-700 mb-2">Service Type</label><select id="contact-service-type" className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 focus:outline-none transition-colors"><option value="">Select service</option><option value="residential">Residential</option><option value="commercial">Commercial</option><option value="post-construction">Post-Construction</option><option value="specialty">Specialty Cleaning</option></select></div>
