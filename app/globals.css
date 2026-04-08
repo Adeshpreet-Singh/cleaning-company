@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --color-teal: #0d9488;
+  --color-teal-light: #2dd4bf;
+  --color-teal-bg: #f0fdfa;
+  --color-mint: #ecfdf5;
+  --color-off-white: #f8fafc;
+  --color-border: #e2e8f0;
+  --color-text: #0f172a;
+  --color-text-muted: #64748b;
+}
+
+html { scroll-behavior: smooth; }
+body { background-color: var(--color-off-white); color: var(--color-text); }
+.card-fresh { transition: transform 0.2s, box-shadow 0.2s; border: 1px solid var(--color-border); border-radius: 1rem; }
+.card-fresh:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+:focus-visible { outline: 2px solid var(--color-teal); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.01ms !important; } }
