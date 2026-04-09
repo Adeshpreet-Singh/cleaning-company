@@ -112,7 +112,7 @@ to clean.</h2>
       <section id="contact" className="py-24" aria-labelledby="contact-heading">
         <div className="max-w-xl mx-auto px-6 text-center">
           <h2 id="contact-heading" className="text-3xl font-bold mb-8">Contact Us</h2>
-          <div className="space-y-4 text-gray-500 mb-8">                  <div><div className="font-bold">Phone</div><a href="tel:(555) 123-4567" class="text-emerald-600">(555) 123-4567</a></div>
+          <div className="space-y-4 text-gray-500 mb-8">                  <div><div className="font-bold">Phone</div><a href="tel:(555) 123-4567" className="text-emerald-600">(555) 123-4567</a></div>
                   <div><div className="font-bold">Address</div><p>Serving Denver, CO Metro</p></div>
                   <div><div className="font-bold">Hours</div><p>Mon–Sat 7 AM – 7 PM</p></div></div>
           <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
