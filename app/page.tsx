@@ -6,247 +6,255 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) { element.scrollIntoView({ behavior: 'smooth' }); element.focus(); }
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     setMenuOpen(false);
   };
 
-  const testimonials = [
-    { name: "Maria Johnson", role: "Homeowner", text: "ProClean has been cleaning my home for 3 years. Always thorough, on time, and they use eco-friendly products. My house has never looked better!", rating: 5, date: "March 2026" },
-    { name: "Robert Chen", role: "Office Manager", text: "We hired ProClean for our 5,000 sq ft office. They clean after hours so there's no disruption. Staff is professional and reliable.", rating: 5, date: "February 2026" },
-    { name: "Sarah Williams", role: "Property Manager", text: "Managing 20 rental properties, I need consistent cleaning between tenants. ProClean delivers every single time. Highly recommend!", rating: 5, date: "January 2026" },
-    { name: "David Lee", role: "New Homeowner", text: "The post-construction cleanup was incredible. They handled everything - from dust to debris. My new home was move-in ready!", rating: 4, date: "December 2025" }
-  ];
-
-  const galleryImages = [
-    { src: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=80', alt: 'Clean sparkling kitchen', caption: 'Kitchen Deep Clean' },
-    { src: 'https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=600&q=80', alt: 'Bathroom being cleaned', caption: 'Bathroom Sanitization' },
-    { src: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80', alt: 'Vacuuming carpet', caption: 'Carpet Cleaning' },
-    { src: 'https://images.unsplash.com/photo-1563453392212-326f5e854473?w=600&q=80', alt: 'Office space clean', caption: 'Commercial Cleaning' },
-    { src: 'https://images.unsplash.com/photo-1584622781564-1d987f7333c1?w=600&q=80', alt: 'Spotless windows', caption: 'Window Washing' },
-    { src: 'https://images.unsplash.com/photo-1560508180-03f285bc6758?w=600&q=80', alt: 'Organized living room', caption: 'Residential Clean' }
-  ];
-
-  const services = [
-    { title: 'Residential', desc: 'Homes, apartments, and condos', icon: '\uD83C\uDFE0' },
-    { title: 'Commercial', desc: 'Offices, retail, and warehouses', icon: '\uD83D\uDCBC' },
-    { title: 'Post-Construction', desc: 'New build and renovation cleanup', icon: '\uD83D\uDD28' },
-    { title: 'Specialty', desc: 'Carpet, windows, and deep sanitization', icon: '\u2728' },
-  ];
-
   return (
-    <div className="bg-sky-50 text-gray-900 min-h-screen">
-      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-sky-700 text-white px-4 py-2 rounded-lg z-[100] focus-visible:outline-2 focus-visible:outline-white font-bold">Skip to main content</a>
+    <div className="min-h-screen bg-white text-gray-900">
+      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-emerald-600 text-black px-4 py-2 rounded z-[100] font-bold">
+        Skip to main content
+      </a>
+
       <header>
-        <nav role="navigation" aria-label="Main navigation" className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
-          <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-sky-700 rounded-xl flex items-center justify-center text-white text-xl" aria-hidden="true">\uD83E\uDDF9</div>
-              <div><h1 className="text-lg font-bold text-sky-900">ProClean</h1><p className="text-[9px] text-sky-600 tracking-wider">COMMERCIAL & RESIDENTIAL</p></div>
+        <nav role="navigation" aria-label="Main navigation" className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-current/10">
+          <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div>
+              <h1 className="text-xl tracking-tight font-bold">SparkleClean</h1>
+              <p className="text-xs text-gray-500 tracking-wider uppercase">Est. 2014</p>
             </div>
             <div className="hidden md:flex items-center gap-8">
-              {['Services','Why Us','Testimonials','Contact'].map(item => (<button key={item} onClick={() => scrollToSection(item.toLowerCase().replace(' ','-'))} aria-label={`Navigate to ${item} section`} className="text-sm text-gray-600 hover:text-sky-700 transition-colors focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2 rounded">{item}</button>))}
-              <button aria-label="Get a free cleaning quote" className="bg-sky-700 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-sky-800 transition-colors focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2">Free Quote</button>
+              <button onClick={() => scrollTo('services')} className="text-sm text-gray-500 hover:text-emerald-600 transition-colors">Services</button>
+              <button onClick={() => scrollTo('team')} className="text-sm text-gray-500 hover:text-emerald-600 transition-colors">Team</button>
+              <button onClick={() => scrollTo('faq')} className="text-sm text-gray-500 hover:text-emerald-600 transition-colors">FAQ</button>
+              <button onClick={() => scrollTo('contact')} className="text-sm text-gray-500 hover:text-emerald-600 transition-colors">Contact</button>
+              <button onClick={() => scrollTo('contact')} className="bg-emerald-600 text-black px-6 py-2.5 text-sm font-medium rounded-full hover:opacity-90 transition-opacity">
+                Get Free Quote
+              </button>
             </div>
-            <button aria-label={menuOpen?"Close menu":"Open menu"} aria-expanded={menuOpen} className="md:hidden text-sky-700 focus-visible:outline-2 focus-visible:outline-sky-500 rounded" onClick={() => setMenuOpen(!menuOpen)}>
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">{menuOpen?<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"/>:<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16"/>}</svg>
+            <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden" aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen}>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {menuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
             </button>
           </div>
+          {menuOpen && (
+            <div className="md:hidden bg-white border-t border-current/10 px-6 py-4 space-y-1">
+              <button onClick={() => scrollTo('services')} className="block w-full text-left px-4 py-3 text-gray-500 hover:text-emerald-600">Services</button>
+              <button onClick={() => scrollTo('team')} className="block w-full text-left px-4 py-3 text-gray-500 hover:text-emerald-600">Team</button>
+              <button onClick={() => scrollTo('faq')} className="block w-full text-left px-4 py-3 text-gray-500 hover:text-emerald-600">FAQ</button>
+              <button onClick={() => scrollTo('contact')} className="block w-full text-left px-4 py-3 text-gray-500 hover:text-emerald-600">Contact</button>
+            </div>
+          )}
         </nav>
       </header>
-      
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{__html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            "name": "Cleaning Company",
-            "url": "https://cleaning-company.com",
-            "description": "Professional cleaning company services.",
-          })}}
-        />
 
-        <main id="main-content" role="main">
-        <section aria-labelledby="hero-heading" className="pt-24 pb-16 relative overflow-hidden">
-          <div className="absolute inset-0" aria-hidden="true"><div className="absolute top-20 right-20 w-96 h-96 bg-sky-200/40 rounded-full blur-3xl"/></div>
-          <div className="relative max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-sky-700 text-sm font-bold tracking-widest mb-4">TRUSTED SINCE 2008</p>
-              <h2 id="hero-heading" className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-sky-900">Professional<br/><span className="text-sky-600">Cleaning</span></h2>
-              <p className="text-xl text-gray-600 mb-8 max-w-lg">Commercial and residential cleaning with trained crews, eco-friendly products, and a 100% satisfaction guarantee.</p>
-              <div className="flex flex-wrap gap-4 mb-10">
-                <button aria-label="Get your free cleaning quote" className="bg-sky-700 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-sky-800 transition-all hover:scale-105 focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2">Free Quote</button>
-                <button aria-label="View our cleaning services" className="border-2 border-sky-700 text-sky-800 px-8 py-4 rounded-full text-lg font-bold hover:bg-sky-50 transition-all hover:scale-105 focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2">Our Services</button>
-              </div>
-              <div className="flex items-center gap-8">
-                {[{num:'2K+',label:'Clients Served'},{num:'15+',label:'Years Experience'},{num:'4.9',label:'Google Rating'}].map((s,i) => (<div key={i}><div className="text-2xl font-bold text-sky-700">{s.num}</div><div className="text-sm text-gray-500">{s.label}</div></div>))}
+      <main id="main" role="main">
+        <section className="pt-28 pb-20 md:pb-32">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="max-w-3xl">
+              <p className="text-emerald-600 text-sm tracking-widest uppercase mb-6">Est. 2014</p>
+              <h2 className="text-5xl md:text-7xl font-bold leading-[0.9] tracking-tight mb-8 whitespace-pre-line">
+                Come home
+to clean.
+              </h2>
+              <p className="text-xl text-gray-500 max-w-xl leading-relaxed mb-10">
+                Professional cleaning with eco-friendly products and satisfaction guaranteed.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <button onClick={() => scrollTo('contact')} className="bg-emerald-600 text-black px-8 py-4 text-lg font-medium rounded-full hover:opacity-90 transition-opacity">
+                  Get Free Quote
+                </button>
+                <button onClick={() => scrollTo('services')} className="border-2 border-current/20 px-8 py-4 text-lg font-medium rounded-full hover:bg-current/5 transition-colors">
+                  Our Services
+                </button>
               </div>
             </div>
-            <div className="relative"><div className="bg-white rounded-3xl p-8 shadow-xl"><img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=80" alt="Professional cleaning crew working in modern office space" className="w-full rounded-2xl"/></div></div>
+            <div className="mt-16 grid grid-cols-3 gap-8 max-w-lg">
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-emerald-600">10K+</div>
+              <div className="text-sm text-gray-500 mt-1">Homes cleaned</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-emerald-600">100%</div>
+              <div className="text-sm text-gray-500 mt-1">Satisfaction</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-emerald-600">Insured</div>
+              <div className="text-sm text-gray-500 mt-1">& bonded</div>
+            </div>
+            </div>
           </div>
         </section>
-        <section id="services" aria-labelledby="services-heading" className="py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-16"><p className="text-sky-700 text-sm font-bold tracking-widest mb-4">WHAT WE CLEAN</p><h2 id="services-heading" className="text-4xl font-bold text-sky-900 mb-4">Service Types</h2></div>
+
+        <section id="services" className="py-24" aria-labelledby="services-heading">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <p className="text-emerald-600 text-sm tracking-widest uppercase mb-3">What We Offer</p>
+              <h2 id="services-heading" className="text-4xl md:text-5xl font-bold">Our Services</h2>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <article className="bg-gray-50 border border-gray-200 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 group">
+              <div className="text-4xl mb-4" aria-hidden="true">🏠</div>
+              <h3 className="text-xl font-bold mb-3 text-gray-900">Standard Clean</h3>
+              <p className="text-gray-500 leading-relaxed">Dusting, vacuuming, mopping.</p>
+            </article>
+            <article className="bg-gray-50 border border-gray-200 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 group">
+              <div className="text-4xl mb-4" aria-hidden="true">🧹</div>
+              <h3 className="text-xl font-bold mb-3 text-gray-900">Deep Clean</h3>
+              <p className="text-gray-500 leading-relaxed">Baseboards, appliances, fixtures.</p>
+            </article>
+            <article className="bg-gray-50 border border-gray-200 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 group">
+              <div className="text-4xl mb-4" aria-hidden="true">📦</div>
+              <h3 className="text-xl font-bold mb-3 text-gray-900">Move In/Out</h3>
+              <p className="text-gray-500 leading-relaxed">Move-in ready condition.</p>
+            </article>
+            <article className="bg-gray-50 border border-gray-200 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 group">
+              <div className="text-4xl mb-4" aria-hidden="true">🏢</div>
+              <h3 className="text-xl font-bold mb-3 text-gray-900">Office Cleaning</h3>
+              <p className="text-gray-500 leading-relaxed">Daily/weekly commercial.</p>
+            </article>
+            <article className="bg-gray-50 border border-gray-200 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 group">
+              <div className="text-4xl mb-4" aria-hidden="true">🏗️</div>
+              <h3 className="text-xl font-bold mb-3 text-gray-900">Post-Construction</h3>
+              <p className="text-gray-500 leading-relaxed">Dust and debris removal.</p>
+            </article>
+            <article className="bg-gray-50 border border-gray-200 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 group">
+              <div className="text-4xl mb-4" aria-hidden="true">🌿</div>
+              <h3 className="text-xl font-bold mb-3 text-gray-900">Green Clean</h3>
+              <p className="text-gray-500 leading-relaxed">100% eco-friendly products.</p>
+            </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="team" className="py-24 bg-gray-50" aria-labelledby="team-heading">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <p className="text-emerald-600 text-sm tracking-widest uppercase mb-3">Our Team</p>
+              <h2 id="team-heading" className="text-4xl md:text-5xl font-bold">Meet the experts</h2>
+            </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {services.map((s,i) => (<article key={i} className="bg-sky-50 rounded-2xl p-6 hover:shadow-lg transition-all hover:scale-105"><div className="text-4xl mb-4" aria-hidden="true">{s.icon}</div><h3 className="text-xl font-bold text-sky-900 mb-2">{s.title}</h3><p className="text-gray-500 text-sm">{s.desc}</p></article>))}
+            <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 text-center">
+              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-emerald-600/20 flex items-center justify-center text-2xl font-bold text-emerald-600">JA</div>
+              <h3 className="font-bold text-gray-900">Jessica Adams</h3>
+              <p className="text-sm text-emerald-600">Ops Director</p>
+              <p className="text-sm text-gray-500 mt-1">ISSA certified</p>
             </div>
-          </div>
-        </section>
-        {/* Testimonials */}
-        <section id="testimonials" aria-labelledby="testimonials-heading" className="py-24 bg-sky-50">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-16">
-              <p className="text-sky-700 text-sm font-bold tracking-widest mb-4">CLIENT REVIEWS</p>
-              <h2 id="testimonials-heading" className="text-4xl font-bold text-sky-900 mb-4">What Clients Say</h2>
+            <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 text-center">
+              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-emerald-600/20 flex items-center justify-center text-2xl font-bold text-emerald-600">CM</div>
+              <h3 className="font-bold text-gray-900">Carlos Mendez</h3>
+              <p className="text-sm text-emerald-600">Team Lead</p>
+              <p className="text-sm text-gray-500 mt-1">8yr exp</p>
             </div>
-            <div className="space-y-6">
-              {testimonials.map((t, i) => (
-                <div key={i} className="bg-white rounded-2xl p-6 shadow-lg">
-                  <div className="flex mb-3" aria-label={`${t.rating} stars`}>
-                    {[...Array(t.rating)].map((_, j) => <svg key={j} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}
-                  </div>
-                  <p className="text-gray-600 mb-3 italic">&quot;{t.text}&quot;</p>
-                  <div className="border-t border-gray-200 pt-4">
-                    <p className="text-sky-900 font-medium">{t.name}</p>
-                    <p className="text-gray-500 text-sm">{t.role} • {t.date}</p>
-                  </div>
-                </div>
-              ))}
+            <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 text-center">
+              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-emerald-600/20 flex items-center justify-center text-2xl font-bold text-emerald-600">AF</div>
+              <h3 className="font-bold text-gray-900">Amanda Foster</h3>
+              <p className="text-sm text-emerald-600">Quality Mgr</p>
+              <p className="text-sm text-gray-500 mt-1">100% audit</p>
             </div>
-          </div>
-        </section>
-
-        {/* Gallery */}
-        <section id="gallery" aria-labelledby="gallery-heading" className="py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-16">
-              <p className="text-sky-700 text-sm font-bold tracking-widest mb-4">OUR WORK</p>
-              <h2 id="gallery-heading" className="text-4xl font-bold text-sky-900 mb-4">Before & After</h2>
+            <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 text-center">
+              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-emerald-600/20 flex items-center justify-center text-2xl font-bold text-emerald-600">DN</div>
+              <h3 className="font-bold text-gray-900">David Nguyen</h3>
+              <p className="text-sm text-emerald-600">Green Lead</p>
+              <p className="text-sm text-gray-500 mt-1">Eco-certified</p>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {galleryImages.map((img, i) => (
-                <div key={i} className="relative aspect-square overflow-hidden rounded-2xl group">
-                  <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                    <p className="text-white font-medium">{img.caption}</p>
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </section>
 
-        <section id="contact" aria-labelledby="contact-heading" className="py-24">
-          <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16">
-            <div>
-              <p className="text-sky-700 text-sm font-bold tracking-widest mb-4">GET STARTED</p>
-              <h2 id="contact-heading" className="text-4xl font-bold text-sky-900 mb-6">Request Your Quote</h2>
-              <p className="text-gray-600 mb-8">Tell us about your space and cleaning needs. We'll respond within 2 hours.</p>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true">📍</div>
-                  <div><h3 className="font-bold text-sky-900">Visit Us</h3><p className="text-gray-600">456 Clean Street<br/>Service Area, Dallas, TX 75201</p></div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true">📞</div>
-                  <div><h3 className="font-bold text-sky-900">Call Us</h3><p className="text-gray-600">(214) 555-CLEAN</p></div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true">🕒</div>
-                  <div><h3 className="font-bold text-sky-900">Hours</h3><p className="text-gray-600">Mon-Fri: 8AM-6PM<br/>Sat: 9AM-3PM<br/>Sun: Emergency Only</p></div>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white rounded-2xl shadow-xl p-8">
-              <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); setTimeout(() => setSubmitted(false), 3000); }} noValidate className="space-y-6">
-                <div><label htmlFor="contact-name" className="block text-sm font-medium text-gray-700 mb-2">Your Name</label><input id="contact-name" type="text" aria-required="true" placeholder="Chris Clean" className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 focus:outline-none transition-colors"/></div>
-                <div><label htmlFor="contact-email" className="block text-sm font-medium text-gray-700 mb-2">Email</label><input id="contact-email" type="email" aria-required="true" placeholder="chris@example.com" className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 focus:outline-none transition-colors"/></div>
-                <div><label htmlFor="contact-service-type" className="block text-sm font-medium text-gray-700 mb-2">Service Type</label><select id="contact-service-type" className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 focus:outline-none transition-colors"><option value="">Select service</option><option value="residential">Residential</option><option value="commercial">Commercial</option><option value="post-construction">Post-Construction</option><option value="specialty">Specialty Cleaning</option></select></div>
-                <button type="submit" aria-label="Request your free cleaning quote" className="w-full bg-sky-700 text-white py-4 rounded-xl font-bold hover:bg-sky-800 transition-all hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2">Request Quote</button>
-              {submitted && <p className="text-center text-green-500 text-sm mt-2 animate-pulse">Sent! We will be in touch soon.</p>}
-              </form>
-            </div>
-          </div>
-        </section>
-      
-        {/* FAQ Section */}
-        <section className="py-24" aria-labelledby="faq-heading">
+        <section id="faq" className="py-24" aria-labelledby="faq-heading">
           <div className="max-w-4xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 id="faq-heading" className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
-              <p className="text-current/60">Everything you need to know.</p>
+              <p className="text-emerald-600 text-sm tracking-widest uppercase mb-3">Questions</p>
+              <h2 id="faq-heading" className="text-4xl md:text-5xl font-bold">FAQ</h2>
             </div>
             <div className="space-y-4">
-              {[
-          {question: 'How do I schedule an appointment?', answer: 'Call us, text us, or fill out the contact form. We typically respond within 1 hour during business hours.'},
-          {question: 'Are you licensed and insured?', answer: 'Yes. We are fully licensed, bonded, and carry comprehensive liability insurance.'},
-          {question: 'Do you offer free estimates?', answer: 'Yes. We provide free, no-obligation estimates for all services. Call or fill out our form to get started.'},
-          {question: 'What areas do you serve?', answer: 'We serve the entire metro area. Contact us to confirm service availability in your specific location.'}
-              ].map((faq, i) => (
-                <details key={i} className="group border border-current/10 rounded-xl p-5 [&_summary]:cursor-pointer">
-                  <summary className="font-medium flex justify-between items-center list-none">
-                    {faq.question}
-                    <span className="ml-4 text-current/40 group-open:rotate-45 transition-transform">+</span>
-                  </summary>
-                  <p className="mt-3 text-current/60 text-sm leading-relaxed">{faq.answer}</p>
-                </details>
-              ))}
+            <details className="group border border-current/10 rounded-xl p-5 cursor-pointer">
+              <summary className="font-medium flex justify-between items-center list-none text-gray-900">
+                Need to be home?
+                <span className="ml-4 text-gray-500 group-open:rotate-45 transition-transform text-xl">+</span>
+              </summary>
+              <p className="mt-3 text-gray-500 text-sm leading-relaxed">No, we're insured and bonded.</p>
+            </details>
+            <details className="group border border-current/10 rounded-xl p-5 cursor-pointer">
+              <summary className="font-medium flex justify-between items-center list-none text-gray-900">
+                Products?
+                <span className="ml-4 text-gray-500 group-open:rotate-45 transition-transform text-xl">+</span>
+              </summary>
+              <p className="mt-3 text-gray-500 text-sm leading-relaxed">Eco-friendly, safe for kids/pets.</p>
+            </details>
+            <details className="group border border-current/10 rounded-xl p-5 cursor-pointer">
+              <summary className="font-medium flex justify-between items-center list-none text-gray-900">
+                Cancellation?
+                <span className="ml-4 text-gray-500 group-open:rotate-45 transition-transform text-xl">+</span>
+              </summary>
+              <p className="mt-3 text-gray-500 text-sm leading-relaxed">Free 24hr before, $25 same-day.</p>
+            </details>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="py-24 bg-gray-50" aria-labelledby="contact-heading">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="grid md:grid-cols-2 gap-12">
+              <div>
+                <p className="text-emerald-600 text-sm tracking-widest uppercase mb-3">Get In Touch</p>
+                <h2 id="contact-heading" className="text-4xl md:text-5xl font-bold mb-6">Get Free Quote</h2>
+                <div className="space-y-6 text-gray-500">
+                  <div>
+                    <div className="font-bold text-gray-900">Phone</div>
+                    <a href="tel:(555) 123-4567" className="hover:text-emerald-600 transition-colors">(555) 123-4567</a>
+                  </div>
+                  <div>
+                    <div className="font-bold text-gray-900">Address</div>
+                    <p className="whitespace-pre-line">Serving Denver, CO Metro</p>
+                  </div>
+                  <div>
+                    <div className="font-bold text-gray-900">Hours</div>
+                    <p>Mon–Sat 7 AM – 7 PM</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); setSubmitted(true); setTimeout(() => setSubmitted(false), 3000); }} aria-label="Contact form">
+                  <div className="grid md:grid-cols-2 gap-5">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium mb-2">Full Name</label>
+                      <input id="name" type="text" placeholder="John Smith" required className="w-full border border-current/20 rounded-xl px-4 py-3 bg-transparent placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-current/20" />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
+                      <input id="email" type="email" placeholder="john@example.com" required className="w-full border border-current/20 rounded-xl px-4 py-3 bg-transparent placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-current/20" />
+                    </div>
+                  </div>
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
+                    <textarea id="message" rows={4} placeholder="How can we help?" required className="w-full border border-current/20 rounded-xl px-4 py-3 bg-transparent placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-current/20 resize-none" />
+                  </div>
+                  <button type="submit" className="w-full bg-emerald-600 text-black py-4 rounded-xl font-medium hover:opacity-90 transition-opacity">
+                    {submitted ? "Sent! We'll be in touch." : "Get Free Quote"}
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </section>
       </main>
-      <footer role="contentinfo" className="py-12 bg-sky-900">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-sky-700 rounded-lg flex items-center justify-center text-white" aria-hidden="true">🧹</div>
-                <div><h3 className="text-white font-bold">ProClean Company</h3><p className="text-xs text-sky-300">COMMERCIAL & RESIDENTIAL</p></div>
-              </div>
-              <p className="text-sky-300 text-sm">Licensed & insured cleaning services since 2008.</p>
-            </div>
-            <div>
-              <h3 className="text-white font-bold mb-4">Quick Links</h3>
-              <ul className="space-y-2">
-                <li><button onClick={() => scrollToSection('services')} className="text-sky-300 hover:text-white transition-colors text-sm">Services</button></li>
-                <li><button onClick={() => scrollToSection('testimonials')} className="text-sky-300 hover:text-white transition-colors text-sm">Reviews</button></li>
-                <li><button onClick={() => scrollToSection('gallery')} className="text-sky-300 hover:text-white transition-colors text-sm">Gallery</button></li>
-                <li><button onClick={() => scrollToSection('contact')} className="text-sky-300 hover:text-white transition-colors text-sm">Contact</button></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-white font-bold mb-4">Services</h3>
-              <ul className="space-y-2">
-                <li><span className="text-sky-300 text-sm">Residential</span></li>
-                <li><span className="text-sky-300 text-sm">Commercial</span></li>
-                <li><span className="text-sky-300 text-sm">Post-Construction</span></li>
-                <li><span className="text-sky-300 text-sm">Specialty</span></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-white font-bold mb-4">Follow Us</h3>
-              <div className="flex gap-3">
-                <a href="#" className="w-10 h-10 bg-sky-700 rounded-lg flex items-center justify-center text-white hover:bg-sky-600 transition-colors" aria-label="Instagram">
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                </a>
-                <a href="#" className="w-10 h-10 bg-sky-700 rounded-lg flex items-center justify-center text-white hover:bg-sky-600 transition-colors" aria-label="Facebook">
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                </a>
-              </div>
-            </div>
+
+      <footer className="bg-gray-50 border-t border-current/10 py-12">
+        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div>
+            <div className="font-bold text-lg">SparkleClean</div>
+            <p className="text-sm text-gray-500">Est. 2014</p>
           </div>
-          <div className="border-t border-sky-800 pt-8 text-center">
-            <p className="text-sky-300 text-sm">&copy; 2026 ProClean Company. All rights reserved.</p>
-          </div>
-        
-            <div className="flex gap-4 text-sm">
-              <a href="#" className="hover:underline">Twitter</a>
-              <a href="#" className="hover:underline">LinkedIn</a>
-              <a href="#" className="hover:underline">Instagram</a>
-            </div>
-          </div>
+          <p className="text-sm text-gray-500">&copy; 2026 SparkleClean. All rights reserved.</p>
+        </div>
       </footer>
     </div>
   );
