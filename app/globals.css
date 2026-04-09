@@ -1,5 +1,8 @@
 @import "tailwindcss";
 html { scroll-behavior: smooth; }
-body { background: #fafafa; color: #1c1917; font-family: system-ui, sans-serif; }
-:focus-visible { outline: 2px solid #059669; outline-offset: 2px; }
+body { background: #f0fdf4; color: #14532d; font-family: system-ui, sans-serif; }
+.clean-card { background: white; border: 1px solid #bbf7d0; border-radius: 1rem; transition: transform 0.3s, box-shadow 0.3s; }
+.clean-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(22,163,74,0.1); }
+.trust-badge { display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: #dcfce7; border-radius: 0.75rem; }
+:focus-visible { outline: 2px solid #16a34a; outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.01ms !important; } }
