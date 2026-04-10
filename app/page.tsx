@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const SERVICES = [
   { name: 'Standard Clean', price: 'From $120', desc: 'Dusting, vacuuming, mopping, bathroom and kitchen cleaning. Perfect for regular maintenance.', icon: '🏠' },
@@ -11,6 +11,14 @@ const SERVICES = [
 ];
 
 export default function Home() {
+  React.useEffect(() => {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal,.reveal-left,.reveal-scale').forEach(el => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
+
   const [submitted, setSubmitted] = useState(false);
   const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
