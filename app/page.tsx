@@ -58,7 +58,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="services" className="py-24 bg-white" aria-labelledby="services-heading">
+        <section id="services" className="reveal py-24 bg-white" aria-labelledby="services-heading">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-16"><h2 id="services-heading" className="text-4xl font-bold">Services & Pricing</h2><p className="text-green-600 mt-3">Transparent pricing. No hidden fees.</p></div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -74,7 +74,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-24" aria-labelledby="why-heading">
+        <section className="reveal py-24" aria-labelledby="why-heading">
           <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 id="why-heading" className="text-4xl font-bold mb-6">Why SparkleClean?</h2>
@@ -98,7 +98,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="pricing" className="py-24 bg-white" aria-labelledby="pricing-heading">
+        <section id="pricing" className="reveal py-24 bg-white" aria-labelledby="pricing-heading">
           <div className="max-w-4xl mx-auto px-6">
             <div className="text-center mb-16"><h2 id="pricing-heading" className="text-4xl font-bold">Recurring Plans</h2><p className="text-green-600 mt-3">Save more with regular service.</p></div>
             <div className="grid md:grid-cols-3 gap-8">
@@ -120,7 +120,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contact" className="py-24" aria-labelledby="contact-heading">
+        <section id="contact" className="reveal py-24" aria-labelledby="contact-heading">
           <div className="max-w-4xl mx-auto px-6">
             <div className="text-center mb-12"><h2 id="contact-heading" className="text-4xl font-bold">Get a Free Quote</h2><p className="text-green-600 mt-3">We respond within 1 hour during business hours.</p></div>
             <form className="clean-card p-8 space-y-5" onSubmit={(e) => { e.preventDefault(); setSubmitted(true); setTimeout(() => setSubmitted(false), 4000); }} aria-label="Quote form">
