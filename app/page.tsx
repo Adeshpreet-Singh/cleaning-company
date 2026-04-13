@@ -210,11 +210,11 @@ export default function Home() {
             <p className="text-base tracking-[0.2em] text-[#5f5f5f] uppercase">Professional Cleaning — Denver</p>
           </div>
           <div className="hidden md:flex items-center gap-8">
-            <button className="btn" onClick={() => scrollTo('services')} className="text-base text-[#5f5f5f] hover:text-[#ff4a00] transition-colors">Services</button>
-            <button className="btn" onClick={() => scrollTo('pricing')} className="text-base text-[#5f5f5f] hover:text-[#ff4a00] transition-colors">Pricing</button>
-            <button className="btn" onClick={() => scrollTo('green')} className="text-base text-[#5f5f5f] hover:text-[#ff4a00] transition-colors">Green</button>
-            <button className="btn" onClick={() => scrollTo('faq')} className="text-base text-[#5f5f5f] hover:text-[#ff4a00] transition-colors">FAQ</button>
-            <button className="btn" onClick={() => scrollTo('contact')} className="btn text-base">Get Quote</button>
+            <button onClick={() => scrollTo('services')} className="btn text-base text-[#5f5f5f] hover:text-[#ff4a00] transition-colors">Services</button>
+            <button onClick={() => scrollTo('pricing')} className="btn text-base text-[#5f5f5f] hover:text-[#ff4a00] transition-colors">Pricing</button>
+            <button onClick={() => scrollTo('green')} className="btn text-base text-[#5f5f5f] hover:text-[#ff4a00] transition-colors">Green</button>
+            <button onClick={() => scrollTo('faq')} className="btn text-base text-[#5f5f5f] hover:text-[#ff4a00] transition-colors">FAQ</button>
+            <button onClick={() => scrollTo('contact')} className="btn btn text-base">Get Quote</button>
           </div>
         </div>
       </nav>
@@ -236,8 +236,8 @@ export default function Home() {
                 Professional residential and commercial cleaning in Denver. Eco-friendly products, trained teams, and a 100% satisfaction guarantee — or we come back and re-clean for free.
               </p>
               <div className="flex flex-wrap gap-4">
-                <button className="btn" onClick={() => scrollTo('contact')} className="btn text-base px-8 py-4">Get a Free Quote</button>
-                <button className="btn" onClick={() => scrollTo('services')} className="btn-outline text-base px-8 py-4">Explore Services</button>
+                <button onClick={() => scrollTo('contact')} className="btn btn text-base px-8 py-4">Get a Free Quote</button>
+                <button onClick={() => scrollTo('services')} className="btn btn-outline text-base px-8 py-4">Explore Services</button>
               </div>
             </div>
             <div className="space-y-4">
@@ -321,7 +321,7 @@ export default function Home() {
                       ))}
                     </ul>
                   </div>
-                  <button className="btn" onClick={() => scrollTo('contact')} className={`mt-6 w-full py-3 rounded-lg font-semibold text-sm transition-all ${tier.highlight ? 'btn' : 'btn-outline'}`}>
+                  <button onClick={() => scrollTo('contact')} className={`mt-6 w-full py-3 rounded-lg font-semibold text-sm transition-all ${tier.highlight ? 'btn' : 'btn-outline'}`}>
                     Get Started
                   </button>
                 </div>
@@ -346,7 +346,7 @@ export default function Home() {
                   <div className="text-3xl font-bold text-[#ff4a00] mb-1">{plan.price}<span className="text-base text-[#5f5f5f] font-normal">/visit</span></div>
                   <div className="text-green-500 text-sm font-semibold mb-3">Save {plan.save}%</div>
                   <p className="text-[#5f5f5f] text-sm mb-6">{plan.desc}</p>
-                  <button className="btn" onClick={() => scrollTo('contact')} className="btn w-full text-sm">Get Started</button>
+                  <button onClick={() => scrollTo('contact')} className="btn btn w-full text-sm">Get Started</button>
                 </div>
               ))}
             </div>
@@ -518,12 +518,7 @@ export default function Home() {
             <div className="space-y-3">
               {FAQS.map((faq, i) => (
                 <div key={i} className="card !p-0 overflow-hidden">
-                  <button className="btn"
-                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-[#f9f9f9] transition-colors"
-                    aria-expanded={openFaq === i}
-                    aria-controls={`faq-answer-${i}`}
-                  >
+                  <button className="btn w-full flex items-center justify-between px-6 py-5 text-left hover:bg-[#f9f9f9] transition-colors" onClick={() => setOpenFaq(openFaq === i ? null : i)} aria-expanded={openFaq === i} aria-controls={`faq-answer-${i}`} >
                     <span className="font-semibold text-sm pr-4">{faq.q}</span>
                     <span className={`text-[#ff4a00] text-xl flex-shrink-0 transition-transform duration-300 ${openFaq === i ? 'rotate-45' : ''}`}>+</span>
                   </button>
@@ -553,7 +548,7 @@ export default function Home() {
                 <div className="text-5xl mb-4">✓</div>
                 <h3 className="text-2xl font-bold mb-2">Quote Request Received!</h3>
                 <p className="text-[#5f5f5f]">We'll call you within the hour to confirm details and schedule your cleaning.</p>
-                <button className="btn" onClick={() => setSubmitted(false)} className="btn-outline mt-6 text-sm">Submit Another Request</button>
+                <button onClick={() => setSubmitted(false)} className="btn btn-outline mt-6 text-sm">Submit Another Request</button>
               </div>
             ) : (
               <form
@@ -631,11 +626,11 @@ export default function Home() {
             <div>
               <h4 className="text-white font-semibold text-sm mb-3">Quick Links</h4>
               <ul className="space-y-2 text-sm">
-                <li><button className="btn" onClick={() => scrollTo('services')} className="hover:text-[#ff4a00] transition-colors">Services</button></li>
-                <li><button className="btn" onClick={() => scrollTo('pricing')} className="hover:text-[#ff4a00] transition-colors">Pricing</button></li>
-                <li><button className="btn" onClick={() => scrollTo('green')} className="hover:text-[#ff4a00] transition-colors">Green Cleaning</button></li>
-                <li><button className="btn" onClick={() => scrollTo('faq')} className="hover:text-[#ff4a00] transition-colors">FAQ</button></li>
-                <li><button className="btn" onClick={() => scrollTo('contact')} className="hover:text-[#ff4a00] transition-colors">Get a Quote</button></li>
+                <li><button onClick={() => scrollTo('services')} className="btn hover:text-[#ff4a00] transition-colors">Services</button></li>
+                <li><button onClick={() => scrollTo('pricing')} className="btn hover:text-[#ff4a00] transition-colors">Pricing</button></li>
+                <li><button onClick={() => scrollTo('green')} className="btn hover:text-[#ff4a00] transition-colors">Green Cleaning</button></li>
+                <li><button onClick={() => scrollTo('faq')} className="btn hover:text-[#ff4a00] transition-colors">FAQ</button></li>
+                <li><button onClick={() => scrollTo('contact')} className="btn hover:text-[#ff4a00] transition-colors">Get a Quote</button></li>
               </ul>
             </div>
             <div>
