@@ -210,10 +210,10 @@ export default function Home() {
             <p className="text-[10px] tracking-[0.2em] text-[#5f5f5f] uppercase">Professional Cleaning — Denver</p>
           </div>
           <div className="hidden md:flex items-center gap-8">
-            <button onClick={() => scrollTo('services')} className="text-sm text-[#5f5f5f] hover:text-[#ff4a00] transition-colors">Services</button>
-            <button onClick={() => scrollTo('pricing')} className="text-sm text-[#5f5f5f] hover:text-[#ff4a00] transition-colors">Pricing</button>
-            <button onClick={() => scrollTo('green')} className="text-sm text-[#5f5f5f] hover:text-[#ff4a00] transition-colors">Green</button>
-            <button onClick={() => scrollTo('faq')} className="text-sm text-[#5f5f5f] hover:text-[#ff4a00] transition-colors">FAQ</button>
+            <button onClick={() => scrollTo('services')} className="text-base text-[#5f5f5f] hover:text-[#ff4a00] transition-colors">Services</button>
+            <button onClick={() => scrollTo('pricing')} className="text-base text-[#5f5f5f] hover:text-[#ff4a00] transition-colors">Pricing</button>
+            <button onClick={() => scrollTo('green')} className="text-base text-[#5f5f5f] hover:text-[#ff4a00] transition-colors">Green</button>
+            <button onClick={() => scrollTo('faq')} className="text-base text-[#5f5f5f] hover:text-[#ff4a00] transition-colors">FAQ</button>
             <button onClick={() => scrollTo('contact')} className="btn text-sm">Get Quote</button>
           </div>
         </div>
@@ -344,7 +344,7 @@ export default function Home() {
                   {i === 1 && <div className="text-[#ff4a00] text-xs font-bold uppercase tracking-wider mb-2">Most Popular</div>}
                   <h3 className="text-xl font-bold mb-2">{plan.name}</h3>
                   <div className="text-3xl font-bold text-[#ff4a00] mb-1">{plan.price}<span className="text-base text-[#5f5f5f] font-normal">/visit</span></div>
-                  <div className="text-green-600 text-sm font-semibold mb-3">Save {plan.save}%</div>
+                  <div className="text-green-500 text-sm font-semibold mb-3">Save {plan.save}%</div>
                   <p className="text-[#5f5f5f] text-sm mb-6">{plan.desc}</p>
                   <button onClick={() => scrollTo('contact')} className="btn w-full text-sm">Get Started</button>
                 </div>
