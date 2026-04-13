@@ -192,9 +192,9 @@ export default function Home() {
   const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
   return (
-    <div className="min-h-screen text-[#1a1a1a]" style={{ fontFamily: 'DM Sans, sans-serif' }}>
+    <div className="min-h-screen text-[#0d2137]" style={{ fontFamily: 'Poppins, sans-serif' }}>
       {/* Skip link */}
-      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-[#ff4a00] text-white px-4 py-2 rounded z-[100] font-bold">
+      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-[#00bcd4] text-white px-4 py-2 rounded z-[100] font-bold">
         Skip to main content
       </a>
 
@@ -205,16 +205,16 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <div>
             <h1 className="text-xl font-bold tracking-tight">
-              Sparkle<span className="text-[#ff4a00]">Clean</span>
+              Sparkle<span className="text-[#00bcd4]">Clean</span>
             </h1>
             <p className="text-base tracking-[0.2em] text-[#5f5f5f] uppercase">Professional Cleaning — Denver</p>
           </div>
           <div className="hidden md:flex items-center gap-8">
-            <button style={{ cursor: "pointer" }} onClick={() => scrollTo('services')} className="btn text-base text-[#5f5f5f] hover:text-[#ff4a00] transition-colors">Services</button>
-            <button style={{ cursor: "pointer" }} onClick={() => scrollTo('pricing')} className="btn text-base text-[#5f5f5f] hover:text-[#ff4a00] transition-colors">Pricing</button>
-            <button style={{ cursor: "pointer" }} onClick={() => scrollTo('green')} className="btn text-base text-[#5f5f5f] hover:text-[#ff4a00] transition-colors">Green</button>
-            <button style={{ cursor: "pointer" }} onClick={() => scrollTo('faq')} className="btn text-base text-[#5f5f5f] hover:text-[#ff4a00] transition-colors">FAQ</button>
-            <button style={{ cursor: "pointer" }} onClick={() => scrollTo('contact')} className="btn bg-[#ff4a00] text-white px-5 py-2.5 rounded-full text-base font-semibold hover:bg-[#e64200] transition-colors">Get Quote</button>
+            <button style={{ cursor: "pointer" }} onClick={() => scrollTo('services')} className="btn text-base text-[#5f5f5f] hover:text-[#00bcd4] transition-colors">Services</button>
+            <button style={{ cursor: "pointer" }} onClick={() => scrollTo('pricing')} className="btn text-base text-[#5f5f5f] hover:text-[#00bcd4] transition-colors">Pricing</button>
+            <button style={{ cursor: "pointer" }} onClick={() => scrollTo('green')} className="btn text-base text-[#5f5f5f] hover:text-[#00bcd4] transition-colors">Green</button>
+            <button style={{ cursor: "pointer" }} onClick={() => scrollTo('faq')} className="btn text-base text-[#5f5f5f] hover:text-[#00bcd4] transition-colors">FAQ</button>
+            <button style={{ cursor: "pointer" }} onClick={() => scrollTo('contact')} className="btn bg-[#00bcd4] text-white px-5 py-2.5 rounded-full text-base font-semibold hover:bg-[#0097a7] transition-colors">Get Quote</button>
           </div>
         </div>
       </nav>
@@ -228,7 +228,7 @@ export default function Home() {
         <section className="hero pt-24">
           <div className="max-w-6xl mx-auto px-6 py-20 md:py-24 grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="text-[#ff4a00] text-sm tracking-[0.3em] uppercase mb-4 font-semibold">Satisfaction Guaranteed — Est. 2014</p>
+              <p className="text-[#00bcd4] text-sm tracking-[0.3em] uppercase mb-4 font-semibold">Satisfaction Guaranteed — Est. 2014</p>
               <h2 className="text-5xl md:text-6xl font-bold leading-[0.95] mb-6 tracking-tight">
                 Come home<br />to a spotless space.
               </h2>
@@ -248,8 +248,8 @@ export default function Home() {
                 { icon: '✓', text: 'Eco-friendly products available at no extra cost' },
                 { icon: '✓', text: 'Same-day & next-day availability' },
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3 bg-white border border-[#e5e5e5] rounded-xl px-5 py-3.5 hover:border-[#ff4a00] transition-colors">
-                  <span className="w-7 h-7 rounded-full bg-[#ff4a00]/10 flex items-center justify-center text-[#ff4a00] font-bold text-sm flex-shrink-0">{item.icon}</span>
+                <div key={i} className="flex items-center gap-3 bg-white border border-[#e5e5e5] rounded-xl px-5 py-3.5 hover:border-[#00bcd4] transition-colors">
+                  <span className="w-7 h-7 rounded-full bg-[#00bcd4]/10 flex items-center justify-center text-[#00bcd4] font-bold text-sm flex-shrink-0">{item.icon}</span>
                   <span className="font-medium text-sm">{item.text}</span>
                 </div>
               ))}
@@ -270,12 +270,12 @@ export default function Home() {
                 <div key={i} className="card">
                   <div className="text-4xl mb-4" aria-hidden="true">{svc.icon}</div>
                   <h3 className="text-xl font-bold mb-1">{svc.name}</h3>
-                  <div className="text-[#ff4a00] font-bold text-lg mb-3">{svc.price}</div>
+                  <div className="text-[#00bcd4] font-bold text-lg mb-3">{svc.price}</div>
                   <p className="text-[#5f5f5f] text-sm leading-relaxed mb-4">{svc.desc}</p>
                   <ul className="space-y-1.5">
                     {svc.includes.map((item, j) => (
                       <li key={j} className="text-sm text-[#5f5f5f] flex items-start gap-2">
-                        <span className="text-[#ff4a00] mt-0.5 flex-shrink-0">✓</span>
+                        <span className="text-[#00bcd4] mt-0.5 flex-shrink-0">✓</span>
                         {item}
                       </li>
                     ))}
@@ -298,25 +298,25 @@ export default function Home() {
               {PRICING_TIERS.map((tier, i) => (
                 <div
                   key={i}
-                  className={`card text-center relative ${tier.highlight ? 'border-[#ff4a00] border-2 shadow-lg' : ''}`}
+                  className={`card text-center relative ${tier.highlight ? 'border-[#00bcd4] border-2 shadow-lg' : ''}`}
                 >
                   {tier.highlight && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#ff4a00] text-white text-xs font-bold uppercase tracking-wider px-4 py-1 rounded-full">
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#00bcd4] text-white text-xs font-bold uppercase tracking-wider px-4 py-1 rounded-full">
                       Most Popular
                     </div>
                   )}
                   <h3 className="text-xl font-bold mb-1 mt-2">{tier.name}</h3>
                   <p className="text-[#5f5f5f] text-sm mb-4">{tier.tagline}</p>
-                  <div className="text-4xl font-bold text-[#ff4a00] mb-1">{tier.price}</div>
+                  <div className="text-4xl font-bold text-[#00bcd4] mb-1">{tier.price}</div>
                   <p className="text-[#5f5f5f] text-sm mb-6">{tier.frequency}</p>
                   <div className="border-t border-[#e5e5e5] pt-5">
                     <ul className="space-y-3 text-left">
                       {tier.features.map((f, j) => (
                         <li key={j} className="flex items-center gap-2 text-sm">
-                          <span className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold ${f.included ? 'bg-[#ff4a00]/10 text-[#ff4a00]' : 'bg-[#e5e5e5] text-[#999]'}`}>
+                          <span className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold ${f.included ? 'bg-[#00bcd4]/10 text-[#00bcd4]' : 'bg-[#e5e5e5] text-[#999]'}`}>
                             {f.included ? '✓' : '—'}
                           </span>
-                          <span className={f.included ? 'text-[#1a1a1a]' : 'text-[#999]'}>{f.label}</span>
+                          <span className={f.included ? 'text-[#0d2137]' : 'text-[#999]'}>{f.label}</span>
                         </li>
                       ))}
                     </ul>
@@ -340,10 +340,10 @@ export default function Home() {
             </div>
             <div className="grid md:grid-cols-3 gap-8">
               {RECURRING_PLANS.map((plan, i) => (
-                <div key={i} className={`card text-center ${i === 1 ? 'border-[#ff4a00] border-2' : ''}`}>
-                  {i === 1 && <div className="text-[#ff4a00] text-xs font-bold uppercase tracking-wider mb-2">Most Popular</div>}
+                <div key={i} className={`card text-center ${i === 1 ? 'border-[#00bcd4] border-2' : ''}`}>
+                  {i === 1 && <div className="text-[#00bcd4] text-xs font-bold uppercase tracking-wider mb-2">Most Popular</div>}
                   <h3 className="text-xl font-bold mb-2">{plan.name}</h3>
-                  <div className="text-3xl font-bold text-[#ff4a00] mb-1">{plan.price}<span className="text-base text-[#5f5f5f] font-normal">/visit</span></div>
+                  <div className="text-3xl font-bold text-[#00bcd4] mb-1">{plan.price}<span className="text-base text-[#5f5f5f] font-normal">/visit</span></div>
                   <div className="text-green-500 text-sm font-semibold mb-3">Save {plan.save}%</div>
                   <p className="text-[#5f5f5f] text-sm mb-6">{plan.desc}</p>
                   <button style={{ cursor: "pointer" }} onClick={() => scrollTo('contact')} className="btn btn w-full text-sm">Get Started</button>
@@ -390,13 +390,13 @@ export default function Home() {
               ].map((section, i) => (
                 <div key={i} className="card">
                   <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-                    <span className="w-8 h-8 rounded-lg bg-[#ff4a00]/10 text-[#ff4a00] flex items-center justify-center text-sm font-bold">{i + 1}</span>
+                    <span className="w-8 h-8 rounded-lg bg-[#00bcd4]/10 text-[#00bcd4] flex items-center justify-center text-sm font-bold">{i + 1}</span>
                     {section.room}
                   </h3>
                   <ul className="space-y-2">
                     {section.items.map((item, j) => (
                       <li key={j} className="flex items-start gap-2 text-sm text-[#5f5f5f]">
-                        <span className="text-[#ff4a00] mt-0.5 flex-shrink-0">✓</span>
+                        <span className="text-[#00bcd4] mt-0.5 flex-shrink-0">✓</span>
                         {item}
                       </li>
                     ))}
@@ -468,7 +468,7 @@ export default function Home() {
                   { title: '100% Satisfaction Guarantee', desc: "Not happy with any area? Tell us within 24 hours and we'll re-clean it for free. No questions asked. That's our promise." },
                 ].map((item, i) => (
                   <div key={i} className="flex gap-4">
-                    <div className="w-8 h-8 rounded-full bg-[#ff4a00]/10 flex items-center justify-center text-[#ff4a00] font-bold flex-shrink-0 text-sm">{i + 1}</div>
+                    <div className="w-8 h-8 rounded-full bg-[#00bcd4]/10 flex items-center justify-center text-[#00bcd4] font-bold flex-shrink-0 text-sm">{i + 1}</div>
                     <div>
                       <div className="font-bold">{item.title}</div>
                       <div className="text-[#5f5f5f] text-sm leading-relaxed">{item.desc}</div>
@@ -493,7 +493,7 @@ export default function Home() {
                 <div key={i} className="card">
                   <div className="flex gap-1 mb-4" aria-label={`${t.stars} out of 5 stars`}>
                     {Array.from({ length: t.stars }).map((_, j) => (
-                      <span key={j} className="text-[#ff4a00] text-lg">★</span>
+                      <span key={j} className="text-[#00bcd4] text-lg">★</span>
                     ))}
                   </div>
                   <p className="text-[#5f5f5f] text-sm leading-relaxed mb-6 italic">"{t.text}"</p>
@@ -520,7 +520,7 @@ export default function Home() {
                 <div key={i} className="card !p-0 overflow-hidden">
                   <button className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-[#f9f9f9] transition-colors cursor-pointer" onClick={() => setOpenFaq(openFaq === i ? null : i)} aria-expanded={openFaq === i} aria-controls={`faq-answer-${i}`} >
                     <span className="font-semibold text-sm pr-4">{faq.q}</span>
-                    <span className={`text-[#ff4a00] text-xl flex-shrink-0 transition-transform duration-300 ${openFaq === i ? 'rotate-45' : ''}`}>+</span>
+                    <span className={`text-[#00bcd4] text-xl flex-shrink-0 transition-transform duration-300 ${openFaq === i ? 'rotate-45' : ''}`}>+</span>
                   </button>
                   <div
                     id={`faq-answer-${i}`}
@@ -616,21 +616,21 @@ export default function Home() {
       {/* ================================================================= */}
       {/* FOOTER                                                            */}
       {/* ================================================================= */}
-      <footer className="bg-[#1a1a1a] text-[#999] py-12">
+      <footer className="bg-[#0d2137] text-[#999] py-12">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
-              <h3 className="text-white font-bold text-lg mb-3">Sparkle<span className="text-[#ff4a00]">Clean</span></h3>
+              <h3 className="text-white font-bold text-lg mb-3">Sparkle<span className="text-[#00bcd4]">Clean</span></h3>
               <p className="text-sm leading-relaxed">Professional residential and commercial cleaning in the Denver metro area. Insured, bonded, and committed to your satisfaction since 2014.</p>
             </div>
             <div>
               <h4 className="text-white font-semibold text-sm mb-3">Quick Links</h4>
               <ul className="space-y-2 text-sm">
-                <li><button style={{ cursor: "pointer" }} onClick={() => scrollTo('services')} className="btn hover:text-[#ff4a00] transition-colors">Services</button></li>
-                <li><button style={{ cursor: "pointer" }} onClick={() => scrollTo('pricing')} className="btn hover:text-[#ff4a00] transition-colors">Pricing</button></li>
-                <li><button style={{ cursor: "pointer" }} onClick={() => scrollTo('green')} className="btn hover:text-[#ff4a00] transition-colors">Green Cleaning</button></li>
-                <li><button style={{ cursor: "pointer" }} onClick={() => scrollTo('faq')} className="btn hover:text-[#ff4a00] transition-colors">FAQ</button></li>
-                <li><button style={{ cursor: "pointer" }} onClick={() => scrollTo('contact')} className="btn hover:text-[#ff4a00] transition-colors">Get a Quote</button></li>
+                <li><button style={{ cursor: "pointer" }} onClick={() => scrollTo('services')} className="btn hover:text-[#00bcd4] transition-colors">Services</button></li>
+                <li><button style={{ cursor: "pointer" }} onClick={() => scrollTo('pricing')} className="btn hover:text-[#00bcd4] transition-colors">Pricing</button></li>
+                <li><button style={{ cursor: "pointer" }} onClick={() => scrollTo('green')} className="btn hover:text-[#00bcd4] transition-colors">Green Cleaning</button></li>
+                <li><button style={{ cursor: "pointer" }} onClick={() => scrollTo('faq')} className="btn hover:text-[#00bcd4] transition-colors">FAQ</button></li>
+                <li><button style={{ cursor: "pointer" }} onClick={() => scrollTo('contact')} className="btn hover:text-[#00bcd4] transition-colors">Get a Quote</button></li>
               </ul>
             </div>
             <div>
