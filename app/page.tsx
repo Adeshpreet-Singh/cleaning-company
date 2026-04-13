@@ -214,7 +214,7 @@ export default function Home() {
             <button onClick={() => scrollTo('pricing')} className="btn text-base text-[#5f5f5f] hover:text-[#ff4a00] transition-colors">Pricing</button>
             <button onClick={() => scrollTo('green')} className="btn text-base text-[#5f5f5f] hover:text-[#ff4a00] transition-colors">Green</button>
             <button onClick={() => scrollTo('faq')} className="btn text-base text-[#5f5f5f] hover:text-[#ff4a00] transition-colors">FAQ</button>
-            <button onClick={() => scrollTo('contact')} className="btn btn text-base">Get Quote</button>
+            <button onClick={() => scrollTo('contact')} className="btn bg-[#ff4a00] text-white px-5 py-2.5 rounded-full text-base font-semibold hover:bg-[#e64200] transition-colors">Get Quote</button>
           </div>
         </div>
       </nav>
@@ -518,7 +518,7 @@ export default function Home() {
             <div className="space-y-3">
               {FAQS.map((faq, i) => (
                 <div key={i} className="card !p-0 overflow-hidden">
-                  <button className="btn w-full flex items-center justify-between px-6 py-5 text-left hover:bg-[#f9f9f9] transition-colors" onClick={() => setOpenFaq(openFaq === i ? null : i)} aria-expanded={openFaq === i} aria-controls={`faq-answer-${i}`} >
+                  <button className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-[#f9f9f9] transition-colors cursor-pointer" onClick={() => setOpenFaq(openFaq === i ? null : i)} aria-expanded={openFaq === i} aria-controls={`faq-answer-${i}`} >
                     <span className="font-semibold text-sm pr-4">{faq.q}</span>
                     <span className={`text-[#ff4a00] text-xl flex-shrink-0 transition-transform duration-300 ${openFaq === i ? 'rotate-45' : ''}`}>+</span>
                   </button>
@@ -563,26 +563,26 @@ export default function Home() {
                 <div className="grid md:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium mb-2">Full Name *</label>
-                    <input id="name" type="text" placeholder="Jane Smith" required className="w-full border border-gray-300 " />
+                    <input id="name" type="text" placeholder="Jane Smith" required className="w-full border-2 border-gray-300 " />
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium mb-2">Email Address *</label>
-                    <input id="email" type="email" placeholder="jane@email.com" required className="w-full border border-gray-300 " />
+                    <input id="email" type="email" placeholder="jane@email.com" required className="w-full border-2 border-gray-300 " />
                   </div>
                 </div>
                 <div className="grid md:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="phone" className="block text-sm font-medium mb-2">Phone Number</label>
-                    <input id="phone" type="tel" placeholder="(555) 000-0000" className="w-full border border-gray-300 " />
+                    <input id="phone" type="tel" placeholder="(555) 000-0000" className="w-full border-2 border-gray-300 " />
                   </div>
                   <div>
                     <label htmlFor="zip" className="block text-sm font-medium mb-2">ZIP Code *</label>
-                    <input id="zip" type="text" placeholder="80202" required className="w-full border border-gray-300 " />
+                    <input id="zip" type="text" placeholder="80202" required className="w-full border-2 border-gray-300 " />
                   </div>
                 </div>
                 <div>
                   <label htmlFor="service" className="block text-sm font-medium mb-2">Service Needed *</label>
-                  <select id="service" required className="w-full border border-gray-300 ">
+                  <select id="service" required className="w-full border-2 border-gray-300 ">
                     <option value="">Select a service…</option>
                     {SERVICES.map((s, i) => (
                       <option key={i} value={s.name}>{s.name} — {s.price}</option>
@@ -592,7 +592,7 @@ export default function Home() {
                 </div>
                 <div>
                   <label htmlFor="frequency" className="block text-sm font-medium mb-2">Frequency</label>
-                  <select id="frequency" className="w-full border border-gray-300 ">
+                  <select id="frequency" className="w-full border-2 border-gray-300 ">
                     <option value="one-time">One-Time Clean</option>
                     <option value="weekly">Weekly (Save 17%)</option>
                     <option value="bi-weekly">Bi-Weekly (Save 9%)</option>
@@ -601,7 +601,7 @@ export default function Home() {
                 </div>
                 <div>
                   <label htmlFor="details" className="block text-sm font-medium mb-2">Home Details & Special Requests</label>
-                  <textarea id="details" rows={4} placeholder="Number of bedrooms / bathrooms, square footage, pets, areas of concern, access instructions…" className="w-full resize-none border border-gray-300 " />
+                  <textarea id="details" rows={4} placeholder="Number of bedrooms / bathrooms, square footage, pets, areas of concern, access instructions…" className="w-full resize-none border-2 border-gray-300 " />
                 </div>
                 <button type="submit" className="btn w-full text-base py-4 font-bold">
                   Get My Free Quote
