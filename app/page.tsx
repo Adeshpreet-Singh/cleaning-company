@@ -210,11 +210,11 @@ export default function Home() {
             <p className="text-base tracking-[0.2em] text-[#5f5f5f] uppercase">Professional Cleaning — Denver</p>
           </div>
           <div className="hidden md:flex items-center gap-8">
-            <button style={{ cursor: "pointer" }} onClick={() => scrollTo('services')} className="btn text-base text-[#5f5f5f] hover:text-[#00bcd4] transition-colors">Services</button>
-            <button style={{ cursor: "pointer" }} onClick={() => scrollTo('pricing')} className="btn text-base text-[#5f5f5f] hover:text-[#00bcd4] transition-colors">Pricing</button>
-            <button style={{ cursor: "pointer" }} onClick={() => scrollTo('green')} className="btn text-base text-[#5f5f5f] hover:text-[#00bcd4] transition-colors">Green</button>
-            <button style={{ cursor: "pointer" }} onClick={() => scrollTo('faq')} className="btn text-base text-[#5f5f5f] hover:text-[#00bcd4] transition-colors">FAQ</button>
-            <button style={{ cursor: "pointer" }} onClick={() => scrollTo('contact')} className="btn bg-[#00bcd4] text-white px-5 py-2.5 rounded-full text-base font-semibold hover:bg-[#0097a7] transition-colors">Get Quote</button>
+            <button onClick={() => scrollTo('services')} className="btn text-base text-[#5f5f5f] hover:text-[#00bcd4] transition-colors">Services</button>
+            <button onClick={() => scrollTo('pricing')} className="btn text-base text-[#5f5f5f] hover:text-[#00bcd4] transition-colors">Pricing</button>
+            <button onClick={() => scrollTo('green')} className="btn text-base text-[#5f5f5f] hover:text-[#00bcd4] transition-colors">Green</button>
+            <button onClick={() => scrollTo('faq')} className="btn text-base text-[#5f5f5f] hover:text-[#00bcd4] transition-colors">FAQ</button>
+            <button onClick={() => scrollTo('contact')} className="btn bg-[#00bcd4] text-white px-5 py-2.5 rounded-full text-base font-semibold hover:bg-[#0097a7] transition-colors">Get Quote</button>
           </div>
         </div>
       </nav>
@@ -236,8 +236,8 @@ export default function Home() {
                 Professional residential and commercial cleaning in Denver. Eco-friendly products, trained teams, and a 100% satisfaction guarantee — or we come back and re-clean for free.
               </p>
               <div className="flex flex-wrap gap-4">
-                <button style={{ cursor: "pointer" }} onClick={() => scrollTo('contact')} className="btn btn text-base px-8 py-4">Get a Free Quote</button>
-                <button style={{ cursor: "pointer" }} onClick={() => scrollTo('services')} className="btn btn-outline text-base px-8 py-4">Explore Services</button>
+                <button onClick={() => scrollTo('contact')} className="btn btn text-base px-8 py-4">Get a Free Quote</button>
+                <button onClick={() => scrollTo('services')} className="btn btn-outline text-base px-8 py-4">Explore Services</button>
               </div>
             </div>
             <div className="space-y-4">
@@ -321,7 +321,7 @@ export default function Home() {
                       ))}
                     </ul>
                   </div>
-                  <button style={{ cursor: "pointer" }} onClick={() => scrollTo('contact')} className={`mt-6 w-full py-3 rounded-lg font-semibold text-sm transition-all ${tier.highlight ? 'btn' : 'btn-outline'}`}>
+                  <button onClick={() => scrollTo('contact')} className={`mt-6 w-full py-3 rounded-lg font-semibold text-sm transition-all ${tier.highlight ? 'btn' : 'btn-outline'}`}>
                     Get Started
                   </button>
                 </div>
@@ -346,7 +346,7 @@ export default function Home() {
                   <div className="text-3xl font-bold text-[#00bcd4] mb-1">{plan.price}<span className="text-base text-[#5f5f5f] font-normal">/visit</span></div>
                   <div className="text-green-500 text-sm font-semibold mb-3">Save {plan.save}%</div>
                   <p className="text-[#5f5f5f] text-sm mb-6">{plan.desc}</p>
-                  <button style={{ cursor: "pointer" }} onClick={() => scrollTo('contact')} className="btn btn w-full text-sm">Get Started</button>
+                  <button onClick={() => scrollTo('contact')} className="btn btn w-full text-sm">Get Started</button>
                 </div>
               ))}
             </div>
@@ -548,7 +548,7 @@ export default function Home() {
                 <div className="text-5xl mb-4">✓</div>
                 <h3 className="text-2xl font-bold mb-2">Quote Request Received!</h3>
                 <p className="text-[#5f5f5f]">We'll call you within the hour to confirm details and schedule your cleaning.</p>
-                <button style={{ cursor: "pointer" }} onClick={() => setSubmitted(false)} className="btn btn-outline mt-6 text-sm">Submit Another Request</button>
+                <button onClick={() => setSubmitted(false)} className="btn btn-outline mt-6 text-sm">Submit Another Request</button>
               </div>
             ) : (
               <form
@@ -603,7 +603,7 @@ export default function Home() {
                   <label htmlFor="details" className="block text-sm font-medium mb-2">Home Details & Special Requests</label>
                   <textarea id="details" rows={4} placeholder="Number of bedrooms / bathrooms, square footage, pets, areas of concern, access instructions…" className="w-full resize-none border-2 border-gray-300 " />
                 </div>
-                <button style={{ cursor: "pointer" }} type="submit" className="btn w-full text-base py-4 font-bold">
+                <button type="submit" className="btn w-full text-base py-4 font-bold">
                   Get My Free Quote
                 </button>
                 <p className="text-xs text-[#5f5f5f] text-center">No credit card required. No obligation. We'll never share your information.</p>
@@ -626,11 +626,11 @@ export default function Home() {
             <div>
               <h4 className="text-white font-semibold text-sm mb-3">Quick Links</h4>
               <ul className="space-y-2 text-sm">
-                <li><button style={{ cursor: "pointer" }} onClick={() => scrollTo('services')} className="btn hover:text-[#00bcd4] transition-colors">Services</button></li>
-                <li><button style={{ cursor: "pointer" }} onClick={() => scrollTo('pricing')} className="btn hover:text-[#00bcd4] transition-colors">Pricing</button></li>
-                <li><button style={{ cursor: "pointer" }} onClick={() => scrollTo('green')} className="btn hover:text-[#00bcd4] transition-colors">Green Cleaning</button></li>
-                <li><button style={{ cursor: "pointer" }} onClick={() => scrollTo('faq')} className="btn hover:text-[#00bcd4] transition-colors">FAQ</button></li>
-                <li><button style={{ cursor: "pointer" }} onClick={() => scrollTo('contact')} className="btn hover:text-[#00bcd4] transition-colors">Get a Quote</button></li>
+                <li><button onClick={() => scrollTo('services')} className="btn hover:text-[#00bcd4] transition-colors">Services</button></li>
+                <li><button onClick={() => scrollTo('pricing')} className="btn hover:text-[#00bcd4] transition-colors">Pricing</button></li>
+                <li><button onClick={() => scrollTo('green')} className="btn hover:text-[#00bcd4] transition-colors">Green Cleaning</button></li>
+                <li><button onClick={() => scrollTo('faq')} className="btn hover:text-[#00bcd4] transition-colors">FAQ</button></li>
+                <li><button onClick={() => scrollTo('contact')} className="btn hover:text-[#00bcd4] transition-colors">Get a Quote</button></li>
               </ul>
             </div>
             <div>
