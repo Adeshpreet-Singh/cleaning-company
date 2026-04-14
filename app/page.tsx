@@ -1,121 +1,159 @@
-"use client";
+'use client';
+import { useState, useEffect, useRef } from 'react';
 
-export default function Home() {
+const services = [
+  { icon: '🏠', title: 'Residential Cleaning', desc: 'From cozy apartments to sprawling estates, our residential cleaning team transforms every room into a pristine sanctuary. We dust, mop, sanitize, and polish so you can come home to pure comfort.', img: 'https://picsum.photos/seed/clean-home/600/400' },
+  { icon: '🏢', title: 'Commercial Office Cleaning', desc: 'First impressions matter. Our commercial cleaning keeps lobbies, conference rooms, and open offices spotless. We work after hours so your team walks into a gleaming workspace every morning.', img: 'https://picsum.photos/seed/office-clean/600/400' },
+  { icon: '🧹', title: 'Deep Cleaning', desc: 'When standard cleaning is not enough, our deep cleaning service tackles hidden grime behind appliances, inside cabinets, baseboards, ceiling fans, and every forgotten corner.', img: 'https://picsum.photos/seed/deep-scrub/600/400' },
+  { icon: '🪟', title: 'Window & Glass Care', desc: 'Crystal-clear windows inside and out. We remove hard-water stains, streak mirrors, and polish glass surfaces to let maximum natural light flood your space.', img: 'https://picsum.photos/seed/window-shine/600/400' },
+  { icon: '🛋️', title: 'Upholstery & Carpet', desc: 'Steam-cleaned carpets and refreshed upholstery bring color and life back. We remove stains, odors, and allergens from sofas, rugs, chairs, and mattresses.', img: 'https://picsum.photos/seed/carpet-steam/600/400' },
+  { icon: '🏗️', title: 'Post-Construction Cleanup', desc: 'Renovation dust and debris are no match for our post-construction crew. We remove adhesive, sweep concrete dust, wipe every surface, and hand over your project move-in ready.', img: 'https://picsum.photos/seed/construction/600/400' },
+];
+
+const pricing = [
+  { name: 'Essential Clean', price: '$89', period: 'per visit', features: ['3-hour clean session', 'Kitchen & bathrooms', 'Vacuum & mop floors', 'Dusting all surfaces', 'Trash removal'], highlight: false },
+  { name: 'Premium Clean', price: '$149', period: 'per visit', features: ['5-hour deep clean', 'Inside appliance clean', 'Window interior wipe', 'Baseboard detailing', 'Laundry folding', 'Organize closets'], highlight: true, badge: 'Most Popular' },
+  { name: 'Elite Clean', price: '$249', period: 'per visit', features: ['Full-day dedicated team', 'Move-in / move-out ready', 'Carpet steam cleaning', 'Exterior window wash', 'Garage & attic tidy', 'Same-day availability'], highlight: false },
+];
+
+const gallery = [
+  'https://picsum.photos/seed/kitchen-bright/400/300',
+  'https://picsum.photos/seed/bathroom-tile/400/300',
+  'https://picsum.photos/seed/living-room2/400/300',
+  'https://picsum.photos/seed/bedroom-tidy/400/300',
+  'https://picsum.photos/seed/hallway-clean/400/300',
+  'https://picsum.photos/seed/office-sparkle/400/300',
+];
+
+const testimonials = [
+  { name: 'Sarah Mitchell', role: 'Homeowner', text: 'Sparkle Clean transformed our home after our renovation. They removed every trace of dust and left the place smelling amazing. I cannot recommend them enough.', avatar: 'https://picsum.photos/seed/avatar-sarah/80/80' },
+  { name: 'David Park', role: 'Office Manager', text: 'We switched to Sparkle Clean for our 20,000 sqft office. The difference was night and day. Our employees actually comment on how fresh the building feels now.', avatar: 'https://picsum.photos/seed/avatar-david/80/80' },
+  { name: 'Maria Rodriguez', role: 'Property Manager', text: 'Managing 15 rental units means constant turnover cleaning. Sparkle Clean handles every move-out with speed and thoroughness. They are my secret weapon.', avatar: 'https://picsum.photos/seed/avatar-maria/80/80' },
+];
+
+const stats = [
+  { number: '12K+', label: 'Homes Cleaned' },
+  { number: '98%', label: 'Satisfaction Rate' },
+  { number: '250+', label: 'Team Members' },
+  { number: '15', label: 'Years Experience' },
+];
+
+const faqs = [
+  { q: 'How far in advance should I book?', a: 'We recommend booking at least 48 hours in advance for regular cleanings. However, we do offer same-day service for our Elite package when availability allows. Weekend slots fill up fastest, so a week ahead is ideal.' },
+  { q: 'Are your cleaning products safe for pets?', a: 'Absolutely. We use eco-friendly, non-toxic cleaning solutions that are completely safe for children and pets. If you have specific allergies or preferences, we are happy to use your supplied products.' },
+  { q: 'Do I need to be home during the cleaning?', a: 'Not at all. Many clients provide a key or access code. Our team is fully bonded and insured, so you can trust us in your space. We send a completion photo report when finished.' },
+  { q: 'What if I am not satisfied with the cleaning?', a: 'Your satisfaction is guaranteed. If anything does not meet your expectations, contact us within 24 hours and we will re-clean the affected areas at no additional cost.' },
+];
+
+export default function HomePage() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [service, setService] = useState('');
+  const [date, setDate] = useState('');
+  const [message, setMessage] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [mobileMenu, setMobileMenu] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      },
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 4000);
+  };
+
   return (
-    <main className="min-h-screen bg-white text-[#1A2E2E] font-poppins">
-
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#E0F2F1]">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div>
+      {/* NAVIGATION */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-[#e0f2f1]" style={{ fontFamily: "'Poppins', sans-serif" }}>
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
           <a href="#" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-[#009688] rounded-xl flex items-center justify-center">
-              <span className="text-white text-lg">&#10052;</span>
-            </div>
-            <span className="text-xl font-bold text-[#1A2E2E]">Sparkle<span className="text-[#009688]">Clean</span></span>
+            <span className="text-2xl">✨</span>
+            <span className="font-bold text-lg" style={{ color: 'var(--teal)' }}>Sparkle Clean</span>
           </a>
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium">
-            <a href="#services" className="hover:text-[#009688] transition-colors">Services</a>
-            <a href="#how" className="hover:text-[#009688] transition-colors">How It Works</a>
-            <a href="#pricing" className="hover:text-[#009688] transition-colors">Pricing</a>
-            <a href="#gallery" className="hover:text-[#009688] transition-colors">Gallery</a>
-            <a href="#booking" className="bg-[#009688] text-white px-5 py-2.5 rounded-full hover:bg-[#00796B] transition-all hover:shadow-lg">Book Now</a>
+          <div className="hidden md:flex items-center gap-8">
+            {['Services', 'Pricing', 'Gallery', 'Testimonials', 'FAQ', 'Contact'].map((item) => (
+              <a key={item} href={`#${item.toLowerCase()}`} className="text-sm font-medium" style={{ color: 'var(--text-muted)' }}
+                onMouseOver={(e) => (e.currentTarget.style.color = 'var(--teal)')}
+                onMouseOut={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}>{item}</a>
+            ))}
           </div>
+          <a href="#contact" className="hidden md:inline-block px-5 py-2 rounded-lg text-white text-sm font-semibold" style={{ background: 'var(--teal)' }}>Book Now</a>
+          <button onClick={() => setMobileMenu(!mobileMenu)} className="md:hidden text-2xl" style={{ color: 'var(--text-dark)' }}>☰</button>
         </div>
+        {mobileMenu && (
+          <div className="md:hidden bg-white border-t border-[#e0f2f1] px-6 py-4 flex flex-col gap-3">
+            {['Services', 'Pricing', 'Gallery', 'Testimonials', 'FAQ', 'Contact'].map((item) => (
+              <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMobileMenu(false)} className="text-sm font-medium py-2" style={{ color: 'var(--text-dark)' }}>{item}</a>
+            ))}
+          </div>
+        )}
       </nav>
 
-      {/* Hero */}
-      <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#E0F7FA] via-white to-[#E0F2F1]"></div>
-        <div className="absolute top-20 right-20 w-96 h-96 bg-[#009688]/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-10 w-80 h-80 bg-[#26C6DA]/10 rounded-full blur-3xl"></div>
-
-        <div className="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+      {/* HERO */}
+      <header className="pt-24 pb-16 md:pt-32 md:pb-24" style={{ background: 'linear-gradient(135deg, #f8fffe 0%, #e0f2f1 50%, white 100%)' }}>
+        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
           <div className="reveal">
-            <div className="inline-flex items-center gap-2 bg-[#009688]/10 text-[#009688] px-4 py-2 rounded-full text-sm font-semibold mb-6">
-              <span className="w-2 h-2 bg-[#009688] rounded-full animate-pulse"></span>
-              #1 Rated Cleaning Service
-            </div>
-            <h1 className="text-5xl lg:text-6xl font-bold leading-[1.1] mb-6">
-              A Cleaner Space,<br />
-              A <span className="text-[#009688]">Happier</span> Life
+            <span className="inline-block px-4 py-1 rounded-full text-xs font-semibold mb-6" style={{ background: 'rgba(0,150,136,0.1)', color: 'var(--teal)' }}>Trusted by 12,000+ Families</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" style={{ color: 'var(--text-dark)', fontFamily: "'Poppins', sans-serif" }}>
+              A Cleaner Home,<br />
+              <span style={{ color: 'var(--teal)' }}>A Brighter Life</span>
             </h1>
-            <p className="text-lg text-[#5A7C7C] mb-8 max-w-lg leading-relaxed">
-              Professional cleaning services for homes and offices. Our vetted, insured team uses eco-friendly products to deliver a spotless result every time. Satisfaction guaranteed.
+            <p className="text-lg mb-8 leading-relaxed" style={{ color: 'var(--text-muted)', maxWidth: 500 }}>
+              Sparkle Clean delivers professional residential and commercial cleaning services across the metro area. Our vetted, insured team uses eco-friendly products and proven techniques to make every surface shine. Whether it is a weekly touch-up or a full post-construction deep clean, we arrive on time, work meticulously, and leave your space healthier than we found it.
             </p>
             <div className="flex flex-wrap gap-4">
-              <a href="#booking" className="bg-[#009688] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#00796B] transition-all hover:shadow-xl hover:shadow-[#009688]/20">
-                Get Free Estimate &rarr;
-              </a>
-              <a href="#services" className="border-2 border-[#B2DFDB] text-[#1A2E2E] px-8 py-4 rounded-full font-semibold hover:border-[#009688] hover:text-[#009688] transition-all">
-                Our Services
-              </a>
+              <a href="#contact" className="px-8 py-3 rounded-lg text-white font-semibold shadow-lg transition-transform hover:-translate-y-1" style={{ background: 'var(--teal)' }}>Get Free Estimate</a>
+              <a href="#services" className="px-8 py-3 rounded-lg font-semibold border-2 transition-transform hover:-translate-y-1" style={{ borderColor: 'var(--teal)', color: 'var(--teal)' }}>Our Services</a>
             </div>
+          </div>
+          <div className="reveal" style={{ transitionDelay: '0.2s' }}>
+            <img src="https://picsum.photos/seed/cleaner-hero/700/500" alt="Professional cleaning team at work" className="rounded-2xl shadow-2xl w-full object-cover" style={{ maxHeight: 480 }} />
+          </div>
+        </div>
+      </header>
 
-            <div className="flex items-center gap-6 mt-10">
-              <div className="flex -space-x-3">
-                {["AB", "CD", "EF", "GH"].map((init, i) => (
-                  <div key={i} className="w-10 h-10 rounded-full bg-gradient-to-br from-[#009688] to-[#26C6DA] border-2 border-white flex items-center justify-center text-white text-xs font-bold">{init}</div>
-                ))}
-              </div>
-              <div>
-                <div className="flex gap-0.5">
-                  {Array(5).fill(0).map((_, i) => <span key={i} className="text-[#FFB300]">&#9733;</span>)}
-                </div>
-                <p className="text-xs text-[#5A7C7C]">2,500+ happy customers</p>
-              </div>
+      {/* STATS */}
+      <section className="py-8" style={{ background: 'var(--teal)', color: 'white' }}>
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          {stats.map((s, i) => (
+            <div key={i} className="reveal">
+              <div className="text-3xl md:text-4xl font-bold">{s.number}</div>
+              <div className="text-sm mt-1 opacity-80">{s.label}</div>
             </div>
-          </div>
-          <div className="reveal-scale relative">
-            <div className="aspect-square rounded-3xl bg-gradient-to-br from-[#009688] to-[#00796B] p-1">
-              <div className="w-full h-full rounded-3xl bg-[#F5FFFE] flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-9xl mb-4">&#128703;</div>
-                  <div className="flex gap-3 justify-center text-4xl">
-                    <span>&#127838;</span>
-                    <span>&#128701;</span>
-                    <span>&#10052;</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="absolute -bottom-4 -right-4 bg-white rounded-2xl shadow-xl p-4 border border-[#E0F2F1]">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-[#009688]/10 rounded-full flex items-center justify-center text-2xl">&#9851;</div>
-                <div>
-                  <p className="font-bold text-sm">Eco-Friendly</p>
-                  <p className="text-xs text-[#5A7C7C]">100% green products</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
-      {/* Services */}
-      <section id="services" className="py-24 bg-[#F8FFFE]">
+      {/* SERVICES */}
+      <section id="services" className="py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16 reveal">
-            <span className="text-[#009688] font-semibold text-sm tracking-widest uppercase">What We Offer</span>
-            <h2 className="text-4xl lg:text-5xl font-bold mt-3 mb-4">Our <span className="text-[#009688]">Services</span></h2>
-            <p className="text-[#5A7C7C] max-w-2xl mx-auto">From routine home cleaning to deep commercial sanitization, we have a solution for every space.</p>
+            <span className="inline-block px-4 py-1 rounded-full text-xs font-semibold mb-4" style={{ background: 'rgba(0,150,136,0.1)', color: 'var(--teal)' }}>What We Offer</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: "'Poppins', sans-serif", color: 'var(--text-dark)' }}>Professional Cleaning Services</h2>
+            <p className="max-w-2xl mx-auto" style={{ color: 'var(--text-muted)' }}>From routine maintenance to specialized deep cleans, our service menu covers every need. Each service is customizable, and our friendly staff will tailor the plan to fit your schedule and budget perfectly.</p>
           </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { icon: "&#127968;", title: "Home Cleaning", desc: "Regular, deep, and move-in/out cleaning for apartments, houses, and condos.", price: "From $89" },
-              { icon: "&#127970;", title: "Office Cleaning", desc: "Daily, weekly, or monthly cleaning for offices, coworking spaces, and retail.", price: "From $149" },
-              { icon: "&#128703;", title: "Deep Cleaning", desc: "Intensive top-to-bottom cleaning including behind appliances, vents, and baseboards.", price: "From $199" },
-              { icon: "&#127838;", title: "Kitchen Deep Clean", desc: "Oven degreasing, fridge sanitizing, cabinet wipe-down, and countertop polishing.", price: "From $129" },
-              { icon: "&#128701;", title: "Carpet & Upholstery", desc: "Hot water extraction cleaning for carpets, rugs, sofas, and upholstered chairs.", price: "From $99" },
-              { icon: "&#10052;", title: "Window Cleaning", desc: "Interior and exterior window washing, frame cleaning, and screen washing.", price: "From $79" },
-            ].map((service, i) => (
-              <div key={i} className="reveal group bg-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 border border-[#E0F2F1] hover:border-[#009688]/30 cursor-pointer">
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-                <p className="text-sm text-[#5A7C7C] mb-4 leading-relaxed">{service.desc}</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-[#009688] font-bold">{service.price}</span>
-                  <span className="text-[#009688] text-sm font-semibold group-hover:translate-x-1 transition-transform">&rarr;</span>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((svc, i) => (
+              <div key={i} className="reveal rounded-2xl overflow-hidden border transition-all hover:shadow-xl hover:-translate-y-1" style={{ borderColor: '#e0f2f1', background: 'white' }}>
+                <img src={svc.img} alt={svc.title} className="w-full h-48 object-cover" />
+                <div className="p-6">
+                  <span className="text-3xl mb-3 block">{svc.icon}</span>
+                  <h3 className="text-xl font-bold mb-2" style={{ fontFamily: "'Poppins', sans-serif", color: 'var(--text-dark)' }}>{svc.title}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--text-muted)' }}>{svc.desc}</p>
                 </div>
               </div>
             ))}
@@ -123,65 +161,51 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How It Works */}
-      <section id="how" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16 reveal">
-            <span className="text-[#009688] font-semibold text-sm tracking-widest uppercase">Simple Process</span>
-            <h2 className="text-4xl lg:text-5xl font-bold mt-3 mb-4">How It <span className="text-[#009688]">Works</span></h2>
-            <p className="text-[#5A7C7C] max-w-2xl mx-auto">Getting your space professionally cleaned is as easy as 1-2-3.</p>
+      {/* WHY CHOOSE US */}
+      <section className="py-20 md:py-28" style={{ background: 'var(--bg-tint)' }}>
+        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+          <div className="reveal">
+            <img src="https://picsum.photos/seed/cleaning-team/600/500" alt="Our dedicated cleaning professionals" className="rounded-2xl shadow-xl w-full object-cover" style={{ maxHeight: 500 }} />
           </div>
+          <div className="reveal" style={{ transitionDelay: '0.15s' }}>
+            <span className="inline-block px-4 py-1 rounded-full text-xs font-semibold mb-4" style={{ background: 'rgba(0,150,136,0.1)', color: 'var(--teal)' }}>Why Sparkle Clean</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: "'Poppins', sans-serif", color: 'var(--text-dark)' }}>Built on Trust, Driven by Detail</h2>
+            <p className="mb-6 leading-relaxed" style={{ color: 'var(--text-muted)' }}>We are not just another cleaning company. Sparkle Clean was founded on the belief that everyone deserves a healthy, beautiful living environment. Every team member undergoes 80 hours of training, background checks, and ongoing quality audits. Our eco-conscious products are tough on dirt but gentle on the planet and safe for your family.</p>
+            <div className="space-y-4">
+              {['Bonded & insured professionals', 'Eco-friendly green-certified products', '100% satisfaction guarantee', 'Flexible scheduling including weekends', 'Same-day service available'].map((item, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <span className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs flex-shrink-0" style={{ background: 'var(--teal)' }}>✓</span>
+                  <span className="text-sm font-medium" style={{ color: 'var(--text-dark)' }}>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
+      {/* PRICING */}
+      <section id="pricing" className="py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16 reveal">
+            <span className="inline-block px-4 py-1 rounded-full text-xs font-semibold mb-4" style={{ background: 'rgba(0,150,136,0.1)', color: 'var(--teal)' }}>Transparent Pricing</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: "'Poppins', sans-serif", color: 'var(--text-dark)' }}>Simple, Honest Packages</h2>
+            <p className="max-w-2xl mx-auto" style={{ color: 'var(--text-muted)' }}>No hidden fees, no surprise charges. Choose the package that fits your needs and enjoy premium cleaning at competitive rates. Custom quotes available for larger properties.</p>
+          </div>
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { num: "1", title: "Book Online", desc: "Choose your service, pick a date and time that works for you, and book in under 60 seconds.", icon: "&#128197;" },
-              { num: "2", title: "We Clean", desc: "Our vetted, insured professionals arrive on time with all supplies. Just sit back and relax.", icon: "&#128703;" },
-              { num: "3", title: "You Relax", desc: "Come home to a sparkling clean space. Not happy? We'll re-clean for free within 24 hours.", icon: "&#128522;" },
-            ].map((step, i) => (
-              <div key={i} className="reveal relative text-center">
-                <div className="w-20 h-20 mx-auto mb-6 bg-[#009688]/10 rounded-2xl flex items-center justify-center text-4xl">
-                  {step.icon}
-                </div>
-                <div className="absolute top-0 right-1/3 w-8 h-8 bg-[#009688] rounded-full flex items-center justify-center text-white text-sm font-bold">{step.num}</div>
-                <h3 className="text-xl font-bold mb-3">{step.title}</h3>
-                <p className="text-sm text-[#5A7C7C] leading-relaxed max-w-xs mx-auto">{step.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing */}
-      <section id="pricing" className="py-24 bg-[#F8FFFE]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16 reveal">
-            <span className="text-[#009688] font-semibold text-sm tracking-widest uppercase">Affordable Plans</span>
-            <h2 className="text-4xl lg:text-5xl font-bold mt-3 mb-4">Transparent <span className="text-[#009688]">Pricing</span></h2>
-            <p className="text-[#5A7C7C] max-w-2xl mx-auto">No hidden fees, no surprises. Choose the plan that fits your needs.</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { name: "Essential", price: "$89", freq: "per visit", desc: "Standard cleaning for small spaces", features: ["Up to 1,000 sq ft", "Kitchen & bathroom", "Vacuuming & mopping", "Dusting all surfaces", "Trash removal"], highlight: false },
-              { name: "Premium", price: "$149", freq: "per visit", desc: "Deep cleaning for medium homes", features: ["Up to 2,000 sq ft", "Everything in Essential", "Inside appliance cleaning", "Baseboard detailing", "Window sills & tracks", "Eco-friendly products"], highlight: true },
-              { name: "Ultimate", price: "$249", freq: "per visit", desc: "Complete cleaning for large homes", features: ["Up to 4,000 sq ft", "Everything in Premium", "Inside cabinets & drawers", "Light fixture cleaning", "Garage & laundry room", "Priority scheduling"], highlight: false },
-            ].map((plan, i) => (
-              <div key={i} className={`reveal rounded-2xl p-8 border transition-all ${plan.highlight ? 'bg-white border-[#009688] shadow-xl shadow-[#009688]/10 scale-[1.02]' : 'bg-white border-[#E0F2F1] hover:shadow-lg'}`}>
-                {plan.highlight && <span className="text-xs font-semibold text-white bg-[#009688] px-3 py-1 rounded-full">Most Popular</span>}
-                <h3 className="text-2xl font-bold mt-4">{plan.name}</h3>
-                <div className="mt-4 mb-2">
-                  <span className="text-4xl font-bold text-[#009688]">{plan.price}</span>
-                  <span className="text-[#5A7C7C] text-sm ml-2">{plan.freq}</span>
-                </div>
-                <p className="text-sm text-[#5A7C7C] mb-6">{plan.desc}</p>
+            {pricing.map((plan, i) => (
+              <div key={i} className={`reveal rounded-2xl p-8 border-2 relative ${plan.highlight ? 'shadow-xl scale-[1.03]' : ''}`} style={{ borderColor: plan.highlight ? 'var(--teal)' : '#e0f2f1', background: 'white', transitionDelay: `${i * 0.1}s` }}>
+                {plan.badge && <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold text-white" style={{ background: 'var(--teal)' }}>{plan.badge}</span>}
+                <h3 className="text-xl font-bold mb-2" style={{ fontFamily: "'Poppins', sans-serif", color: 'var(--text-dark)' }}>{plan.name}</h3>
+                <div className="mb-1"><span className="text-4xl font-bold" style={{ color: 'var(--teal)' }}>{plan.price}</span></div>
+                <div className="text-sm mb-6" style={{ color: 'var(--text-muted)' }}>{plan.period}</div>
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((f, j) => (
-                    <li key={j} className="flex items-center gap-2 text-sm text-[#1A2E2E]">
-                      <span className="text-[#009688]">&#10003;</span> {f}
+                    <li key={j} className="flex items-start gap-2 text-sm" style={{ color: 'var(--text-dark)' }}>
+                      <span style={{ color: 'var(--teal)' }}>✓</span>{f}
                     </li>
                   ))}
                 </ul>
-                <a href="#booking" className={`block text-center py-3 rounded-full font-semibold transition-all ${plan.highlight ? 'bg-[#009688] text-white hover:bg-[#00796B] hover:shadow-lg' : 'border-2 border-[#B2DFDB] text-[#009688] hover:bg-[#009688] hover:text-white'}`}>
+                <a href="#contact" className={`block text-center py-3 rounded-lg font-semibold transition-all ${plan.highlight ? 'text-white' : ''}`} style={{ background: plan.highlight ? 'var(--teal)' : 'transparent', border: plan.highlight ? 'none' : '2px solid var(--teal)', color: plan.highlight ? 'white' : 'var(--teal)' }}>
                   Choose Plan
                 </a>
               </div>
@@ -190,159 +214,186 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Gallery */}
-      <section id="gallery" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* GALLERY */}
+      <section id="gallery" className="py-20 md:py-28" style={{ background: 'var(--bg-tint)' }}>
+        <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16 reveal">
-            <span className="text-[#009688] font-semibold text-sm tracking-widest uppercase">Our Results</span>
-            <h2 className="text-4xl lg:text-5xl font-bold mt-3 mb-4">Before & <span className="text-[#009688]">After</span></h2>
-            <p className="text-[#5A7C7C] max-w-2xl mx-auto">See the transformations our team delivers every day.</p>
+            <span className="inline-block px-4 py-1 rounded-full text-xs font-semibold mb-4" style={{ background: 'rgba(0,150,136,0.1)', color: 'var(--teal)' }}>Our Work</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: "'Poppins', sans-serif", color: 'var(--text-dark)' }}>Spotless Results, Every Time</h2>
+            <p className="max-w-2xl mx-auto" style={{ color: 'var(--text-muted)' }}>Browse through our gallery of completed projects. From gleaming kitchens to sparkling bathrooms, these before-and-after transformations showcase the meticulous attention to detail our team brings to every job.</p>
           </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { room: "Kitchen Deep Clean", before: "Greasy oven, stained counters", after: "Pristine, sanitized surfaces", emoji: "&#127858;" },
-              { room: "Living Room", before: "Dusty, cluttered, stained carpet", after: "Fresh, spotless, organized", emoji: "&#127968;" },
-              { room: "Bathroom Sanitization", before: "Mildew, soap scum buildup", after: "Sparkling tile, streak-free mirrors", emoji: "&#128701;" },
-              { room: "Office Space", before: "Dusty desks, stained floors", after: "Professional, clean workspace", emoji: "&#127970;" },
-              { room: "Move-Out Clean", before: "Years of accumulated grime", after: "Deposit-ready condition", emoji: "&#128230;" },
-              { room: "Window Washing", before: "Smeared, streaky, dusty glass", after: "Crystal clear, invisible glass", emoji: "&#9728;" },
-            ].map((item, i) => (
-              <div key={i} className="reveal group relative rounded-2xl overflow-hidden bg-[#F8FFFE] border border-[#E0F2F1] hover:shadow-lg transition-all">
-                <div className="p-8 text-center">
-                  <div className="text-5xl mb-4">{item.emoji}</div>
-                  <h3 className="text-lg font-bold mb-3">{item.room}</h3>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-red-50 rounded-xl p-3">
-                      <p className="text-xs font-semibold text-red-400 mb-1">Before</p>
-                      <p className="text-xs text-[#5A7C7C]">{item.before}</p>
-                    </div>
-                    <div className="bg-green-50 rounded-xl p-3">
-                      <p className="text-xs font-semibold text-[#009688] mb-1">After</p>
-                      <p className="text-xs text-[#5A7C7C]">{item.after}</p>
-                    </div>
-                  </div>
-                </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {gallery.map((src, i) => (
+              <div key={i} className="reveal overflow-hidden rounded-xl group cursor-pointer" style={{ transitionDelay: `${i * 0.08}s` }}>
+                <img src={src} alt={`Cleaning gallery ${i + 1}`} className="w-full h-48 md:h-56 object-cover transition-transform duration-500 group-hover:scale-110" />
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Booking */}
-      <section id="booking" className="py-24 bg-gradient-to-br from-[#009688] to-[#00796B] text-white">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="reveal bg-white/10 backdrop-blur-sm rounded-3xl p-10 lg:p-16 border border-white/20">
-            <div className="text-center mb-10">
-              <span className="text-[#B2DFDB] font-semibold text-sm tracking-widest uppercase">Book Your Clean</span>
-              <h2 className="text-4xl lg:text-5xl font-bold mt-3 mb-4">Schedule <span className="text-white">Now</span></h2>
-              <p className="text-white/70 max-w-xl mx-auto">Fill in your details and we will confirm your booking within 1 hour. Free cancellation up to 24 hours before.</p>
-            </div>
-
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-semibold mb-2">Full Name</label>
-                  <input type="text" className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white transition-all" placeholder="Sarah Johnson" />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold mb-2">Phone</label>
-                  <input type="tel" className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white transition-all" placeholder="(555) 234-5678" />
-                </div>
+      {/* PROCESS */}
+      <section className="py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16 reveal">
+            <span className="inline-block px-4 py-1 rounded-full text-xs font-semibold mb-4" style={{ background: 'rgba(0,150,136,0.1)', color: 'var(--teal)' }}>How It Works</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: "'Poppins', sans-serif", color: 'var(--text-dark)' }}>Book in 4 Easy Steps</h2>
+          </div>
+          <div className="grid md:grid-cols-4 gap-8">
+            {[
+              { step: '01', title: 'Request a Quote', desc: 'Fill out our simple form or call us. Tell us about your space, preferred services, and schedule.' },
+              { step: '02', title: 'Custom Plan', desc: 'We create a tailored cleaning plan with transparent pricing. No surprises, just straightforward rates.' },
+              { step: '03', title: 'We Clean', desc: 'Our vetted team arrives on time with all supplies. We work efficiently and respect your property.' },
+              { step: '04', title: 'You Relax', desc: 'Walk through your sparkling clean space. Not happy? We re-clean within 24 hours, guaranteed.' },
+            ].map((s, i) => (
+              <div key={i} className="reveal text-center" style={{ transitionDelay: `${i * 0.1}s` }}>
+                <div className="text-5xl font-bold mb-3" style={{ color: 'rgba(0,150,136,0.15)', fontFamily: "'Poppins', sans-serif" }}>{s.step}</div>
+                <h3 className="text-lg font-bold mb-2" style={{ color: 'var(--text-dark)', fontFamily: "'Poppins', sans-serif" }}>{s.title}</h3>
+                <p className="text-sm" style={{ color: 'var(--text-muted)' }}>{s.desc}</p>
               </div>
-              <div>
-                <label className="block text-sm font-semibold mb-2">Email</label>
-                <input type="email" className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white transition-all" placeholder="sarah@email.com" />
-              </div>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-semibold mb-2">Service</label>
-                  <select className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white transition-all">
-                    <option>Home Cleaning</option>
-                    <option>Office Cleaning</option>
-                    <option>Deep Cleaning</option>
-                    <option>Move-In/Out Cleaning</option>
-                    <option>Carpet & Upholstery</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold mb-2">Preferred Date</label>
-                  <input type="date" className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white transition-all" />
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-semibold mb-2">Address</label>
-                <input type="text" className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white transition-all" placeholder="123 Main St, Apt 4B, City" />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold mb-2">Special Instructions</label>
-                <textarea className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white transition-all resize-none" rows={3} placeholder="Pets, access codes, focus areas..."></textarea>
-              </div>
-              <button type="submit" className="w-full bg-white text-[#009688] py-4 rounded-xl font-semibold text-lg hover:bg-[#E0F7FA] transition-all hover:shadow-xl">
-                Book My Cleaning &rarr;
-              </button>
-              <p className="text-center text-sm text-white/60">Free estimates &bull; Insured &amp; bonded &bull; Satisfaction guaranteed</p>
-            </form>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#1A2E2E] text-white py-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-10 mb-12">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-10 h-10 bg-[#009688] rounded-xl flex items-center justify-center">
-                  <span className="text-white text-lg">&#10052;</span>
+      {/* TESTIMONIALS */}
+      <section id="testimonials" className="py-20 md:py-28" style={{ background: 'var(--bg-tint)' }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16 reveal">
+            <span className="inline-block px-4 py-1 rounded-full text-xs font-semibold mb-4" style={{ background: 'rgba(0,150,136,0.1)', color: 'var(--teal)' }}>Testimonials</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: "'Poppins', sans-serif", color: 'var(--text-dark)' }}>What Our Clients Say</h2>
+            <p className="max-w-2xl mx-auto" style={{ color: 'var(--text-muted)' }}>Do not just take our word for it. Here is what families and businesses across the city have to say about their Sparkle Clean experience. Our reputation is built on thousands of happy clients.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((t, i) => (
+              <div key={i} className="reveal rounded-2xl p-8 bg-white border" style={{ borderColor: '#e0f2f1', transitionDelay: `${i * 0.1}s` }}>
+                <div className="flex items-center gap-3 mb-4">
+                  <img src={t.avatar} alt={t.name} className="w-12 h-12 rounded-full object-cover" />
+                  <div>
+                    <div className="font-bold text-sm" style={{ color: 'var(--text-dark)' }}>{t.name}</div>
+                    <div className="text-xs" style={{ color: 'var(--text-muted)' }}>{t.role}</div>
+                  </div>
                 </div>
-                <span className="text-xl font-bold">Sparkle<span className="text-[#26C6DA]">Clean</span></span>
+                <p className="text-sm leading-relaxed italic" style={{ color: 'var(--text-muted)' }}>&ldquo;{t.text}&rdquo;</p>
+                <div className="mt-4 text-sm" style={{ color: 'var(--teal)' }}>★★★★★</div>
               </div>
-              <p className="text-white/60 text-sm leading-relaxed">Professional cleaning services for homes and offices. Eco-friendly, reliable, and affordable.</p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4 text-[#26C6DA]">Services</h4>
-              <ul className="space-y-2 text-sm text-white/60">
-                <li><a href="#services" className="hover:text-white transition-colors">Home Cleaning</a></li>
-                <li><a href="#services" className="hover:text-white transition-colors">Office Cleaning</a></li>
-                <li><a href="#services" className="hover:text-white transition-colors">Deep Cleaning</a></li>
-                <li><a href="#services" className="hover:text-white transition-colors">Carpet Cleaning</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4 text-[#26C6DA]">Service Areas</h4>
-              <ul className="space-y-2 text-sm text-white/60">
-                <li>Manhattan & Brooklyn</li>
-                <li>Queens & Bronx</li>
-                <li>Westchester County</li>
-                <li>Northern New Jersey</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4 text-[#26C6DA]">Contact</h4>
-              <ul className="space-y-2 text-sm text-white/60">
-                <li>(555) 876-5432</li>
-                <li>book@sparkleclean.com</li>
-                <li>Mon-Sat: 7am - 8pm</li>
-                <li>Sun: 9am - 5pm</li>
-              </ul>
-              <div className="flex gap-3 mt-4">
-                <a href="#" className="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center hover:bg-[#009688] transition-colors text-sm">f</a>
-                <a href="#" className="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center hover:bg-[#009688] transition-colors text-sm">ig</a>
-                <a href="#" className="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center hover:bg-[#009688] transition-colors text-sm">tw</a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="py-20 md:py-28">
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="text-center mb-16 reveal">
+            <span className="inline-block px-4 py-1 rounded-full text-xs font-semibold mb-4" style={{ background: 'rgba(0,150,136,0.1)', color: 'var(--teal)' }}>FAQ</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: "'Poppins', sans-serif", color: 'var(--text-dark)' }}>Frequently Asked Questions</h2>
+          </div>
+          <div className="space-y-4">
+            {faqs.map((faq, i) => (
+              <div key={i} className="reveal rounded-xl border overflow-hidden" style={{ borderColor: '#e0f2f1', transitionDelay: `${i * 0.08}s` }}>
+                <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full text-left px-6 py-4 flex items-center justify-between font-semibold text-sm" style={{ color: 'var(--text-dark)', background: openFaq === i ? 'var(--bg-tint)' : 'white' }}>
+                  {faq.q}
+                  <span className="text-xl" style={{ color: 'var(--teal)' }}>{openFaq === i ? '−' : '+'}</span>
+                </button>
+                {openFaq === i && (
+                  <div className="px-6 pb-4 text-sm leading-relaxed" style={{ color: 'var(--text-muted)' }}>{faq.a}</div>
+                )}
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* BANNER */}
+      <section className="py-16" style={{ background: 'linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%)' }}>
+        <div className="max-w-4xl mx-auto px-6 text-center reveal">
+          <img src="https://picsum.photos/seed/clean-banner/1200/300" alt="Sparkling clean environment" className="w-full h-48 object-cover rounded-2xl mb-8 opacity-60" />
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: "'Poppins', sans-serif" }}>Ready for a Spotless Space?</h2>
+          <p className="text-white/80 mb-8 max-w-xl mx-auto">Join over 12,000 satisfied customers who trust Sparkle Clean for their homes and offices. Book your first cleaning today and receive 20% off.</p>
+          <a href="#contact" className="inline-block px-8 py-3 rounded-lg font-semibold bg-white transition-transform hover:-translate-y-1" style={{ color: 'var(--teal)' }}>Schedule Your Clean</a>
+        </div>
+      </section>
+
+      {/* CONTACT / BOOKING */}
+      <section id="contact" className="py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-start">
+          <div className="reveal">
+            <span className="inline-block px-4 py-1 rounded-full text-xs font-semibold mb-4" style={{ background: 'rgba(0,150,136,0.1)', color: 'var(--teal)' }}>Get in Touch</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: "'Poppins', sans-serif", color: 'var(--text-dark)' }}>Book Your Cleaning Today</h2>
+            <p className="mb-6 leading-relaxed" style={{ color: 'var(--text-muted)' }}>Fill out the form and our team will get back to you within the hour during business hours. For immediate assistance, give us a call. We proudly serve residential and commercial clients across the greater metro area.</p>
+            <div className="space-y-4 mb-8">
+              <div className="flex items-center gap-3"><span className="text-xl">📍</span><span className="text-sm" style={{ color: 'var(--text-dark)' }}>742 Evergreen Terrace, Suite 200</span></div>
+              <div className="flex items-center gap-3"><span className="text-xl">📞</span><span className="text-sm" style={{ color: 'var(--text-dark)' }}>(555) 012-3456</span></div>
+              <div className="flex items-center gap-3"><span className="text-xl">✉️</span><span className="text-sm" style={{ color: 'var(--text-dark)' }}>hello@sparkleclean.com</span></div>
+              <div className="flex items-center gap-3"><span className="text-xl">🕐</span><span className="text-sm" style={{ color: 'var(--text-dark)' }}>Mon-Sat 7AM - 8PM</span></div>
+            </div>
+            <img src="https://picsum.photos/seed/clean-office2/500/350" alt="Our friendly support team" className="rounded-2xl shadow-lg w-full object-cover" style={{ maxHeight: 280 }} />
+          </div>
+          <div className="reveal" style={{ transitionDelay: '0.15s' }}>
+            {submitted ? (
+              <div className="rounded-2xl p-12 text-center border" style={{ borderColor: '#e0f2f1', background: 'var(--bg-tint)' }}>
+                <span className="text-5xl block mb-4">🎉</span>
+                <h3 className="text-2xl font-bold mb-2" style={{ color: 'var(--teal)', fontFamily: "'Poppins', sans-serif" }}>Booking Received!</h3>
+                <p style={{ color: 'var(--text-muted)' }}>We will contact you shortly to confirm your appointment. Thank you for choosing Sparkle Clean.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="rounded-2xl p-8 border" style={{ borderColor: '#e0f2f1', background: 'white' }}>
+                <div className="grid grid-cols-2 gap-4 mb-4">
+                  <input type="text" placeholder="Full Name" value={name} onChange={(e) => setName(e.target.value)} required className="px-4 py-3 rounded-lg border text-sm" style={{ borderColor: '#e0f2f1' }} />
+                  <input type="email" placeholder="Email Address" value={email} onChange={(e) => setEmail(e.target.value)} required className="px-4 py-3 rounded-lg border text-sm" style={{ borderColor: '#e0f2f1' }} />
+                </div>
+                <div className="grid grid-cols-2 gap-4 mb-4">
+                  <input type="tel" placeholder="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} className="px-4 py-3 rounded-lg border text-sm" style={{ borderColor: '#e0f2f1' }} />
+                  <select value={service} onChange={(e) => setService(e.target.value)} className="px-4 py-3 rounded-lg border text-sm" style={{ borderColor: '#e0f2f1' }}>
+                    <option value="">Select Service</option>
+                    {services.map((s, i) => <option key={i} value={s.title}>{s.title}</option>)}
+                  </select>
+                </div>
+                <input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="w-full px-4 py-3 rounded-lg border text-sm mb-4" style={{ borderColor: '#e0f2f1' }} />
+                <textarea placeholder="Tell us about your space and any special requests..." value={message} onChange={(e) => setMessage(e.target.value)} rows={4} className="w-full px-4 py-3 rounded-lg border text-sm mb-6 resize-none" style={{ borderColor: '#e0f2f1' }} />
+                <button type="submit" className="w-full py-3 rounded-lg text-white font-semibold transition-transform hover:-translate-y-1" style={{ background: 'var(--teal)' }}>Book My Cleaning</button>
+              </form>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="py-12" style={{ background: 'var(--text-dark)', color: '#8AACAC' }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <div className="flex items-center gap-2 mb-4"><span className="text-2xl">✨</span><span className="font-bold text-white">Sparkle Clean</span></div>
+              <p className="text-sm leading-relaxed">Professional cleaning services for homes and businesses. Eco-friendly, reliable, and thorough since 2011.</p>
+            </div>
+            <div>
+              <h4 className="font-bold text-white mb-4 text-sm uppercase tracking-wider">Services</h4>
+              <ul className="space-y-2 text-sm">
+                {['Residential', 'Commercial', 'Deep Cleaning', 'Windows', 'Post-Construction'].map((l) => <li key={l}><a href="#services" className="hover:text-white transition-colors">{l}</a></li>)}
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold text-white mb-4 text-sm uppercase tracking-wider">Company</h4>
+              <ul className="space-y-2 text-sm">
+                {['About Us', 'Careers', 'Blog', 'Privacy Policy', 'Terms of Service'].map((l) => <li key={l}><a href="#" className="hover:text-white transition-colors">{l}</a></li>)}
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold text-white mb-4 text-sm uppercase tracking-wider">Connect</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#" className="hover:text-white transition-colors">Facebook</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Instagram</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Twitter</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">LinkedIn</a></li>
+              </ul>
             </div>
           </div>
-          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-white/40">&copy; 2025 SparkleClean. All rights reserved.</p>
-            <div className="flex gap-6 text-white/40 text-sm">
-              <a href="#" className="hover:text-white transition-colors">Privacy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms</a>
-              <a href="#" className="hover:text-white transition-colors">Sitemap</a>
-            </div>
+          <div className="border-t pt-6 text-center text-sm" style={{ borderColor: '#2A4A4A' }}>
+            &copy; 2024 Sparkle Clean. All rights reserved. Licensed, bonded, and insured.
           </div>
         </div>
       </footer>
-    </main>
+    </div>
   );
 }
