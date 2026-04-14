@@ -55,7 +55,10 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
+.card > *:last-child { margin-top: auto; }
 .card::before {
   content: '';
   position: absolute;
@@ -89,6 +92,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   border: none;
   cursor: pointer;
@@ -117,6 +121,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   background: transparent;
   cursor: pointer;
@@ -242,21 +247,6 @@ input::placeholder, textarea::placeholder {
 .card:nth-child(5) { transition-delay: 320ms; }
 .card:nth-child(6) { transition-delay: 400ms; }
 
-/* ===== FAQ ACCORDION ===== */
-details { transition: all 0.3s ease; }
-details[open] {
-  background: rgba(0, 188, 212, 0.04);
-  border-radius: var(--radius);
-}
-details summary {
-  cursor: pointer;
-  font-weight: 600;
-  font-family: 'Poppins', sans-serif;
-  padding: 1.25rem 0;
-  transition: color 0.2s;
-}
-details summary::-webkit-details-marker { display: none; }
-
 /* ===== LINKS ===== */
 a:not(.btn):not(.btn-outline) {
   text-decoration: none;
@@ -304,10 +294,6 @@ p, li, span:not(.badge):not(.btn):not(.btn-outline), td, label, dd {
   line-height: 1.75;
   letter-spacing: 0.01em;
 }
-
-/* ===== EQUAL HEIGHT CARDS ===== */
-.card { display: flex; flex-direction: column; }
-.card > *:last-child { margin-top: auto; }
 
 /* ===== IMAGES ===== */
 img {
