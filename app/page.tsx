@@ -2,12 +2,12 @@
 import { useState, useEffect, useRef } from 'react';
 
 const services = [
-  { icon: '🏠', title: 'Residential Cleaning', desc: 'From cozy apartments to sprawling estates, our residential cleaning team transforms every room into a pristine sanctuary. We dust, mop, sanitize, and polish so you can come home to pure comfort.', img: 'https://picsum.photos/seed/clean-home/600/400' },
-  { icon: '🏢', title: 'Commercial Office Cleaning', desc: 'First impressions matter. Our commercial cleaning keeps lobbies, conference rooms, and open offices spotless. We work after hours so your team walks into a gleaming workspace every morning.', img: 'https://picsum.photos/seed/office-clean/600/400' },
-  { icon: '🧹', title: 'Deep Cleaning', desc: 'When standard cleaning is not enough, our deep cleaning service tackles hidden grime behind appliances, inside cabinets, baseboards, ceiling fans, and every forgotten corner.', img: 'https://picsum.photos/seed/deep-scrub/600/400' },
-  { icon: '🪟', title: 'Window & Glass Care', desc: 'Crystal-clear windows inside and out. We remove hard-water stains, streak mirrors, and polish glass surfaces to let maximum natural light flood your space.', img: 'https://picsum.photos/seed/window-shine/600/400' },
-  { icon: '🛋️', title: 'Upholstery & Carpet', desc: 'Steam-cleaned carpets and refreshed upholstery bring color and life back. We remove stains, odors, and allergens from sofas, rugs, chairs, and mattresses.', img: 'https://picsum.photos/seed/carpet-steam/600/400' },
-  { icon: '🏗️', title: 'Post-Construction Cleanup', desc: 'Renovation dust and debris are no match for our post-construction crew. We remove adhesive, sweep concrete dust, wipe every surface, and hand over your project move-in ready.', img: 'https://picsum.photos/seed/construction/600/400' },
+  { icon: '🏠', title: 'Residential Cleaning', desc: 'From cozy apartments to sprawling estates, our residential cleaning team transforms every room into a pristine sanctuary. We dust, mop, sanitize, and polish so you can come home to pure comfort.', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=400&fit=crop' },
+  { icon: '🏢', title: 'Commercial Office Cleaning', desc: 'First impressions matter. Our commercial cleaning keeps lobbies, conference rooms, and open offices spotless. We work after hours so your team walks into a gleaming workspace every morning.', img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop' },
+  { icon: '🧹', title: 'Deep Cleaning', desc: 'When standard cleaning is not enough, our deep cleaning service tackles hidden grime behind appliances, inside cabinets, baseboards, ceiling fans, and every forgotten corner.', img: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&h=400&fit=crop' },
+  { icon: '🪟', title: 'Window & Glass Care', desc: 'Crystal-clear windows inside and out. We remove hard-water stains, streak mirrors, and polish glass surfaces to let maximum natural light flood your space.', img: 'https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=600&h=400&fit=crop' },
+  { icon: '🛋️', title: 'Upholstery & Carpet', desc: 'Steam-cleaned carpets and refreshed upholstery bring color and life back. We remove stains, odors, and allergens from sofas, rugs, chairs, and mattresses.', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=400&fit=crop' },
+  { icon: '🏗️', title: 'Post-Construction Cleanup', desc: 'Renovation dust and debris are no match for our post-construction crew. We remove adhesive, sweep concrete dust, wipe every surface, and hand over your project move-in ready.', img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop' },
 ];
 
 const pricing = [
@@ -17,18 +17,18 @@ const pricing = [
 ];
 
 const gallery = [
-  'https://picsum.photos/seed/kitchen-bright/400/300',
-  'https://picsum.photos/seed/bathroom-tile/400/300',
-  'https://picsum.photos/seed/living-room2/400/300',
-  'https://picsum.photos/seed/bedroom-tidy/400/300',
-  'https://picsum.photos/seed/hallway-clean/400/300',
-  'https://picsum.photos/seed/office-sparkle/400/300',
+  'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop',
+  'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&h=300&fit=crop',
+  'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=300&fit=crop',
+  'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&h=300&fit=crop',
+  'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&h=300&fit=crop',
+  'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
 ];
 
 const testimonials = [
-  { name: 'Sarah Mitchell', role: 'Homeowner', text: 'Sparkle Clean transformed our home after our renovation. They removed every trace of dust and left the place smelling amazing. I cannot recommend them enough.', avatar: 'https://picsum.photos/seed/avatar-sarah/80/80' },
-  { name: 'David Park', role: 'Office Manager', text: 'We switched to Sparkle Clean for our 20,000 sqft office. The difference was night and day. Our employees actually comment on how fresh the building feels now.', avatar: 'https://picsum.photos/seed/avatar-david/80/80' },
-  { name: 'Maria Rodriguez', role: 'Property Manager', text: 'Managing 15 rental units means constant turnover cleaning. Sparkle Clean handles every move-out with speed and thoroughness. They are my secret weapon.', avatar: 'https://picsum.photos/seed/avatar-maria/80/80' },
+  { name: 'Sarah Mitchell', role: 'Homeowner', text: 'Sparkle Clean transformed our home after our renovation. They removed every trace of dust and left the place smelling amazing. I cannot recommend them enough.', avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=face' },
+  { name: 'David Park', role: 'Office Manager', text: 'We switched to Sparkle Clean for our 20,000 sqft office. The difference was night and day. Our employees actually comment on how fresh the building feels now.', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face' },
+  { name: 'Maria Rodriguez', role: 'Property Manager', text: 'Managing 15 rental units means constant turnover cleaning. Sparkle Clean handles every move-out with speed and thoroughness. They are my secret weapon.', avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=face' },
 ];
 
 const stats = [
@@ -108,7 +108,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
           <div className="reveal">
             <span className="inline-block px-4 py-1 rounded-full text-xs font-semibold mb-6" style={{ background: 'rgba(0,150,136,0.1)', color: 'var(--teal)' }}>Trusted by 12,000+ Families</span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" style={{ color: 'var(--text-dark)', fontFamily: "'Poppins', sans-serif" }}>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-normal mb-6" style={{ color: 'var(--text-dark)', fontFamily: "'Poppins', sans-serif" }}>
               A Cleaner Home,<br />
               <span style={{ color: 'var(--teal)' }}>A Brighter Life</span>
             </h1>
@@ -121,7 +121,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="reveal" style={{ transitionDelay: '0.2s' }}>
-            <img src="https://picsum.photos/seed/cleaner-hero/700/500" alt="Professional cleaning team at work" className="rounded-2xl shadow-2xl w-full object-cover" style={{ maxHeight: 480 }} />
+            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=700&h=500&fit=crop" alt="Professional cleaning team at work" className="rounded-2xl shadow-2xl w-full object-cover" style={{ maxHeight: 480 }} />
           </div>
         </div>
       </header>
@@ -165,7 +165,7 @@ export default function HomePage() {
       <section className="py-20 md:py-28" style={{ background: 'var(--bg-tint)' }}>
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
           <div className="reveal">
-            <img src="https://picsum.photos/seed/cleaning-team/600/500" alt="Our dedicated cleaning professionals" className="rounded-2xl shadow-xl w-full object-cover" style={{ maxHeight: 500 }} />
+            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=500&fit=crop" alt="Our dedicated cleaning professionals" className="rounded-2xl shadow-xl w-full object-cover" style={{ maxHeight: 500 }} />
           </div>
           <div className="reveal" style={{ transitionDelay: '0.15s' }}>
             <span className="inline-block px-4 py-1 rounded-full text-xs font-semibold mb-4" style={{ background: 'rgba(0,150,136,0.1)', color: 'var(--teal)' }}>Why Sparkle Clean</span>
@@ -308,7 +308,7 @@ export default function HomePage() {
       {/* BANNER */}
       <section className="py-16" style={{ background: 'linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%)' }}>
         <div className="max-w-4xl mx-auto px-6 text-center reveal">
-          <img src="https://picsum.photos/seed/clean-banner/1200/300" alt="Sparkling clean environment" className="w-full h-48 object-cover rounded-2xl mb-8 opacity-60" />
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1200&h=300&fit=crop" alt="Sparkling clean environment" className="w-full h-48 object-cover rounded-2xl mb-8 opacity-92" />
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: "'Poppins', sans-serif" }}>Ready for a Spotless Space?</h2>
           <p className="text-white/80 mb-8 max-w-xl mx-auto">Join over 12,000 satisfied customers who trust Sparkle Clean for their homes and offices. Book your first cleaning today and receive 20% off.</p>
           <a href="#contact" className="inline-block px-8 py-3 rounded-lg font-semibold bg-white transition-transform hover:-translate-y-1" style={{ color: 'var(--teal)' }}>Schedule Your Clean</a>
@@ -328,7 +328,7 @@ export default function HomePage() {
               <div className="flex items-center gap-3"><span className="text-xl">✉️</span><span className="text-sm" style={{ color: 'var(--text-dark)' }}>hello@sparkleclean.com</span></div>
               <div className="flex items-center gap-3"><span className="text-xl">🕐</span><span className="text-sm" style={{ color: 'var(--text-dark)' }}>Mon-Sat 7AM - 8PM</span></div>
             </div>
-            <img src="https://picsum.photos/seed/clean-office2/500/350" alt="Our friendly support team" className="rounded-2xl shadow-lg w-full object-cover" style={{ maxHeight: 280 }} />
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=500&h=350&fit=crop" alt="Our friendly support team" className="rounded-2xl shadow-lg w-full object-cover" style={{ maxHeight: 280 }} />
           </div>
           <div className="reveal" style={{ transitionDelay: '0.15s' }}>
             {submitted ? (
