@@ -1,9 +1,10 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
 
 :root {
   --text-dark: #1f2937;
-  --text-muted: #6b7280;
+  --text-muted: #4b5563;
   --bg-tint: #f0fffe;
   --teal-dark: #008ba3;
   --teal: #00bcd4;
@@ -199,7 +200,7 @@ input:focus, textarea:focus, select:focus {
   transform: scale(1.01);
 }
 input::placeholder, textarea::placeholder {
-  color: rgba(74, 101, 114, 0.5) !important;
+  color: rgba(74, 101, 114, 0.7) !important;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -352,7 +353,6 @@ footer {
 /* ===== MINIMUM FONTS ===== */
 p, li, span, td, label, dd { font-size: max(14px, inherit); line-height: 1.7; }
 button { cursor: pointer; }
-
 
 /* ===== FINAL 10/10 POLISH ===== */
 
