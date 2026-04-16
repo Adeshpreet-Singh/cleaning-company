@@ -86,7 +86,7 @@ export default function HomePage() {
           </a>
           <div className="hidden md:flex items-center gap-8">
             {['Services', 'Pricing', 'Gallery', 'Testimonials', 'FAQ', 'Contact'].map((item) => (
-              <a key={item} href={`#${item.toLowerCase()}`} className="text-sm font-medium" style={{ color: 'var(--text-muted)' }}
+              <a key={item} href={'#${item.toLowerCase()}'} className="text-sm font-medium" style={{ color: 'var(--text-muted)' }}
                 onMouseOver={(e) => (e.currentTarget.style.color = 'var(--teal)')}
                 onMouseOut={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}>{item}</a>
             ))}
@@ -97,7 +97,7 @@ export default function HomePage() {
         {mobileMenu && (
           <div className="md:hidden bg-white border-t border-[#e0f2f1] px-6 py-4 flex flex-col gap-3">
             {['Services', 'Pricing', 'Gallery', 'Testimonials', 'FAQ', 'Contact'].map((item) => (
-              <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMobileMenu(false)} className="text-sm font-medium py-2" style={{ color: 'var(--text-dark)' }}>{item}</a>
+              <a key={item} href={'#${item.toLowerCase()}'} onClick={() => setMobileMenu(false)} className="text-sm font-medium py-2" style={{ color: 'var(--text-dark)' }}>{item}</a>
             ))}
           </div>
         )}
@@ -193,7 +193,7 @@ export default function HomePage() {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {pricing.map((plan, i) => (
-              <div key={i} className={`reveal rounded-2xl p-8 border-2 relative ${plan.highlight ? 'shadow-xl scale-[1.03]' : ''}`} style={{ borderColor: plan.highlight ? 'var(--teal)' : '#e0f2f1', background: 'white', transitionDelay: `${i * 0.1}s` }}>
+              <div key={i} className={'reveal rounded-2xl p-8 border-2 relative ${plan.highlight ? 'shadow-xl scale-[1.03]' : ''}'} style={{  borderColor: plan.highlight ? 'var(--teal)' : '#e0f2f1', background: 'white', transitionDelay: '${i * 0.1 }}s' }}>
                 {plan.badge && <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold text-white" style={{ background: 'var(--teal)' }}>{plan.badge}</span>}
                 <h3 className="text-xl font-bold mb-2" style={{ fontFamily: "'Poppins', sans-serif", color: 'var(--text-dark)' }}>{plan.name}</h3>
                 <div className="mb-1"><span className="text-4xl font-bold" style={{ color: 'var(--teal)' }}>{plan.price}</span></div>
@@ -205,7 +205,7 @@ export default function HomePage() {
                     </li>
                   ))}
                 </ul>
-                <a href="#contact" className={`block text-center py-3 rounded-lg font-semibold transition-all ${plan.highlight ? 'text-white' : ''}`} style={{ background: plan.highlight ? 'var(--teal)' : 'transparent', border: plan.highlight ? 'none' : '2px solid var(--teal)', color: plan.highlight ? 'white' : 'var(--teal)' }}>
+                <a href="#contact" className={'block text-center py-3 rounded-lg font-semibold transition-all ${plan.highlight ? 'text-white' : ''}'} style={{ background: plan.highlight ? 'var(--teal)' : 'transparent', border: plan.highlight ? 'none' : '2px solid var(--teal)', color: plan.highlight ? 'white' : 'var(--teal)' }}>
                   Choose Plan
                 </a>
               </div>
@@ -224,8 +224,8 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {gallery.map((src, i) => (
-              <div key={i} className="reveal overflow-hidden rounded-xl group cursor-pointer" style={{ transitionDelay: `${i * 0.08}s` }}>
-                <img src={src} alt={`Cleaning gallery ${i + 1}`} className="w-full h-48 md:h-56 object-cover transition-transform duration-500 group-hover:scale-110" />
+              <div key={i} className="reveal overflow-hidden rounded-xl group cursor-pointer" style={{  transitionDelay: '${i * 0.08 }}s' }}>
+                <img src={src} alt={'Cleaning gallery ${i + 1}'} className="w-full h-48 md:h-56 object-cover transition-transform duration-500 group-hover:scale-110" />
               </div>
             ))}
           </div>
@@ -246,7 +246,7 @@ export default function HomePage() {
               { step: '03', title: 'We Clean', desc: 'Our vetted team arrives on time with all supplies. We work efficiently and respect your property.' },
               { step: '04', title: 'You Relax', desc: 'Walk through your sparkling clean space. Not happy? We re-clean within 24 hours, guaranteed.' },
             ].map((s, i) => (
-              <div key={i} className="reveal text-center" style={{ transitionDelay: `${i * 0.1}s` }}>
+              <div key={i} className="reveal text-center" style={{  transitionDelay: '${i * 0.1 }}s' }}>
                 <div className="text-5xl font-bold mb-3" style={{ color: 'rgba(0,150,136,0.15)', fontFamily: "'Poppins', sans-serif" }}>{s.step}</div>
                 <h3 className="text-lg font-bold mb-2" style={{ color: 'var(--text-dark)', fontFamily: "'Poppins', sans-serif" }}>{s.title}</h3>
                 <p className="text-sm" style={{ color: 'var(--text-muted)' }}>{s.desc}</p>
@@ -266,7 +266,7 @@ export default function HomePage() {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((t, i) => (
-              <div key={i} className="reveal rounded-2xl p-8 bg-white border" style={{ borderColor: '#e0f2f1', transitionDelay: `${i * 0.1}s` }}>
+              <div key={i} className="reveal rounded-2xl p-8 bg-white border" style={{  borderColor: '#e0f2f1', transitionDelay: '${i * 0.1 }}s' }}>
                 <div className="flex items-center gap-3 mb-4">
                   <img src={t.avatar} alt={t.name} className="w-12 h-12 rounded-full object-cover" />
                   <div>
@@ -291,7 +291,7 @@ export default function HomePage() {
           </div>
           <div className="space-y-4">
             {faqs.map((faq, i) => (
-              <div key={i} className="reveal rounded-xl border overflow-hidden" style={{ borderColor: '#e0f2f1', transitionDelay: `${i * 0.08}s` }}>
+              <div key={i} className="reveal rounded-xl border overflow-hidden" style={{  borderColor: '#e0f2f1', transitionDelay: '${i * 0.08 }}s' }}>
                 <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full text-left px-6 py-4 flex items-center justify-between font-semibold text-sm" style={{ color: 'var(--text-dark)', background: openFaq === i ? 'var(--bg-tint)' : 'white' }}>
                   {faq.q}
                   <span className="text-xl" style={{ color: 'var(--teal)' }}>{openFaq === i ? '−' : '+'}</span>
