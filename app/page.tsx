@@ -1,399 +1,207 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
 
-const services = [
-  { icon: '🏠', title: 'Residential Cleaning', desc: 'From cozy apartments to sprawling estates, our residential cleaning team transforms every room into a pristine sanctuary. We dust, mop, sanitize, and polish so you can come home to pure comfort.', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=400&fit=crop' },/
-  { icon: '🏢', title: 'Commercial Office Cleaning', desc: 'First impressions matter. Our commercial cleaning keeps lobbies, conference rooms, and open offices spotless. We work after hours so your team walks into a gleaming workspace every morning.', img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop' },/
-  { icon: '🧹', title: 'Deep Cleaning', desc: 'When standard cleaning is not enough, our deep cleaning service tackles hidden grime behind appliances, inside cabinets, baseboards, ceiling fans, and every forgotten corner.', img: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&h=400&fit=crop' },/
-  { icon: '🪟', title: 'Window & Glass Care', desc: 'Crystal-clear windows inside and out. We remove hard-water stains, streak mirrors, and polish glass surfaces to let maximum natural light flood your space.', img: 'https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=600&h=400&fit=crop' },/
-  { icon: '🛋️', title: 'Upholstery & Carpet', desc: 'Steam-cleaned carpets and refreshed upholstery bring color and life back. We remove stains, odors, and allergens from sofas, rugs, chairs, and mattresses.', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=400&fit=crop' },/
-  { icon: '🏗️', title: 'Post-Construction Cleanup', desc: 'Renovation dust and debris are no match for our post-construction crew. We remove adhesive, sweep concrete dust, wipe every surface, and hand over your project move-in ready.', img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop' },/
-];
+import { useState } from 'react';
 
-const pricing = [
-  { name: 'Essential Clean', price: '$89', period: 'per visit', features: ['3-hour clean session', 'Kitchen & bathrooms', 'Vacuum & mop floors', 'Dusting all surfaces', 'Trash removal'], highlight: false },
-  { name: 'Premium Clean', price: '$149', period: 'per visit', features: ['5-hour deep clean', 'Inside appliance clean', 'Window interior wipe', 'Baseboard detailing', 'Laundry folding', 'Organize closets'], highlight: true, badge: 'Most Popular' },
-  { name: 'Elite Clean', price: '$249', period: 'per visit', features: ['Full-day dedicated team', 'Move-in / move-out ready', 'Carpet steam cleaning', 'Exterior window wash', 'Garage & attic tidy', 'Same-day availability'], highlight: false },/
-];
+export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
 
-const gallery = [
-  'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop',/
-  'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&h=300&fit=crop',/
-  'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=300&fit=crop',/
-  'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&h=300&fit=crop',/
-  'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&h=300&fit=crop',/
-  'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',/
-];
-
-const testimonials = [
-  { name: 'Sarah Mitchell', role: 'Homeowner', text: 'Sparkle Clean transformed our home after our renovation. They removed every trace of dust and left the place smelling amazing. I cannot recommend them enough.', avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=face' },/
-  { name: 'David Park', role: 'Office Manager', text: 'We switched to Sparkle Clean for our 20,000 sqft office. The difference was night and day. Our employees actually comment on how fresh the building feels now.', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face' },/
-  { name: 'Maria Rodriguez', role: 'Property Manager', text: 'Managing 15 rental units means constant turnover cleaning. Sparkle Clean handles every move-out with speed and thoroughness. They are my secret weapon.', avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=face' },/
-];
-
-const stats = [
-  { number: '12K+', label: 'Homes Cleaned' },
-  { number: '98%', label: 'Satisfaction Rate' },
-  { number: '250+', label: 'Team Members' },
-  { number: '15', label: 'Years Experience' },
-];
-
-const faqs = [
-  { q: 'How far in advance should I book?', a: 'We recommend booking at least 48 hours in advance for regular cleanings. However, we do offer same-day service for our Elite package when availability allows. Weekend slots fill up fastest, so a week ahead is ideal.' },
-  { q: 'Are your cleaning products safe for pets?', a: 'Absolutely. We use eco-friendly, non-toxic cleaning solutions that are completely safe for children and pets. If you have specific allergies or preferences, we are happy to use your supplied products.' },
-  { q: 'Do I need to be home during the cleaning?', a: 'Not at all. Many clients provide a key or access code. Our team is fully bonded and insured, so you can trust us in your space. We send a completion photo report when finished.' },
-  { q: 'What if I am not satisfied with the cleaning?', a: 'Your satisfaction is guaranteed. If anything does not meet your expectations, contact us within 24 hours and we will re-clean the affected areas at no additional cost.' },
-];
-
-export default function HomePage() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [service, setService] = useState('');
-  const [date, setDate] = useState('');
-  const [message, setMessage] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [mobileMenu, setMobileMenu] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      },
-      { threshold: 0.1 }
-    );
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) { element.scrollIntoView({ behavior: 'smooth' }); element.focus(); }
+    setMenuOpen(false);
   };
 
+  const testimonials = [
+    { name: "Maria Johnson", role: "Homeowner", text: "ProClean has been cleaning my home for 3 years. Always thorough, on time, and they use eco-friendly products. My house has never looked better!", rating: 5, date: "March 2026" },
+    { name: "Robert Chen", role: "Office Manager", text: "We hired ProClean for our 5,000 sq ft office. They clean after hours so there's no disruption. Staff is professional and reliable.", rating: 5, date: "February 2026" },
+    { name: "Sarah Williams", role: "Property Manager", text: "Managing 20 rental properties, I need consistent cleaning between tenants. ProClean delivers every single time. Highly recommend!", rating: 5, date: "January 2026" },
+    { name: "David Lee", role: "New Homeowner", text: "The post-construction cleanup was incredible. They handled everything - from dust to debris. My new home was move-in ready!", rating: 4, date: "December 2025" }
+  ];
+
+  const galleryImages = [
+    { src: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=80', alt: 'Clean sparkling kitchen', caption: 'Kitchen Deep Clean' },
+    { src: 'https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=600&q=80', alt: 'Bathroom being cleaned', caption: 'Bathroom Sanitization' },
+    { src: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80', alt: 'Vacuuming carpet', caption: 'Carpet Cleaning' },
+    { src: 'https://images.unsplash.com/photo-1563453392212-326f5e854473?w=600&q=80', alt: 'Office space clean', caption: 'Commercial Cleaning' },
+    { src: 'https://images.unsplash.com/photo-1584622781564-1d987f7333c1?w=600&q=80', alt: 'Spotless windows', caption: 'Window Washing' },
+    { src: 'https://images.unsplash.com/photo-1560508180-03f285bc6758?w=600&q=80', alt: 'Organized living room', caption: 'Residential Clean' }
+  ];
+
+  const services = [
+    { title: 'Residential', desc: 'Homes, apartments, and condos', icon: '\uD83C\uDFE0' },
+    { title: 'Commercial', desc: 'Offices, retail, and warehouses', icon: '\uD83D\uDCBC' },
+    { title: 'Post-Construction', desc: 'New build and renovation cleanup', icon: '\uD83D\uDD28' },
+    { title: 'Specialty', desc: 'Carpet, windows, and deep sanitization', icon: '\u2728' },
+  ];
+
   return (
-    <div>
-      {/* NAVIGATION */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-[#e0f2f1]" style={{ fontFamily: "'Poppins', sans-serif" }>>/
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
-          <a href="#" className="flex items-center gap-2">
-            <span className="text-2xl">✨</span>/
-            <span className="font-bold text-lg" style={{ color: 'var(--teal)' }>>Sparkle Clean</span>/
-          </a>/
-          <div className="hidden md:flex items-center gap-8">
-            {['Services', 'Pricing', 'Gallery', 'Testimonials', 'FAQ', 'Contact'].map((item) => (
-              <a key={item} href={`#${item.toLowerCase(})}`} className="text-sm font-medium" style={{ color: 'var(--text-muted)' }>
-                onMouseOver={(e) => (e.currentTarget.style.color = 'var(--teal)')}
-                onMouseOut={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}>{item}</a>/
-            ))}
-          </div>/
-          <a href="#contact" className="hidden md:inline-block px-5 py-2 rounded-lg text-white text-sm font-semibold" style={{ background: 'var(--teal)' }>>Book Now</a>/
-          <button onClick={() => setMobileMenu(!mobileMenu)} className="md:hidden text-2xl" style={{ color: 'var(--text-dark)' }}>☰</button>/
-        </div>/
-        {mobileMenu && (
-          <div className="md:hidden bg-white border-t border-[#e0f2f1] px-6 py-4 flex flex-col gap-3">
-            {['Services', 'Pricing', 'Gallery', 'Testimonials', 'FAQ', 'Contact'].map((item) => (
-              <a key={item} href={`#${item.toLowerCase(})}`> onClick={() => setMobileMenu(false)} className="text-sm font-medium py-2" style={{ color: 'var(--text-dark)' }}>{item}</a>/
-            ))}
-          </div>/
-        )}
-      </nav>/
-
-      {/* HERO */}
-      <header className="pt-24 pb-16 md:pt-32 md:pb-24" style={{ background: 'linear-gradient(135deg, #f8fffe 0%, #e0f2f1 50%, white 100%)' }>>
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-          <div className="reveal">
-            <span className="inline-block px-4 py-1 rounded-full text-xs font-semibold mb-6" style={{ background: 'rgba(0,150,136,0.1)', color: 'var(--teal)' }>>Trusted by 12,000+ Families</span>/
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-normal mb-6" style={{ color: 'var(--text-dark)', fontFamily: "'Poppins', sans-serif" }>>
-              A Cleaner Home,<br />/
-              <span style={{ color: 'var(--teal)' }>>A Brighter Life</span>/
-            </h1>/
-            <p className="text-lg mb-8 leading-relaxed" style={{ color: 'var(--text-muted)', maxWidth: 500 }>>
-              Sparkle Clean delivers professional residential and commercial cleaning services across the metro area. Our vetted, insured team uses eco-friendly products and proven techniques to make every surface shine. Whether it is a weekly touch-up or a full post-construction deep clean, we arrive on time, work meticulously, and leave your space healthier than we found it.
-            </p>/
-            <div className="flex flex-wrap gap-4">
-              <a href="#contact" className="px-8 py-3 rounded-lg text-white font-semibold shadow-lg transition-transform hover:-translate-y-1" style={{ background: 'var(--teal)' }>>Get Free Estimate</a>/
-              <a href="#services" className="px-8 py-3 rounded-lg font-semibold border-2 transition-transform hover:-translate-y-1" style={{ borderColor: 'var(--teal)', color: 'var(--teal)' }>>Our Services</a>/
-            </div>/
-          </div>/
-          <div className="reveal" style={{ transitionDelay: '0.2s' }>>
-            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=700&h=500&fit=crop" alt="Professional cleaning team at work" className="rounded-2xl shadow-2xl w-full object-cover" style={{ maxHeight: 480 }> />
-          </div>/
-        </div>/
-      </header>/
-
-      {/* STATS */}
-      <section className="py-8" style={{ background: 'var(--teal)', color: 'white' }>>
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          {stats.map((s, i) => (
-            <div key={i> className="reveal">
-              <div className="text-3xl md:text-4xl font-bold">{s.number}</div>/
-              <div className="text-sm mt-1 opacity-80">{s.label}</div>/
-            </div>/
-          ))}
-        </div>/
-      </section>/
-
-      {/* SERVICES */}
-      <section id="services" className="py-20 md:py-28">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16 reveal">
-            <span className="inline-block px-4 py-1 rounded-full text-xs font-semibold mb-4" style={{ background: 'rgba(0,150,136,0.1)', color: 'var(--teal)' }>>What We Offer</span>/
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: "'Poppins', sans-serif", color: 'var(--text-dark)' }>>Professional Cleaning Services</h2>/
-            <p className="max-w-2xl mx-auto" style={{ color: 'var(--text-muted)' }>>From routine maintenance to specialized deep cleans, our service menu covers every need. Each service is customizable, and our friendly staff will tailor the plan to fit your schedule and budget perfectly.</p>/
-          </div>/
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((svc, i) => (
-              <div key={i} className="reveal rounded-2xl overflow-hidden border transition-all hover:shadow-xl hover:-translate-y-1" style={{ borderColor: '#e0f2f1', background: 'white' }>>
-                <img src={svc.img} alt={svc.title> className="w-full h-48 object-cover" />/
-                <div className="p-6">
-                  <span className="text-3xl mb-3 block">{svc.icon}</span>/
-                  <h3 className="text-xl font-bold mb-2" style={{ fontFamily: "'Poppins', sans-serif", color: 'var(--text-dark)' }>>{svc.title}</h3>/
-                  <p className="text-sm leading-relaxed" style={{ color: 'var(--text-muted)' }>>{svc.desc}</p>/
-                </div>/
-              </div>/
-            ))}
-          </div>/
-        </div>/
-      </section>/
-
-      {/* WHY CHOOSE US */}
-      <section className="py-20 md:py-28" style={{ background: 'var(--bg-tint)' }>>
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-          <div className="reveal">
-            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=500&fit=crop" alt="Our dedicated cleaning professionals" className="rounded-2xl shadow-xl w-full object-cover" style={{ maxHeight: 500 }> />
-          </div>/
-          <div className="reveal" style={{ transitionDelay: '0.15s' }>>
-            <span className="inline-block px-4 py-1 rounded-full text-xs font-semibold mb-4" style={{ background: 'rgba(0,150,136,0.1)', color: 'var(--teal)' }>>Why Sparkle Clean</span>/
-            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: "'Poppins', sans-serif", color: 'var(--text-dark)' }>>Built on Trust, Driven by Detail</h2>/
-            <p className="mb-6 leading-relaxed" style={{ color: 'var(--text-muted)' }>>We are not just another cleaning company. Sparkle Clean was founded on the belief that everyone deserves a healthy, beautiful living environment. Every team member undergoes 80 hours of training, background checks, and ongoing quality audits. Our eco-conscious products are tough on dirt but gentle on the planet and safe for your family.</p>/
-            <div className="space-y-4">
-              {['Bonded & insured professionals', 'Eco-friendly green-certified products', '100% satisfaction guarantee', 'Flexible scheduling including weekends', 'Same-day service available'].map((item, i) => (
-                <div key={i> className="flex items-center gap-3">
-                  <span className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs flex-shrink-0" style={{ background: 'var(--teal)' }>>✓</span>/
-                  <span className="text-sm font-medium" style={{ color: 'var(--text-dark)' }>>{item}</span>/
-                </div>/
+    <div className="bg-sky-50 text-gray-900 min-h-screen px-4 md:px-8">
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-sky-700 text-white px-4 py-2 rounded-lg z-[100] focus-visible:outline-2 focus-visible:outline-white font-bold px-4 md:px-8">Skip to main content</a>
+      <header>
+        <nav role="navigation" aria-label="Main navigation" className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm px-4 md:px-8">
+          <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center px-4 md:px-8">
+            <div className="flex items-center gap-3 px-4 md:px-8">
+              <div className="w-10 h-10 bg-sky-700 rounded-xl flex items-center justify-center text-white text-xl px-4 md:px-8" aria-hidden="true">\uD83E\uDDF9</div>
+              <div><h1 className="text-lg font-bold text-sky-900 px-4 md:px-8" style={{ fontSize: "3rem", fontWeight: "bold", marginBottom: "1.5rem", lineHeight: "1.2" }}>ProClean</h1><p className="text-[9px] text-sky-600 tracking-wider px-4 md:px-8" style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>COMMERCIAL & RESIDENTIAL</p></div>
+            </div>
+            <div className="hidden md:flex items-center gap-8 px-4 md:px-8">
+              {['Services','Why Us','Testimonials','Contact'].map(item => (<button key={item} onClick={() = style={{ padding: "1rem 2rem", fontSize: "1.125rem", fontWeight: "600", borderRadius: "0.5rem", background: "var(--primary)", color: "white", border: "none", cursor: "pointer", transition: "transform 0.2s, box-shadow 0.2s" }}> scrollToSection(item.toLowerCase().replace(' ','-'))} aria-label={`Navigate to ${item} section`} className="text-sm text-gray-600 hover:text-sky-700 transition-colors focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2 rounded px-4 md:px-8">{item}</button>))}
+              <button aria-label="Get a free cleaning quote" className="bg-sky-700 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-sky-800 transition-colors focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2 px-4 md:px-8" style={{ padding: "1rem 2rem", fontSize: "1.125rem", fontWeight: "600", borderRadius: "0.5rem", background: "var(--primary)", color: "white", border: "none", cursor: "pointer", transition: "transform 0.2s, box-shadow 0.2s" }}>Free Quote</button>
+            </div>
+            <button aria-label={menuOpen?"Close menu":"Open menu"} aria-expanded={menuOpen} className="md:hidden text-sky-700 focus-visible:outline-2 focus-visible:outline-sky-500 rounded px-4 md:px-8" onClick={() = style={{ padding: "1rem 2rem", fontSize: "1.125rem", fontWeight: "600", borderRadius: "0.5rem", background: "var(--primary)", color: "white", border: "none", cursor: "pointer", transition: "transform 0.2s, box-shadow 0.2s" }}> setMenuOpen(!menuOpen)}>
+              <svg className="w-6 h-6 px-4 md:px-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">{menuOpen?<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"/ style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>:<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16"/ style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>}</svg>
+            </button>
+          </div>
+        </nav>
+      </header>
+      <main id="main-content" role="main">
+        <section aria-labelledby="hero-heading" className="pt-24 pb-16 relative overflow-hidden px-4 md:px-8" style={{ padding: "5rem 1rem", marginBottom: "2rem" }}>
+          <div className="absolute inset-0 px-4 md:px-8" aria-hidden="true"><div className="absolute top-20 right-20 w-96 h-96 bg-sky-200/40 rounded-full blur-3xl px-4 md:px-8"/></div>
+          <div className="relative max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center px-4 md:px-8">
+            <div>
+              <p className="text-sky-700 text-sm font-bold tracking-widest mb-4 px-4 md:px-8" style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>TRUSTED SINCE 2008</p>
+              <h2 id="hero-heading" className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-sky-900 px-4 md:px-8" style={{ fontSize: "2.25rem", fontWeight: "bold", marginBottom: "1.25rem", lineHeight: "1.3" }}>Professional<br/><span className="text-sky-600 px-4 md:px-8">Cleaning</span></h2>
+              <p className="text-xl text-gray-600 mb-8 max-w-lg px-4 md:px-8" style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>Commercial and residential cleaning with trained crews, eco-friendly products, and a 100% satisfaction guarantee.</p>
+              <div className="flex flex-wrap gap-4 mb-10 px-4 md:px-8">
+                <button aria-label="Get your free cleaning quote" className="bg-sky-700 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-sky-800 transition-all hover:scale-105 focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2 px-4 md:px-8" style={{ padding: "1rem 2rem", fontSize: "1.125rem", fontWeight: "600", borderRadius: "0.5rem", background: "var(--primary)", color: "white", border: "none", cursor: "pointer", transition: "transform 0.2s, box-shadow 0.2s" }}>Free Quote</button>
+                <button aria-label="View our cleaning services" className="border-2 border-sky-700 text-sky-800 px-8 py-4 rounded-full text-lg font-bold hover:bg-sky-50 transition-all hover:scale-105 focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2 px-4 md:px-8" style={{ padding: "1rem 2rem", fontSize: "1.125rem", fontWeight: "600", borderRadius: "0.5rem", background: "var(--primary)", color: "white", border: "none", cursor: "pointer", transition: "transform 0.2s, box-shadow 0.2s" }}>Our Services</button>
+              </div>
+              <div className="flex items-center gap-8 px-4 md:px-8">
+                {[{num:'2K+',label:'Clients Served'},{num:'15+',label:'Years Experience'},{num:'4.9',label:'Google Rating'}].map((s,i) => (<div key={i}><div className="text-2xl font-bold text-sky-700 px-4 md:px-8">{s.num}</div><div className="text-sm text-gray-500 px-4 md:px-8">{s.label}</div></div>))}
+              </div>
+            </div>
+            <div className="relative px-4 md:px-8"><div className="bg-white rounded-3xl p-8 shadow-xl px-4 md:px-8"><img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=80" alt="Professional cleaning crew working in modern office space" className="w-full rounded-2xl px-4 md:px-8"/></div></div>
+          </div>
+        </section>
+        <section id="services" aria-labelledby="services-heading" className="py-24 bg-white px-4 md:px-8" style={{ padding: "5rem 1rem", marginBottom: "2rem" }}>
+          <div className="max-w-7xl mx-auto px-6 px-4 md:px-8">
+            <div className="text-center mb-16 px-4 md:px-8"><p className="text-sky-700 text-sm font-bold tracking-widest mb-4 px-4 md:px-8" style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>WHAT WE CLEAN</p><h2 id="services-heading" className="text-4xl font-bold text-sky-900 mb-4 px-4 md:px-8" style={{ fontSize: "2.25rem", fontWeight: "bold", marginBottom: "1.25rem", lineHeight: "1.3" }}>Service Types</h2></div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 px-4 md:px-8">
+              {services.map((s,i) => (<article key={i} className="bg-sky-50 rounded-2xl p-6 hover:shadow-lg transition-all hover:scale-105 px-4 md:px-8"><div className="text-4xl mb-4 px-4 md:px-8" aria-hidden="true">{s.icon}</div><h3 className="text-xl font-bold text-sky-900 mb-2 px-4 md:px-8" style={{ fontSize: "1.5rem", fontWeight: "600", marginBottom: "1rem", lineHeight: "1.4" }}>{s.title}</h3><p className="text-gray-500 text-sm px-4 md:px-8" style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>{s.desc}</p></article>))}
+            </div>
+          </div>
+        </section>
+        {/* Testimonials */}
+        <section id="testimonials" aria-labelledby="testimonials-heading" className="py-24 bg-sky-50 px-4 md:px-8" style={{ padding: "5rem 1rem", marginBottom: "2rem" }}>
+          <div className="max-w-7xl mx-auto px-6 px-4 md:px-8">
+            <div className="text-center mb-16 px-4 md:px-8">
+              <p className="text-sky-700 text-sm font-bold tracking-widest mb-4 px-4 md:px-8" style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>CLIENT REVIEWS</p>
+              <h2 id="testimonials-heading" className="text-4xl font-bold text-sky-900 mb-4 px-4 md:px-8" style={{ fontSize: "2.25rem", fontWeight: "bold", marginBottom: "1.25rem", lineHeight: "1.3" }}>What Clients Say</h2>
+            </div>
+            <div className="space-y-6 px-4 md:px-8">
+              {testimonials.map((t, i) => (
+                <div key={i} className="bg-white rounded-2xl p-6 shadow-lg px-4 md:px-8">
+                  <div className="flex mb-3 px-4 md:px-8" aria-label={`${t.rating} stars`}>
+                    {[...Array(t.rating)].map((_, j) => <svg key={j} className="w-5 h-5 text-yellow-400 px-4 md:px-8" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/ style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}></svg>)}
+                  </div>
+                  <p className="text-gray-600 mb-3 italic px-4 md:px-8" style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>&quot;{t.text}&quot;</p>
+                  <div className="border-t border-gray-200 pt-4 px-4 md:px-8">
+                    <p className="text-sky-900 font-medium px-4 md:px-8" style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>{t.name}</p>
+                    <p className="text-gray-500 text-sm px-4 md:px-8" style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>{t.role} • {t.date}</p>
+                  </div>
+                </div>
               ))}
-            </div>/
-          </div>/
-        </div>/
-      </section>/
+            </div>
+          </div>
+        </section>
 
-      {/* PRICING */}
-      <section id="pricing" className="py-20 md:py-28">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16 reveal">
-            <span className="inline-block px-4 py-1 rounded-full text-xs font-semibold mb-4" style={{ background: 'rgba(0,150,136,0.1)', color: 'var(--teal)' }>>Transparent Pricing</span>/
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: "'Poppins', sans-serif", color: 'var(--text-dark)' }>>Simple, Honest Packages</h2>/
-            <p className="max-w-2xl mx-auto" style={{ color: 'var(--text-muted)' }>>No hidden fees, no surprise charges. Choose the package that fits your needs and enjoy premium cleaning at competitive rates. Custom quotes available for larger properties.</p>/
-          </div>/
-          <div className="grid md:grid-cols-3 gap-8">
-            {pricing.map((plan, i) => (
-              <div key={i} className={`reveal rounded-2xl p-8 border-2 relative ${plan.highlight ? 'shadow-xl scale-[1.03]' : '}'}`} style={{  borderColor: plan.highlight ? 'var(--teal)' : '#e0f2f1', background: 'white', transitionDelay: `${i * 0.1} }}s` }>>
-                {plan.badge && <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold text-white" style={{ background: 'var(--teal)' }>>{plan.badge}</span>}/
-                <h3 className="text-xl font-bold mb-2" style={{ fontFamily: "'Poppins', sans-serif", color: 'var(--text-dark)' }>>{plan.name}</h3>/
-                <div className="mb-1"><span className="text-4xl font-bold" style={{ color: 'var(--teal)' }>>{plan.price}</span></div>
-                <div className="text-sm mb-6" style={{ color: 'var(--text-muted)' }>>{plan.period}</div>/
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((f, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm" style={{ color: 'var(--text-dark)' }>>
-                      <span style={{ color: 'var(--teal)' }>>✓</span>{f}/
-                    </li>/
-                  ))}
-                </ul>/
-                <a href="#contact" className={`block text-center py-3 rounded-lg font-semibold transition-all ${plan.highlight ? 'text-white' : '}'}`} style={{ background: plan.highlight ? 'var(--teal)' : 'transparent', border: plan.highlight ? 'none' : '2px solid var(--teal)', color: plan.highlight ? 'white' : 'var(--teal)' }>>
-                  Choose Plan
-                </a>/
-              </div>/
-            ))}
-          </div>/
-        </div>/
-      </section>/
+        {/* Gallery */}
+        <section id="gallery" aria-labelledby="gallery-heading" className="py-24 bg-white px-4 md:px-8" style={{ padding: "5rem 1rem", marginBottom: "2rem" }}>
+          <div className="max-w-7xl mx-auto px-6 px-4 md:px-8">
+            <div className="text-center mb-16 px-4 md:px-8">
+              <p className="text-sky-700 text-sm font-bold tracking-widest mb-4 px-4 md:px-8" style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>OUR WORK</p>
+              <h2 id="gallery-heading" className="text-4xl font-bold text-sky-900 mb-4 px-4 md:px-8" style={{ fontSize: "2.25rem", fontWeight: "bold", marginBottom: "1.25rem", lineHeight: "1.3" }}>Before & After</h2>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 px-4 md:px-8">
+              {galleryImages.map((img, i) => (
+                <div key={i} className="relative aspect-square overflow-hidden rounded-2xl group px-4 md:px-8">
+                  <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 px-4 md:px-8" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4 px-4 md:px-8">
+                    <p className="text-white font-medium px-4 md:px-8" style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>{img.caption}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-      {/* GALLERY */}
-      <section id="gallery" className="py-20 md:py-28" style={{ background: 'var(--bg-tint)' }>>
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16 reveal">
-            <span className="inline-block px-4 py-1 rounded-full text-xs font-semibold mb-4" style={{ background: 'rgba(0,150,136,0.1)', color: 'var(--teal)' }>>Our Work</span>/
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: "'Poppins', sans-serif", color: 'var(--text-dark)' }>>Spotless Results, Every Time</h2>/
-            <p className="max-w-2xl mx-auto" style={{ color: 'var(--text-muted)' }>>Browse through our gallery of completed projects. From gleaming kitchens to sparkling bathrooms, these before-and-after transformations showcase the meticulous attention to detail our team brings to every job.</p>/
-          </div>/
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {gallery.map((src, i) => (
-              <div key={i} className="reveal overflow-hidden rounded-xl group cursor-pointer" style={{  transitionDelay: `${i * 0.08} }}s` }>>
-                <img src={src} alt={`Cleaning gallery ${i  + 1}`> className="w-full h-48 md:h-56 object-cover transition-transform duration-500 group-hover:scale-110" />/
-              </div>/
-            ))}
-          </div>/
-        </div>/
-      </section>/
-
-      {/* PROCESS */}
-      <section className="py-20 md:py-28">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16 reveal">
-            <span className="inline-block px-4 py-1 rounded-full text-xs font-semibold mb-4" style={{ background: 'rgba(0,150,136,0.1)', color: 'var(--teal)' }>>How It Works</span>/
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: "'Poppins', sans-serif", color: 'var(--text-dark)' }>>Book in 4 Easy Steps</h2>/
-          </div>/
-          <div className="grid md:grid-cols-4 gap-8">
-            {[
-              { step: '01', title: 'Request a Quote', desc: 'Fill out our simple form or call us. Tell us about your space, preferred services, and schedule.' },
-              { step: '02', title: 'Custom Plan', desc: 'We create a tailored cleaning plan with transparent pricing. No surprises, just straightforward rates.' },
-              { step: '03', title: 'We Clean', desc: 'Our vetted team arrives on time with all supplies. We work efficiently and respect your property.' },
-              { step: '04', title: 'You Relax', desc: 'Walk through your sparkling clean space. Not happy? We re-clean within 24 hours, guaranteed.' },
-            ].map((s, i) => (
-              <div key={i} className="reveal text-center" style={{  transitionDelay: `${i * 0.1} }}s` }>>
-                <div className="text-5xl font-bold mb-3" style={{ color: 'rgba(0,150,136,0.15)', fontFamily: "'Poppins', sans-serif" }>>{s.step}</div>/
-                <h3 className="text-lg font-bold mb-2" style={{ color: 'var(--text-dark)', fontFamily: "'Poppins', sans-serif" }>>{s.title}</h3>/
-                <p className="text-sm" style={{ color: 'var(--text-muted)' }>>{s.desc}</p>/
-              </div>/
-            ))}
-          </div>/
-        </div>/
-      </section>/
-
-      {/* TESTIMONIALS */}
-      <section id="testimonials" className="py-20 md:py-28" style={{ background: 'var(--bg-tint)' }>>
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16 reveal">
-            <span className="inline-block px-4 py-1 rounded-full text-xs font-semibold mb-4" style={{ background: 'rgba(0,150,136,0.1)', color: 'var(--teal)' }>>Testimonials</span>/
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: "'Poppins', sans-serif", color: 'var(--text-dark)' }>>What Our Clients Say</h2>/
-            <p className="max-w-2xl mx-auto" style={{ color: 'var(--text-muted)' }>>Do not just take our word for it. Here is what families and businesses across the city have to say about their Sparkle Clean experience. Our reputation is built on thousands of happy clients.</p>/
-          </div>/
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((t, i) => (
-              <div key={i} className="reveal rounded-2xl p-8 bg-white border" style={{  borderColor: '#e0f2f1', transitionDelay: `${i * 0.1} }}s` }>>
-                <div className="flex items-center gap-3 mb-4">
-                  <img src={t.avatar} alt={t.name> className="w-12 h-12 rounded-full object-cover" />/
-                  <div>
-                    <div className="font-bold text-sm" style={{ color: 'var(--text-dark)' }>>{t.name}</div>/
-                    <div className="text-xs" style={{ color: 'var(--text-muted)' }>>{t.role}</div>/
-                  </div>/
-                </div>/
-                <p className="text-sm leading-relaxed italic" style={{ color: 'var(--text-muted)' }>>&ldquo;{t.text}&rdquo;</p>/
-                <div className="mt-4 text-sm" style={{ color: 'var(--teal)' }>>★★★★★</div>/
-              </div>/
-            ))}
-          </div>/
-        </div>/
-      </section>/
-
-      {/* FAQ */}
-      <section id="faq" className="py-20 md:py-28">
-        <div className="max-w-3xl mx-auto px-6">
-          <div className="text-center mb-16 reveal">
-            <span className="inline-block px-4 py-1 rounded-full text-xs font-semibold mb-4" style={{ background: 'rgba(0,150,136,0.1)', color: 'var(--teal)' }>>FAQ</span>/
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: "'Poppins', sans-serif", color: 'var(--text-dark)' }>>Frequently Asked Questions</h2>/
-          </div>/
-          <div className="space-y-4">
-            {faqs.map((faq, i) => (
-              <div key={i} className="reveal rounded-xl border overflow-hidden" style={{  borderColor: '#e0f2f1', transitionDelay: `${i * 0.08} }}s` }>>
-                <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full text-left px-6 py-4 flex items-center justify-between font-semibold text-sm" style={{ color: 'var(--text-dark)', background: openFaq === i ? 'var(--bg-tint)' : 'white' }}>
-                  {faq.q}
-                  <span className="text-xl" style={{ color: 'var(--teal)' }>>{openFaq === i ? '−' : '+'}</span>/
-                </button>/
-                {openFaq === i && (
-                  <div className="px-6 pb-4 text-sm leading-relaxed" style={{ color: 'var(--text-muted)' }>>{faq.a}</div>/
-                )}
-              </div>/
-            ))}
-          </div>/
-        </div>/
-      </section>/
-
-      {/* BANNER */}
-      <section className="py-16" style={{ background: 'linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%)' }>>
-        <div className="max-w-4xl mx-auto px-6 text-center reveal">
-          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1200&h=300&fit=crop" alt="Sparkling clean environment" className="w-full h-48 object-cover rounded-2xl mb-8 opacity-92" />
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: "'Poppins', sans-serif" }>>Ready for a Spotless Space?</h2>/
-          <p className="text-white/80 mb-8 max-w-xl mx-auto">Join over 12,000 satisfied customers who trust Sparkle Clean for their homes and offices. Book your first cleaning today and receive 20% off.</p>
-          <a href="#contact" className="inline-block px-8 py-3 rounded-lg font-semibold bg-white transition-transform hover:-translate-y-1" style={{ color: 'var(--teal)' }>>Schedule Your Clean</a>/
-        </div>/
-      </section>/
-
-      {/* CONTACT / BOOKING */}/
-      <section id="contact" className="py-20 md:py-28">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-start">
-          <div className="reveal">
-            <span className="inline-block px-4 py-1 rounded-full text-xs font-semibold mb-4" style={{ background: 'rgba(0,150,136,0.1)', color: 'var(--teal)' }>>Get in Touch</span>/
-            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: "'Poppins', sans-serif", color: 'var(--text-dark)' }>>Book Your Cleaning Today</h2>/
-            <p className="mb-6 leading-relaxed" style={{ color: 'var(--text-muted)' }>>Fill out the form and our team will get back to you within the hour during business hours. For immediate assistance, give us a call. We proudly serve residential and commercial clients across the greater metro area.</p>/
-            <div className="space-y-4 mb-8">
-              <div className="flex items-center gap-3"><span className="text-xl">📍</span><span className="text-sm" style={{ color: 'var(--text-dark)' }>>742 Evergreen Terrace, Suite 200</span></div>/
-              <div className="flex items-center gap-3"><span className="text-xl">📞</span><span className="text-sm" style={{ color: 'var(--text-dark)' }>>(555) 012-3456</span></div>/
-              <div className="flex items-center gap-3"><span className="text-xl">✉️</span><span className="text-sm" style={{ color: 'var(--text-dark)' }>>hello@sparkleclean.com</span></div>/
-              <div className="flex items-center gap-3"><span className="text-xl">🕐</span><span className="text-sm" style={{ color: 'var(--text-dark)' }>>Mon-Sat 7AM - 8PM</span></div>/
-            </div>/
-            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=500&h=350&fit=crop" alt="Our friendly support team" className="rounded-2xl shadow-lg w-full object-cover" style={{ maxHeight: 280 }> />
-          </div>/
-          <div className="reveal" style={{ transitionDelay: '0.15s' }>>
-            {submitted ? (
-              <div className="rounded-2xl p-12 text-center border" style={{ borderColor: '#e0f2f1', background: 'var(--bg-tint)' }>>
-                <span className="text-5xl block mb-4">🎉</span>/
-                <h3 className="text-2xl font-bold mb-2" style={{ color: 'var(--teal)', fontFamily: "'Poppins', sans-serif" }>>Booking Received!</h3>/
-                <p style={{ color: 'var(--text-muted)' }>>We will contact you shortly to confirm your appointment. Thank you for choosing Sparkle Clean.</p>/
-              </div>/
-            ) : (
-              <form onSubmit={handleSubmit} className="rounded-2xl p-8 border" style={{ borderColor: '#e0f2f1', background: 'white' }>>
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                  <input type="text" placeholder="Full Name" value={name> onChange={(e) => setName(e.target.value)} required className="px-4 py-3 rounded-lg border text-sm" style={{ borderColor: '#e0f2f1' }} />/
-                  <input type="email" placeholder="Email Address" value={email> onChange={(e) => setEmail(e.target.value)} required className="px-4 py-3 rounded-lg border text-sm" style={{ borderColor: '#e0f2f1' }} />/
-                </div>/
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                  <input type="tel" placeholder="Phone Number" value={phone> onChange={(e) => setPhone(e.target.value)} className="px-4 py-3 rounded-lg border text-sm" style={{ borderColor: '#e0f2f1' }} />/
-                  <select value={service> onChange={(e) => setService(e.target.value)} className="px-4 py-3 rounded-lg border text-sm" style={{ borderColor: '#e0f2f1' }}>
-                    <option value="">Select Service</option>/
-                    {services.map((s, i) => <option key={i} value={s.title>>{s.title}</option>)}/
-                  </select>/
-                </div>/
-                <input type="date" value={date> onChange={(e) => setDate(e.target.value)} className="w-full px-4 py-3 rounded-lg border text-sm mb-4" style={{ borderColor: '#e0f2f1' }} />/
-                <textarea placeholder="Tell us about your space and any special requests..." value={message> onChange={(e) => setMessage(e.target.value)} rows={4} className="w-full px-4 py-3 rounded-lg border text-sm mb-6 resize-none" style={{ borderColor: '#e0f2f1' }} />/
-                <button type="submit" className="w-full py-3 rounded-lg text-white font-semibold transition-transform hover:-translate-y-1" style={{ background: 'var(--teal)' }>>Book My Cleaning</button>/
-              </form>/
-            )}
-          </div>/
-        </div>/
-      </section>/
-
-      {/* FOOTER */}
-      <footer className="py-12" style={{ background: 'var(--text-dark)', color: '#b0d0d0' }>>
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
+        <section id="contact" aria-labelledby="contact-heading" className="py-24 px-4 md:px-8" style={{ padding: "5rem 1rem", marginBottom: "2rem" }}>
+          <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 px-4 md:px-8">
             <div>
-              <div className="flex items-center gap-2 mb-4"><span className="text-2xl">✨</span><span className="font-bold text-white">Sparkle Clean</span></div>/
-              <p className="text-sm leading-relaxed">Professional cleaning services for homes and businesses. Eco-friendly, reliable, and thorough since 2011.</p>/
-            </div>/
+              <p className="text-sky-700 text-sm font-bold tracking-widest mb-4 px-4 md:px-8" style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>GET STARTED</p>
+              <h2 id="contact-heading" className="text-4xl font-bold text-sky-900 mb-6 px-4 md:px-8" style={{ fontSize: "2.25rem", fontWeight: "bold", marginBottom: "1.25rem", lineHeight: "1.3" }}>Request Your Quote</h2>
+              <p className="text-gray-600 mb-8 px-4 md:px-8" style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>Tell us about your space and cleaning needs. We'll respond within 2 hours.</p>
+              <div className="space-y-4 px-4 md:px-8">
+                <div className="flex items-start gap-3 px-4 md:px-8">
+                  <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0 px-4 md:px-8" aria-hidden="true">📍</div>
+                  <div><h3 className="font-bold text-sky-900 px-4 md:px-8" style={{ fontSize: "1.5rem", fontWeight: "600", marginBottom: "1rem", lineHeight: "1.4" }}>Visit Us</h3><p className="text-gray-600 px-4 md:px-8" style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>456 Clean Street<br/>Service Area, Dallas, TX 75201</p></div>
+                </div>
+                <div className="flex items-start gap-3 px-4 md:px-8">
+                  <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0 px-4 md:px-8" aria-hidden="true">📞</div>
+                  <div><h3 className="font-bold text-sky-900 px-4 md:px-8" style={{ fontSize: "1.5rem", fontWeight: "600", marginBottom: "1rem", lineHeight: "1.4" }}>Call Us</h3><p className="text-gray-600 px-4 md:px-8" style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>(214) 555-CLEAN</p></div>
+                </div>
+                <div className="flex items-start gap-3 px-4 md:px-8">
+                  <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0 px-4 md:px-8" aria-hidden="true">🕒</div>
+                  <div><h3 className="font-bold text-sky-900 px-4 md:px-8" style={{ fontSize: "1.5rem", fontWeight: "600", marginBottom: "1rem", lineHeight: "1.4" }}>Hours</h3><p className="text-gray-600 px-4 md:px-8" style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>Mon-Fri: 8AM-6PM<br/>Sat: 9AM-3PM<br/>Sun: Emergency Only</p></div>
+                </div>
+              </div>
+            </div>
+            <div className="bg-white rounded-2xl shadow-xl p-8 px-4 md:px-8">
+              <form noValidate className="space-y-6 px-4 md:px-8">
+                <div><label htmlFor="contact-name" className="block text-sm font-medium text-gray-700 mb-2 px-4 md:px-8">Your Name</label><input id="contact-name" type="text" aria-required="true" placeholder="Chris Clean" className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 focus:outline-none transition-colors px-4 md:px-8"/></div>
+                <div><label htmlFor="contact-email" className="block text-sm font-medium text-gray-700 mb-2 px-4 md:px-8">Email</label><input id="contact-email" type="email" aria-required="true" placeholder="chris@example.com" className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 focus:outline-none transition-colors px-4 md:px-8"/></div>
+                <div><label htmlFor="contact-service-type" className="block text-sm font-medium text-gray-700 mb-2 px-4 md:px-8">Service Type</label><select id="contact-service-type" className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 focus:outline-none transition-colors px-4 md:px-8"><option value="">Select service</option><option value="residential">Residential</option><option value="commercial">Commercial</option><option value="post-construction">Post-Construction</option><option value="specialty">Specialty Cleaning</option></select></div>
+                <button type="submit" aria-label="Request your free cleaning quote" className="w-full bg-sky-700 text-white py-4 rounded-xl font-bold hover:bg-sky-800 transition-all hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2 px-4 md:px-8" style={{ padding: "1rem 2rem", fontSize: "1.125rem", fontWeight: "600", borderRadius: "0.5rem", background: "var(--primary)", color: "white", border: "none", cursor: "pointer", transition: "transform 0.2s, box-shadow 0.2s" }}>Request Quote</button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer role="contentinfo" className="py-12 bg-sky-900 px-4 md:px-8">
+        <div className="max-w-7xl mx-auto px-6 px-4 md:px-8">
+          <div className="grid md:grid-cols-4 gap-8 mb-8 px-4 md:px-8">
             <div>
-              <h4 className="font-bold text-white mb-4 text-sm uppercase tracking-wider">Services</h4>/
-              <ul className="space-y-2 text-sm">
-                {['Residential', 'Commercial', 'Deep Cleaning', 'Windows', 'Post-Construction'].map((l) => <li key={l>><a href="#services" className="hover:text-white transition-colors">{l}</a></li>)}
-              </ul>/
-            </div>/
+              <div className="flex items-center gap-3 mb-4 px-4 md:px-8">
+                <div className="w-10 h-10 bg-sky-700 rounded-lg flex items-center justify-center text-white px-4 md:px-8" aria-hidden="true">🧹</div>
+                <div><h3 className="text-white font-bold px-4 md:px-8" style={{ fontSize: "1.5rem", fontWeight: "600", marginBottom: "1rem", lineHeight: "1.4" }}>ProClean Company</h3><p className="text-xs text-sky-300 px-4 md:px-8" style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>COMMERCIAL & RESIDENTIAL</p></div>
+              </div>
+              <p className="text-sky-300 text-sm px-4 md:px-8" style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>Licensed & insured cleaning services since 2008.</p>
+            </div>
             <div>
-              <h4 className="font-bold text-white mb-4 text-sm uppercase tracking-wider">Company</h4>/
-              <ul className="space-y-2 text-sm">
-                {['About Us', 'Careers', 'Blog', 'Privacy Policy', 'Terms of Service'].map((l) => <li key={l>><a href="#" className="hover:text-white transition-colors">{l}</a></li>)}
-              </ul>/
-            </div>/
+              <h3 className="text-white font-bold mb-4 px-4 md:px-8" style={{ fontSize: "1.5rem", fontWeight: "600", marginBottom: "1rem", lineHeight: "1.4" }}>Quick Links</h3>
+              <ul className="space-y-2 px-4 md:px-8">
+                <li><button onClick={() = style={{ padding: "1rem 2rem", fontSize: "1.125rem", fontWeight: "600", borderRadius: "0.5rem", background: "var(--primary)", color: "white", border: "none", cursor: "pointer", transition: "transform 0.2s, box-shadow 0.2s" }}> scrollToSection('services')} className="text-sky-300 hover:text-white transition-colors text-sm px-4 md:px-8">Services</button></li>
+                <li><button onClick={() = style={{ padding: "1rem 2rem", fontSize: "1.125rem", fontWeight: "600", borderRadius: "0.5rem", background: "var(--primary)", color: "white", border: "none", cursor: "pointer", transition: "transform 0.2s, box-shadow 0.2s" }}> scrollToSection('testimonials')} className="text-sky-300 hover:text-white transition-colors text-sm px-4 md:px-8">Reviews</button></li>
+                <li><button onClick={() = style={{ padding: "1rem 2rem", fontSize: "1.125rem", fontWeight: "600", borderRadius: "0.5rem", background: "var(--primary)", color: "white", border: "none", cursor: "pointer", transition: "transform 0.2s, box-shadow 0.2s" }}> scrollToSection('gallery')} className="text-sky-300 hover:text-white transition-colors text-sm px-4 md:px-8">Gallery</button></li>
+                <li><button onClick={() = style={{ padding: "1rem 2rem", fontSize: "1.125rem", fontWeight: "600", borderRadius: "0.5rem", background: "var(--primary)", color: "white", border: "none", cursor: "pointer", transition: "transform 0.2s, box-shadow 0.2s" }}> scrollToSection('contact')} className="text-sky-300 hover:text-white transition-colors text-sm px-4 md:px-8">Contact</button></li>
+              </ul>
+            </div>
             <div>
-              <h4 className="font-bold text-white mb-4 text-sm uppercase tracking-wider">Connect</h4>/
-              <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-white transition-colors">Facebook</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Instagram</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Twitter</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">LinkedIn</a></li>
-              </ul>/
-            </div>/
-          </div>/
-          <div className="border-t pt-6 text-center text-sm" style={{ borderColor: '#2A4A4A' }>>
-            &copy; 2024 Sparkle Clean. All rights reserved. Licensed, bonded, and insured.
-          </div>/
-        </div>/
-      </footer>/
-    </div>/
+              <h3 className="text-white font-bold mb-4 px-4 md:px-8" style={{ fontSize: "1.5rem", fontWeight: "600", marginBottom: "1rem", lineHeight: "1.4" }}>Services</h3>
+              <ul className="space-y-2 px-4 md:px-8">
+                <li><span className="text-sky-300 text-sm px-4 md:px-8">Residential</span></li>
+                <li><span className="text-sky-300 text-sm px-4 md:px-8">Commercial</span></li>
+                <li><span className="text-sky-300 text-sm px-4 md:px-8">Post-Construction</span></li>
+                <li><span className="text-sky-300 text-sm px-4 md:px-8">Specialty</span></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-white font-bold mb-4 px-4 md:px-8" style={{ fontSize: "1.5rem", fontWeight: "600", marginBottom: "1rem", lineHeight: "1.4" }}>Follow Us</h3>
+              <div className="flex gap-3 px-4 md:px-8">
+                <a href="#" className="w-10 h-10 bg-sky-700 rounded-lg flex items-center justify-center text-white hover:bg-sky-600 transition-colors px-4 md:px-8" aria-label="Instagram">
+                  <svg className="w-5 h-5 px-4 md:px-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/ style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}></svg>
+                </a>
+                <a href="#" className="w-10 h-10 bg-sky-700 rounded-lg flex items-center justify-center text-white hover:bg-sky-600 transition-colors px-4 md:px-8" aria-label="Facebook">
+                  <svg className="w-5 h-5 px-4 md:px-8" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/ style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-sky-800 pt-8 text-center px-4 md:px-8">
+            <p className="text-sky-300 text-sm px-4 md:px-8" style={{ fontSize: "1.125rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>&copy; 2026 ProClean Company. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
   );
 }
