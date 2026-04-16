@@ -225,7 +225,7 @@ export default function HomePage() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {gallery.map((src, i) => (
               <div key={i} className="reveal overflow-hidden rounded-xl group cursor-pointer" style={{  transitionDelay: `${i * 0.08} }}s` }}>
-                <img src={src} alt={`Cleaning gallery ${i + }1}`} className="w-full h-48 md:h-56 object-cover transition-transform duration-500 group-hover:scale-110" />
+                <img src={src} alt={`Cleaning gallery ${i  + 1}`} className="w-full h-48 md:h-56 object-cover transition-transform duration-500 group-hover:scale-110" />
               </div>
             ))}
           </div>
