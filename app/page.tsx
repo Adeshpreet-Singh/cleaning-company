@@ -37,7 +37,7 @@ export default function Home() {
  const serviceArea = ['Dallas', 'Fort Worth', 'Plano', 'Frisco', 'Irving', 'Arlington', 'Richardson', 'McKinney', 'Allen', 'Denton'];
 
  return (
- <div className="bg-sky-50 text-gray-900 min-h-screen">
+ <div className="bg-white text-gray-900 min-h-screen">
  <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-sky-700 text-white px-4 py-2 rounded-lg z-[100] focus-visible:outline-2 focus-visible:outline-white font-bold">Skip to main content</a>
 
  <header>
@@ -50,7 +50,7 @@ export default function Home() {
  <p className="text-[9px] text-sky-600 tracking-wider">COMMERCIAL & RESIDENTIAL</p>
  </div>
  </div>
- <div className="hidden md:flex items-center gap-8">
+ <div className="hidden lg:flex items-center gap-8">
  {['services', 'pricing', 'testimonials', 'contact'].map(item => (
  <button
  key={item}
@@ -72,7 +72,7 @@ export default function Home() {
  <button
  aria-label={menuOpen ? "Close menu" : "Open menu"}
  aria-expanded={menuOpen}
- className="md:hidden text-sky-700 focus-visible:outline-2 focus-visible:outline-sky-500 rounded"
+ className="lg:hidden text-sky-700 focus-visible:outline-2 focus-visible:outline-sky-500 rounded"
  onClick={() => setMenuOpen(!menuOpen)}
  >
  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -83,11 +83,11 @@ export default function Home() {
  </button>
  </div>
  {menuOpen && (
- <div className="md:hidden bg-white border-t px-6 py-4 space-y-3">
+ <div className="lg:hidden bg-white border-t px-6 py-4 space-y-1">
  {['services', 'pricing', 'testimonials', 'contact'].map(item => (
- <button key={item} onClick={() => scrollToSection(item)} className="block w-full text-left text-gray-700 hover:text-sky-700 py-2 capitalize">{item}</button>
+ <button key={item} onClick={() => scrollToSection(item)} className="block w-full text-left text-gray-700 hover:text-sky-700 py-3 text-lg capitalize min-h-[48px]">{item}</button>
  ))}
- <a href="tel:+12145552532" className="block bg-sky-700 text-white text-center px-6 py-2.5 rounded-full font-bold hover:bg-sky-800 transition-colors">Call: (214) 555-2532</a>
+ <a href="tel:+121****2532" className="block bg-sky-700 text-white text-center px-6 py-3 rounded-full font-bold hover:bg-sky-800 transition-colors text-lg min-h-[48px] leading-[48px]">Call: (214) 555-2532</a>
  </div>
  )}
  </nav>
@@ -101,30 +101,30 @@ export default function Home() {
  </div>
  <div className="relative max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
  <div>
- <p className="text-sky-700 text-sm font-bold tracking-widest mb-4">TRUSTED SINCE 2008</p>
- <h2 id="hero-heading" className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-sky-900">
+ <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">TRUSTED SINCE 2008</p>
+ <h2 id="hero-heading" className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900">
  Professional<br />
  <span className="text-sky-600">Cleaning</span>
  </h2>
- <p className="text-xl text-gray-600 mb-8 max-w-lg">
+ <p className="text-lg md:text-xl text-gray-700 mb-8 max-w-lg leading-relaxed">
  Commercial and residential cleaning with trained crews, eco-friendly products, and a 100% satisfaction guarantee. Serving the entire DFW metroplex.
  </p>
- <div className="flex flex-wrap gap-4 mb-10">
+ <div className="flex flex-col sm:flex-row flex-wrap gap-4 mb-10">
  <a
  href="#contact"
  onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}
- className="bg-sky-700 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-sky-800 transition-all hover:scale-105 focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2"
+ className="bg-sky-700 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-sky-800 transition-all hover:scale-105 focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2 min-h-[52px] inline-flex items-center justify-center"
  >
  Get Free Quote
  </a>
  <a
- href="tel:+12145552532"
- className="border-2 border-sky-700 text-sky-800 px-8 py-4 rounded-full text-lg font-bold hover:bg-sky-50 transition-all hover:scale-105 focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2"
+ href="tel:+121****2532"
+ className="border-2 border-sky-700 text-sky-800 px-8 py-4 rounded-full text-lg font-bold hover:bg-sky-50 transition-all hover:scale-105 focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2 min-h-[52px] inline-flex items-center justify-center"
  >
  📞 (214) 555-2532
  </a>
  </div>
- <div className="flex items-center gap-8">
+ <div className="flex items-center gap-6 sm:gap-8 flex-wrap">
  {[
  { num: '2K+', label: 'Clients Served' },
  { num: '15+', label: 'Years Experience' },
@@ -132,7 +132,7 @@ export default function Home() {
  ].map((s, i) => (
  <div key={i}>
  <div className="text-2xl font-bold text-sky-700">{s.num}</div>
- <div className="text-sm text-gray-500">{s.label}</div>
+ <div className="text-sm text-gray-600">{s.label}</div>
  </div>
  ))}
  </div>
@@ -150,19 +150,19 @@ export default function Home() {
  </section>
 
  {/* Services */}
- <section id="services" aria-labelledby="services-heading" className="py-24 bg-white">
+ <section id="services" aria-labelledby="services-heading" className="py-24 bg-gray-50">
  <div className="max-w-7xl mx-auto px-6">
  <div className="text-center mb-16">
- <p className="text-sky-700 text-sm font-bold tracking-widest mb-4">WHAT WE CLEAN</p>
- <h2 id="services-heading" className="text-4xl font-bold text-sky-900 mb-4">Our Services</h2>
- <p className="text-gray-600 max-w-2xl mx-auto">From routine housekeeping to full move-out deep cleans, we tailor every job to your space and schedule.</p>
+ <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">WHAT WE CLEAN</p>
+ <h2 id="services-heading" className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
+ <p className="text-gray-700 max-w-2xl mx-auto leading-relaxed">From routine housekeeping to full move-out deep cleans, we tailor every job to your space and schedule.</p>
  </div>
  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
  {services.map((s, i) => (
  <article key={i} className="bg-sky-50 rounded-2xl p-6 hover:shadow-lg transition-all hover:scale-105">
  <div className="text-4xl mb-4" aria-hidden="true">{s.icon}</div>
  <h3 className="text-xl font-bold text-sky-900 mb-2">{s.title}</h3>
- <p className="text-gray-500 text-sm">{s.desc}</p>
+ <p className="text-gray-700 text-base leading-relaxed">{s.desc}</p>
  </article>
  ))}
  </div>
@@ -170,39 +170,39 @@ export default function Home() {
  </section>
 
  {/* Pricing */}
- <section id="pricing" aria-labelledby="pricing-heading" className="py-24 bg-sky-50">
+ <section id="pricing" aria-labelledby="pricing-heading" className="py-24 bg-white">
  <div className="max-w-7xl mx-auto px-6">
  <div className="text-center mb-16">
- <p className="text-sky-700 text-sm font-bold tracking-widest mb-4">TRANSPARENT PRICING</p>
- <h2 id="pricing-heading" className="text-4xl font-bold text-sky-900 mb-4">Pricing Tiers</h2>
- <p className="text-gray-600 max-w-2xl mx-auto">Simple, upfront pricing with no hidden fees. All plans include eco-friendly products and our satisfaction guarantee.</p>
+ <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">TRANSPARENT PRICING</p>
+ <h2 id="pricing-heading" className="text-4xl font-bold text-gray-900 mb-4">Pricing Tiers</h2>
+ <p className="text-gray-700 max-w-2xl mx-auto leading-relaxed">Simple, upfront pricing with no hidden fees. All plans include eco-friendly products and our satisfaction guarantee.</p>
  </div>
- <div className="grid md:grid-cols-3 gap-8">
+ <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
  {pricing.map((tier, i) => (
  <div
  key={i}
  className={`rounded-2xl p-8 shadow-lg ${tier.highlight ? 'bg-sky-700 text-white ring-4 ring-sky-400 scale-105' : 'bg-white'}`}
  >
  {tier.highlight && (
- <span className="inline-block bg-sky-400 text-sky-900 text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wider">Most Popular</span>
+ <span className="inline-block bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wider">Most Popular</span>
  )}
- <h3 className={`text-2xl font-bold mb-2 ${tier.highlight ? 'text-white' : 'text-sky-900'}`}>{tier.name}</h3>
+ <h3 className={`text-2xl font-bold mb-2 ${tier.highlight ? 'text-white' : 'text-gray-900'}`}>{tier.name}</h3>
  <div className="mb-6">
- <span className={`text-4xl font-bold ${tier.highlight ? 'text-white' : 'text-sky-700'}`}>{tier.price}</span>
- <span className={`text-sm ml-2 ${tier.highlight ? 'text-sky-200' : 'text-gray-500'}`}>{tier.period}</span>
+ <span className={`text-4xl font-bold ${tier.highlight ? 'text-white' : 'text-gray-900'}`}>{tier.price}</span>
+ <span className={`text-sm ml-2 ${tier.highlight ? 'text-sky-200' : 'text-gray-600'}`}>{tier.period}</span>
  </div>
  <ul className="space-y-3 mb-8">
  {tier.features.map((f, j) => (
  <li key={j} className="flex items-start gap-2">
- <span className={tier.highlight ? 'text-sky-200' : 'text-sky-600'}>✓</span>
- <span className={tier.highlight ? 'text-sky-100' : 'text-gray-600'}>{f}</span>
+ <span className={tier.highlight ? 'text-sky-200' : 'text-sky-700'}>✓</span>
+ <span className={tier.highlight ? 'text-sky-100' : 'text-gray-700'}>{f}</span>
  </li>
  ))}
  </ul>
  <a
  href="#contact"
  onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}
- className={`block text-center py-3 rounded-xl font-bold transition-all hover:scale-105 ${tier.highlight ? 'bg-white text-sky-700 hover:bg-sky-50' : 'bg-sky-700 text-white hover:bg-sky-800'}`}
+ className={`block text-center py-4 rounded-xl font-bold transition-all hover:scale-105 min-h-[52px] ${tier.highlight ? 'bg-white text-sky-700 hover:bg-sky-50' : 'bg-sky-700 text-white hover:bg-sky-800'}`}
  >
  Get Started
  </a>
@@ -213,13 +213,13 @@ export default function Home() {
  </section>
 
  {/* Service Area */}
- <section id="service-area" aria-labelledby="area-heading" className="py-24 bg-white">
+ <section id="service-area" aria-labelledby="area-heading" className="py-24 bg-gray-50">
  <div className="max-w-7xl mx-auto px-6">
- <div className="grid md:grid-cols-2 gap-16 items-center">
+ <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
  <div>
- <p className="text-sky-700 text-sm font-bold tracking-widest mb-4">WHERE WE WORK</p>
- <h2 id="area-heading" className="text-4xl font-bold text-sky-900 mb-6">Service Area</h2>
- <p className="text-gray-600 mb-6">We proudly serve homes and businesses across the Dallas-Fort Worth metroplex. If your city is not listed, contact us — we likely serve your area too.</p>
+ <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">WHERE WE WORK</p>
+ <h2 id="area-heading" className="text-4xl font-bold text-gray-900 mb-6">Service Area</h2>
+ <p className="text-gray-700 mb-6 leading-relaxed">We proudly serve homes and businesses across the Dallas-Fort Worth metroplex. If your city is not listed, contact us — we likely serve your area too.</p>
  <div className="flex flex-wrap gap-3">
  {serviceArea.map((city, i) => (
  <span key={i} className="bg-sky-100 text-sky-800 px-4 py-2 rounded-full text-sm font-medium">{city}</span>
@@ -231,7 +231,8 @@ export default function Home() {
  title="ProClean Company Service Area - Dallas Fort Worth"
  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d214587.69037087046!2d-97.0004!3d32.7767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c19f77b45974b%3A0xb9ec9ba4f647678f!2sDallas%2C%20TX!5e0!3m2!1sen!2sus!4v1700000000000"
  width="100%"
- height="400"
+ style={{ minHeight: '300px', height: '100%' }}
+ className="min-h-[300px] md:min-h-[400px]"
 
  allowFullScreen
  loading="lazy"
@@ -243,15 +244,15 @@ export default function Home() {
  </section>
 
  {/* Testimonials */}
- <section id="testimonials" aria-labelledby="testimonials-heading" className="py-24 bg-sky-50">
+ <section id="testimonials" aria-labelledby="testimonials-heading" className="py-24 bg-white">
  <div className="max-w-7xl mx-auto px-6">
  <div className="text-center mb-16">
- <p className="text-sky-700 text-sm font-bold tracking-widest mb-4">CLIENT REVIEWS</p>
- <h2 id="testimonials-heading" className="text-4xl font-bold text-sky-900 mb-4">What Clients Say</h2>
+ <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">CLIENT REVIEWS</p>
+ <h2 id="testimonials-heading" className="text-4xl font-bold text-gray-900 mb-4">What Clients Say</h2>
  </div>
  <div className="grid md:grid-cols-2 gap-6">
  {testimonials.map((t, i) => (
- <div key={i} className="bg-white rounded-2xl p-6 shadow-lg">
+ <div key={i} className="bg-gray-50 rounded-2xl p-6 shadow-lg">
  <div className="flex mb-3" aria-label={`${t.rating} stars`}>
  {[...Array(5)].map((_, j) => (
  <svg key={j} className={`w-5 h-5 ${j < t.rating ? 'text-yellow-400' : 'text-gray-300'}`} fill="currentColor" viewBox="0 0 20 20">
@@ -259,10 +260,10 @@ export default function Home() {
  </svg>
  ))}
  </div>
- <p className="text-gray-600 mb-3 italic">&ldquo;{t.text}&rdquo;</p>
+ <p className="text-gray-700 mb-3 italic leading-relaxed">&ldquo;{t.text}&rdquo;</p>
  <div className="border-t border-gray-200 pt-4">
- <p className="text-sky-900 font-medium">{t.name}</p>
- <p className="text-gray-500 text-sm">{t.role} &bull; {t.date}</p>
+ <p className="text-gray-900 font-medium">{t.name}</p>
+ <p className="text-gray-600 text-sm">{t.role} &bull; {t.date}</p>
  </div>
  </div>
  ))}
@@ -271,18 +272,18 @@ export default function Home() {
  </section>
 
  {/* Contact */}
- <section id="contact" aria-labelledby="contact-heading" className="py-24">
- <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16">
+ <section id="contact" aria-labelledby="contact-heading" className="py-24 bg-gray-50">
+ <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-16">
  <div>
- <p className="text-sky-700 text-sm font-bold tracking-widest mb-4">GET STARTED</p>
- <h2 id="contact-heading" className="text-4xl font-bold text-sky-900 mb-6">Request Your Free Quote</h2>
- <p className="text-gray-600 mb-8">Tell us about your space and cleaning needs. We typically respond within 2 hours during business hours.</p>
+ <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">GET STARTED</p>
+ <h2 id="contact-heading" className="text-4xl font-bold text-gray-900 mb-6">Request Your Free Quote</h2>
+ <p className="text-gray-700 mb-8 leading-relaxed">Tell us about your space and cleaning needs. We typically respond within 2 hours during business hours.</p>
 
  <div className="space-y-5">
  <div className="flex items-start gap-3">
  <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true">📍</div>
  <div>
- <h3 className="font-bold text-sky-900">Visit Us</h3>
+ <h3 className="font-bold text-gray-900">Visit Us</h3>
  <a href="https://maps.google.com/?q=456+Clean+Street+Dallas+TX+75201" target="_blank" rel="noopener noreferrer" className="text-sky-600 hover:text-sky-800 hover:underline">
  456 Clean Street<br />Dallas, TX 75201
  </a>
@@ -291,28 +292,28 @@ export default function Home() {
  <div className="flex items-start gap-3">
  <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true">📞</div>
  <div>
- <h3 className="font-bold text-sky-900">Call Us</h3>
+ <h3 className="font-bold text-gray-900">Call Us</h3>
  <a href="tel:+12145552532" className="text-sky-600 hover:text-sky-800 hover:underline">(214) 555-2532</a>
  </div>
  </div>
  <div className="flex items-start gap-3">
  <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true">✉️</div>
  <div>
- <h3 className="font-bold text-sky-900">Email Us</h3>
+ <h3 className="font-bold text-gray-900">Email Us</h3>
  <a href="mailto:info@procleancompany.com" className="text-sky-600 hover:text-sky-800 hover:underline">info@procleancompany.com</a>
  </div>
  </div>
  <div className="flex items-start gap-3">
  <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true">🕒</div>
  <div>
- <h3 className="font-bold text-sky-900">Hours</h3>
+ <h3 className="font-bold text-gray-900">Hours</h3>
  <p className="text-gray-600">Mon–Fri: 8 AM – 6 PM<br />Sat: 9 AM – 3 PM<br />Sun: Emergency Only</p>
  </div>
  </div>
  <div className="flex items-start gap-3">
  <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true">💬</div>
  <div>
- <h3 className="font-bold text-sky-900">WhatsApp</h3>
+ <h3 className="font-bold text-gray-900">WhatsApp</h3>
  <a href="https://wa.me/12145552532?text=Hi%20ProClean%2C%20I%27d%20like%20a%20free%20quote" target="_blank" rel="noopener noreferrer" className="text-sky-600 hover:text-sky-800 hover:underline">Chat with us on WhatsApp</a>
  </div>
  </div>
@@ -351,7 +352,7 @@ export default function Home() {
  <label htmlFor="contact-message" className="block text-sm font-medium text-gray-700 mb-2">Message</label>
  <textarea id="contact-message" name="message" rows={4} placeholder="Tell us about your space, preferred schedule, any special requests..." className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 focus:outline-none transition-colors" />
  </div>
- <button type="submit" className="w-full bg-sky-700 text-white py-4 rounded-xl font-bold hover:bg-sky-800 transition-all hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2">
+ <button type="submit" className="w-full bg-sky-700 text-white py-4 rounded-xl font-bold hover:bg-sky-800 transition-all hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2 min-h-[52px] text-lg">
  Request Free Quote
  </button>
  </form>
@@ -360,9 +361,9 @@ export default function Home() {
  </section>
  </main>
 
- <footer role="contentinfo" className="py-12 bg-sky-900">
+ <footer role="contentinfo" className="py-12 bg-gray-900">
  <div className="max-w-7xl mx-auto px-6">
- <div className="grid md:grid-cols-4 gap-8 mb-8">
+ <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
  <div>
  <div className="flex items-center gap-3 mb-4">
  <div className="w-10 h-10 bg-sky-700 rounded-lg flex items-center justify-center text-white" aria-hidden="true">🧹</div>
@@ -380,8 +381,8 @@ export default function Home() {
  <div>
  <h3 className="text-white font-bold mb-4">Quick Links</h3>
  <ul className="space-y-2">
- <li><button onClick={() => scrollToSection('services')} className="text-sky-300 hover:text-white transition-colors text-sm">Services</button></li>
- <li><button onClick={() => scrollToSection('pricing')} className="text-sky-300 hover:text-white transition-colors text-sm">Pricing</button></li>
+ <li><button onClick={() => scrollToSection('services')} className="text-sky-300 hover:text-white transition-colors text-sm py-1 min-h-[44px] inline-flex items-center">Services</button></li>
+ <li><button onClick={() => scrollToSection('pricing')} className="text-sky-300 hover:text-white transition-colors text-sm py-1 min-h-[44px] inline-flex items-center">Pricing</button></li>
  <li><button onClick={() => scrollToSection('testimonials')} className="text-sky-300 hover:text-white transition-colors text-sm">Reviews</button></li>
  <li><button onClick={() => scrollToSection('contact')} className="text-sky-300 hover:text-white transition-colors text-sm">Contact</button></li>
  </ul>
