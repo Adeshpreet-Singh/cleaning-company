@@ -152,8 +152,8 @@ export default function Home() {
  {/* Services */}
  <section id="services" aria-labelledby="services-heading" className="py-24 bg-gray-50">
  <div className="max-w-7xl mx-auto px-6">
- <div className=""> animate-fade-in-up"
- <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">WHAT WE CLEAN</p>
+<div className="animate-fade-in-up text-center mb-12">
+<p className="text-sky-800 text-sm font-bold tracking-widest mb-4">WHAT WE CLEAN</p>
  <h2 id="services-heading" className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
  <p className="text-gray-700 max-w-2xl mx-auto leading-relaxed">From routine housekeeping to full move-out deep cleans, we tailor every job to your space and schedule.</p>
  </div>
@@ -172,8 +172,8 @@ export default function Home() {
  {/* Pricing */}
  <section id="pricing" aria-labelledby="pricing-heading" className="py-24 bg-white">
  <div className="max-w-7xl mx-auto px-6">
- <div className=""> animate-fade-in-up"
- <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">TRANSPARENT PRICING</p>
+<div className="animate-fade-in-up text-center mb-12">
+<p className="text-sky-800 text-sm font-bold tracking-widest mb-4">TRANSPARENT PRICING</p>
  <h2 id="pricing-heading" className="text-4xl font-bold text-gray-900 mb-4">Pricing Tiers</h2>
  <p className="text-gray-700 max-w-2xl mx-auto leading-relaxed">Simple, upfront pricing with no hidden fees. All plans include eco-friendly products and our satisfaction guarantee.</p>
  </div>
@@ -246,8 +246,8 @@ export default function Home() {
  {/* Testimonials */}
  <section id="testimonials" aria-labelledby="testimonials-heading" className="py-24 bg-white">
  <div className="max-w-7xl mx-auto px-6">
- <div className=""> animate-fade-in-up"
- <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">CLIENT REVIEWS</p>
+<div className="animate-fade-in-up text-center mb-12">
+<p className="text-sky-800 text-sm font-bold tracking-widest mb-4">CLIENT REVIEWS</p>
  <h2 id="testimonials-heading" className="text-4xl font-bold text-gray-900 mb-4">What Clients Say</h2>
  </div>
  <div className="grid md:grid-cols-2 gap-6">
