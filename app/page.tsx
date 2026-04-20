@@ -138,7 +138,7 @@ export default function Home() {
  </div>
  </div>
  <div className="relative">
- <div className="bg-white rounded-3xl p-8 shadow-xl">
+ <div className="bg-white rounded-3xl p-8 shadow-xl hover-lift">
  <img
  src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=80"
  alt="Professional cleaning crew working in modern office space"
@@ -152,7 +152,7 @@ export default function Home() {
  {/* Services */}
  <section id="services" aria-labelledby="services-heading" className="py-24 bg-gray-50">
  <div className="max-w-7xl mx-auto px-6">
- <div className="text-center mb-16">
+ <div className=""> animate-fade-in-up"
  <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">WHAT WE CLEAN</p>
  <h2 id="services-heading" className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
  <p className="text-gray-700 max-w-2xl mx-auto leading-relaxed">From routine housekeeping to full move-out deep cleans, we tailor every job to your space and schedule.</p>
@@ -172,7 +172,7 @@ export default function Home() {
  {/* Pricing */}
  <section id="pricing" aria-labelledby="pricing-heading" className="py-24 bg-white">
  <div className="max-w-7xl mx-auto px-6">
- <div className="text-center mb-16">
+ <div className=""> animate-fade-in-up"
  <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">TRANSPARENT PRICING</p>
  <h2 id="pricing-heading" className="text-4xl font-bold text-gray-900 mb-4">Pricing Tiers</h2>
  <p className="text-gray-700 max-w-2xl mx-auto leading-relaxed">Simple, upfront pricing with no hidden fees. All plans include eco-friendly products and our satisfaction guarantee.</p>
@@ -226,7 +226,7 @@ export default function Home() {
  ))}
  </div>
  </div>
- <div className="rounded-2xl overflow-hidden shadow-xl">
+ <div className="rounded-2xl overflow-hidden shadow-xl hover-lift">
  <iframe
  title="ProClean Company Service Area - Dallas Fort Worth"
  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d214587.69037087046!2d-97.0004!3d32.7767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c19f77b45974b%3A0xb9ec9ba4f647678f!2sDallas%2C%20TX!5e0!3m2!1sen!2sus!4v1700000000000"
@@ -246,13 +246,13 @@ export default function Home() {
  {/* Testimonials */}
  <section id="testimonials" aria-labelledby="testimonials-heading" className="py-24 bg-white">
  <div className="max-w-7xl mx-auto px-6">
- <div className="text-center mb-16">
+ <div className=""> animate-fade-in-up"
  <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">CLIENT REVIEWS</p>
  <h2 id="testimonials-heading" className="text-4xl font-bold text-gray-900 mb-4">What Clients Say</h2>
  </div>
  <div className="grid md:grid-cols-2 gap-6">
  {testimonials.map((t, i) => (
- <div key={i} className="bg-gray-50 rounded-2xl p-6 shadow-lg">
+ <div key={i} className="bg-gray-50 rounded-2xl p-6 shadow-lg hover-lift">
  <div className="flex mb-3" aria-label={`${t.rating} stars`}>
  {[...Array(5)].map((_, j) => (
  <svg key={j} className={`w-5 h-5 ${j < t.rating ? 'text-yellow-400' : 'text-gray-300'}`} fill="currentColor" viewBox="0 0 20 20">
@@ -320,7 +320,7 @@ export default function Home() {
  </div>
  </div>
 
- <div className="bg-white rounded-2xl shadow-xl p-8">
+ <div className="bg-white rounded-2xl shadow-xl p-8 hover-lift">
  <form action="https://api.web3forms.com/submit" method="POST" className="space-y-5">
  <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
  <input type="hidden" name="subject" value="New Quote Request — ProClean Company" />
