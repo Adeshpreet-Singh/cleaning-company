@@ -150,8 +150,8 @@ export default function Home() {
  </section>
 
  {/* Services */}
- <section id="services" aria-labelledby="services-heading" className="py-24 bg-gray-50">
- <div className="max-w-7xl mx-auto px-6">
+ <section id="services" aria-labelledby="services-heading" className="py-16 md:py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
 <div className="animate-fade-in-up text-center mb-12">
 <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">WHAT WE CLEAN</p>
  <h2 id="services-heading" className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
@@ -170,8 +170,8 @@ export default function Home() {
  </section>
 
  {/* Pricing */}
- <section id="pricing" aria-labelledby="pricing-heading" className="py-24 bg-white">
- <div className="max-w-7xl mx-auto px-6">
+ <section id="pricing" aria-labelledby="pricing-heading" className="py-16 md:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
 <div className="animate-fade-in-up text-center mb-12">
 <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">TRANSPARENT PRICING</p>
  <h2 id="pricing-heading" className="text-4xl font-bold text-gray-900 mb-4">Pricing Tiers</h2>
@@ -213,9 +213,9 @@ export default function Home() {
  </section>
 
  {/* Service Area */}
- <section id="service-area" aria-labelledby="area-heading" className="py-24 bg-gray-50">
- <div className="max-w-7xl mx-auto px-6">
- <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+ <section id="service-area" aria-labelledby="area-heading" className="py-16 md:py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
  <div>
  <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">WHERE WE WORK</p>
  <h2 id="area-heading" className="text-4xl font-bold text-gray-900 mb-6">Service Area</h2>
@@ -244,8 +244,8 @@ export default function Home() {
  </section>
 
  {/* Testimonials */}
- <section id="testimonials" aria-labelledby="testimonials-heading" className="py-24 bg-white">
- <div className="max-w-7xl mx-auto px-6">
+ <section id="testimonials" aria-labelledby="testimonials-heading" className="py-16 md:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
 <div className="animate-fade-in-up text-center mb-12">
 <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">CLIENT REVIEWS</p>
  <h2 id="testimonials-heading" className="text-4xl font-bold text-gray-900 mb-4">What Clients Say</h2>
@@ -272,8 +272,8 @@ export default function Home() {
  </section>
 
  {/* Contact */}
- <section id="contact" aria-labelledby="contact-heading" className="py-24 bg-gray-50">
- <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-16">
+ <section id="contact" aria-labelledby="contact-heading" className="py-16 md:py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-16">
  <div>
  <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">GET STARTED</p>
  <h2 id="contact-heading" className="text-4xl font-bold text-gray-900 mb-6">Request Your Free Quote</h2>
