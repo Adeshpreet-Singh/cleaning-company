@@ -157,7 +157,7 @@ export default function Home() {
  <h2 id="services-heading" className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
  <p className="text-gray-700 max-w-2xl mx-auto leading-relaxed">From routine housekeeping to full move-out deep cleans, we tailor every job to your space and schedule.</p>
  </div>
- <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+ <div className="grid md:grid-cols-2 gap-6 lg:grid-cols-4 gap-6">
  {services.map((s, i) => (
  <article key={i} className="bg-sky-50 rounded-2xl p-6 hover:shadow-lg transition-all hover:scale-105">
  <div className="text-4xl mb-4" aria-hidden="true">{s.icon}</div>
