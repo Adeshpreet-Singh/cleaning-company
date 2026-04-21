@@ -445,3 +445,10 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.75rem); }
 .hover-scale:hover { transform: scale(1.05); }
 .hover-glow { transition: all 0.3s ease; }
 .hover-glow:hover { box-shadow: 0 0 20px rgba(var(--accent-rgb, 59, 130, 246), 0.4); }
+
+
+.section-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}

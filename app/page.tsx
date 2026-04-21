@@ -42,7 +42,7 @@ export default function Home() {
 
  <header>
  <nav role="navigation" aria-label="Main navigation" className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
- <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+ <div className=" section-container">
  <div className="flex items-center gap-3">
  <div className="w-10 h-10 bg-sky-700 rounded-xl flex items-center justify-center text-white text-xl" aria-hidden="true">🧹</div>
  <div>
@@ -99,7 +99,7 @@ export default function Home() {
  <div className="absolute inset-0" aria-hidden="true">
  <div className="absolute top-20 right-20 w-96 h-96 bg-sky-200/40 rounded-full blur-3xl" />
  </div>
- <div className="relative max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
+ <div className="relative section-container">
  <div>
  <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">TRUSTED SINCE 2008</p>
  <h2 id="hero-heading" className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900">
@@ -151,7 +151,7 @@ export default function Home() {
 
  {/* Services */}
  <section id="services" aria-labelledby="services-heading" className="py-16 md:py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className=" section-container">
 <div className="animate-fade-in-up text-center mb-12">
 <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">WHAT WE CLEAN</p>
  <h2 id="services-heading" className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
@@ -171,7 +171,7 @@ export default function Home() {
 
  {/* Pricing */}
  <section id="pricing" aria-labelledby="pricing-heading" className="py-16 md:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className=" section-container">
 <div className="animate-fade-in-up text-center mb-12">
 <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">TRANSPARENT PRICING</p>
  <h2 id="pricing-heading" className="text-4xl font-bold text-gray-900 mb-4">Pricing Tiers</h2>
@@ -214,7 +214,7 @@ export default function Home() {
 
  {/* Service Area */}
  <section id="service-area" aria-labelledby="area-heading" className="py-16 md:py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className=" section-container">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
  <div>
  <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">WHERE WE WORK</p>
@@ -245,7 +245,7 @@ export default function Home() {
 
  {/* Testimonials */}
  <section id="testimonials" aria-labelledby="testimonials-heading" className="py-16 md:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className=" section-container">
 <div className="animate-fade-in-up text-center mb-12">
 <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">CLIENT REVIEWS</p>
  <h2 id="testimonials-heading" className="text-4xl font-bold text-gray-900 mb-4">What Clients Say</h2>
@@ -273,7 +273,7 @@ export default function Home() {
 
  {/* Contact */}
  <section id="contact" aria-labelledby="contact-heading" className="py-16 md:py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-16">
+        <div className=" section-container">
  <div>
  <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">GET STARTED</p>
  <h2 id="contact-heading" className="text-4xl font-bold text-gray-900 mb-6">Request Your Free Quote</h2>
@@ -362,7 +362,7 @@ export default function Home() {
  </main>
 
  <footer role="contentinfo" className="py-12 bg-gray-900">
- <div className="max-w-7xl mx-auto px-6">
+ <div className=" section-container">
  <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
  <div>
  <div className="flex items-center gap-3 mb-4">
