@@ -79,7 +79,7 @@ export default function RootLayout({
                 "Professional residential and commercial cleaning services in Dallas-Fort Worth.",
               url: "[WEBSITE]",
               telephone: "+1-214-555-2532",
-              email: "[EMAIL]",
+              email: "contact@example.com",
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "456 Clean Street",
