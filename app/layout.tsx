@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=1200&q=80",
+        url: "/images/photo-1600585152220-90363fe7e115.jpg",
         width: 1200,
         height: 630,
         alt: "ProClean Company - Professional Cleaning Services",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     description:
       "Residential & commercial cleaning in Dallas-Fort Worth. Licensed, insured, eco-friendly. Free quotes!",
     images: [
-      "https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=1200&q=80",
+      "/images/photo-1600585152220-90363fe7e115.jpg",
     ],
   },
   robots: {
@@ -48,6 +48,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://procleancompany.com",
   },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

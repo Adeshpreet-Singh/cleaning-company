@@ -1,29 +1,25 @@
+/* FONTS_INJECTED */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+:root {
+  --font-heading: 'Inter', serif;
+  --font-body: 'Inter', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
+body { font-family: var(--font-body); }
+
 html { overflow-x: hidden; }
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 @import "tailwindcss";
 
 :root {
-  --text-dark: #1f2937;
-  --text-muted: #4b5563;
-  --bg-tint: #f0fffe;
-  --teal-dark: #008ba3;
-  --teal: #00bcd4;
-  --accent: #00bcd4;
-  --accent-dark: #0097a7;
-  --accent-light: #b2ebf2;
-  --accent-glow: rgba(0, 188, 212, 0.25);
-  --heading: #0d2137;
-  --body: #4a6572;
-  --bg: #ffffff;
-  --alt-bg: #f0fdff;
-  --dark: #0d2137;
-  --border: #c8e6ec;
-  --radius: 10px;
-  --radius-lg: 16px;
-  --shadow: 0 8px 32px rgba(0, 188, 212, 0.12);
-  --gradient: linear-gradient(135deg, #00bcd4 0%, #0097a7 50%, #006064 100%);
-  --pattern: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300bcd4' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  --primary: #0d7377;
+  --secondary: #14a085;
+  --accent: #e8f5e9;
+  --bg: #f0f7f4;
+  --surface: #ffffff;
+  --text: #1b2a2a;
+  --muted: #5a7d7a;
 }
 
 html { scroll-behavior: smooth; }
@@ -214,8 +210,8 @@ input::placeholder, textarea::placeholder {
 
 /* ===== SCROLL REVEAL ===== */
 .reveal {
-  opacity: 0;
-  transform: translateY(40px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -470,3 +466,13 @@ section, .section { margin-bottom: 0; }
 .vt-md { margin-top: 2.5rem; margin-bottom: 2.5rem; }
 .vt-lg { margin-top: 4rem; margin-bottom: 4rem; }
 .vt-xl { margin-top: 5rem; margin-bottom: 5rem; }
+/* DESIGN_SYSTEM_INJECTED */
+body {
+  background-color: #f0f7f4;
+  color: #1b2a2a;
+}
+.bg-primary { background-color: #0d7377 !important; }
+.bg-secondary { background-color: #14a085 !important; }
+.text-primary { color: #0d7377 !important; }
+.text-accent { color: #e8f5e9 !important; }
+.bg-accent { background-color: #e8f5e9 !important; }
