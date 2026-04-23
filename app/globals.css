@@ -1,9 +1,23 @@
+:root {
+  --font-heading: "Inter", serif;
+  --font-body: "Inter", sans-serif;
+  --bg-canvas: #f0f7f4;
+  --bg-panel: #ffffff;
+  --bg-elevated: #f0f7f4;
+  --text-primary: #1b2a2a;
+  --text-secondary: #5a7d7a;
+  --text-tertiary: #5a7d7a;
+  --accent-brand: #e8f5e9;
+  --accent-interactive: #14a085;
+  --surface-translucent: rgba(255,255,255,0.08);
+  --surface-translucent-hover: rgba(255,255,255,0.12);
+  --surface-translucent-active: rgba(255,255,255,0.16);
+  --border-default: rgba(0,0,0,0.1);
+  --border-subtle: rgba(0,0,0,0.05);
+  --border-hover: rgba(0,0,0,0.2);
+}
 /* FONTS_INJECTED */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
-:root {
-  --font-heading: 'Inter', serif;
-  --font-body: 'Inter', sans-serif;
-}
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
 body { font-family: var(--font-body); }
 
@@ -11,16 +25,6 @@ html { overflow-x: hidden; }
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 @import "tailwindcss";
-
-:root {
-  --primary: #0d7377;
-  --secondary: #14a085;
-  --accent: #e8f5e9;
-  --bg: #f0f7f4;
-  --surface: #ffffff;
-  --text: #1b2a2a;
-  --muted: #5a7d7a;
-}
 
 html { scroll-behavior: smooth; }
 

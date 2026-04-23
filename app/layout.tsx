@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: "ProClean Company | Professional Cleaning Services in Dallas, TX",
     description:
       "Top-rated residential and commercial cleaning services in Dallas-Fort Worth. Licensed, insured & bonded. Free quotes!",
-    url: "https://procleancompany.com",
+    url: "[WEBSITE]",
     siteName: "ProClean Company",
     locale: "en_US",
     type: "website",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "https://procleancompany.com",
+    canonical: "[WEBSITE]",
   },
 };
 
@@ -77,9 +77,9 @@ export default function RootLayout({
               name: "ProClean Company",
               description:
                 "Professional residential and commercial cleaning services in Dallas-Fort Worth.",
-              url: "https://procleancompany.com",
+              url: "[WEBSITE]",
               telephone: "+1-214-555-2532",
-              email: "info@procleancompany.com",
+              email: "[EMAIL]",
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "456 Clean Street",

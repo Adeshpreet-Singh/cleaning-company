@@ -18,7 +18,7 @@ export default function Home() {
  { title: 'Residential', desc: 'Homes, apartments, and condos — regular or one-time cleans.', icon: '' },
  { title: 'Commercial', desc: 'Offices, retail, and warehouses — after-hours available.', icon: '' },
  { title: 'Move-Out / Move-In', desc: 'Deep cleans between tenants so you get the deposit back.', icon: '' },
- { title: 'Deep Cleaning', desc: 'Carpet, windows, appliances, and full sanitization.', icon: '✨' },
+ { title: 'Deep Cleaning', desc: 'Carpet, windows, appliances, and full sanitization.', icon: '' },
  ];
 
  const pricing = [
@@ -87,7 +87,7 @@ export default function Home() {
  {['services', 'pricing', 'testimonials', 'contact'].map(item => (
  <button key={item} onClick={() => scrollToSection(item)} className="block w-full text-left text-gray-700 hover:text-sky-700 py-3 text-lg capitalize min-h-[48px]">{item}</button>
  ))}
- <a href="tel:+121****2532" className="block bg-sky-700 text-white text-center px-6 py-3 rounded-full font-bold hover:bg-sky-800 transition-colors text-lg min-h-[48px] leading-[48px]">Call: (214) 555-2532</a>
+ <a href="tel:+121****2532" className="block bg-sky-700 text-white text-center px-6 py-3 rounded-full font-bold hover:bg-sky-800 transition-colors text-lg min-h-[48px] leading-[48px]">Call: [PHONE]</a>
  </div>
  )}
  </nav>
@@ -121,7 +121,7 @@ export default function Home() {
  href="tel:+121****2532"
  className="border-2 border-sky-700 text-sky-800 px-8 py-4 rounded-full text-lg font-bold hover:bg-sky-50 transition-all hover:scale-105 focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2 min-h-[52px] inline-flex items-center justify-center"
  >
-  (214) 555-2532
+ [PHONE]
  </a>
  </div>
  <div className="flex items-center gap-6 sm:gap-8 flex-wrap">
@@ -151,7 +151,7 @@ export default function Home() {
 
  {/* Services */}
  <section id="services" aria-labelledby="services-heading" className="py-16 md:py-20 bg-gray-50">
-        <div className=" section-container">
+ <div className=" section-container">
 <div className="animate-fade-in-up text-center mb-12">
 <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">WHAT WE CLEAN</p>
  <h2 id="services-heading" className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
@@ -171,7 +171,7 @@ export default function Home() {
 
  {/* Pricing */}
  <section id="pricing" aria-labelledby="pricing-heading" className="py-16 md:py-20 bg-white">
-        <div className=" section-container">
+ <div className=" section-container">
 <div className="animate-fade-in-up text-center mb-12">
 <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">TRANSPARENT PRICING</p>
  <h2 id="pricing-heading" className="text-4xl font-bold text-gray-900 mb-4">Pricing Tiers</h2>
@@ -194,7 +194,7 @@ export default function Home() {
  <ul className="space-y-3 mb-8">
  {tier.features.map((f, j) => (
  <li key={j} className="flex items-start gap-2">
- <span className={tier.highlight ? 'text-sky-200' : 'text-sky-700'}>✓</span>
+ <span className={tier.highlight ? 'text-sky-200' : 'text-sky-700'}></span>
  <span className={tier.highlight ? 'text-sky-100' : 'text-gray-700'}>{f}</span>
  </li>
  ))}
@@ -214,8 +214,8 @@ export default function Home() {
 
  {/* Service Area */}
  <section id="service-area" aria-labelledby="area-heading" className="py-16 md:py-20 bg-gray-50">
-        <div className=" section-container">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+ <div className=" section-container">
+ <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
  <div>
  <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">WHERE WE WORK</p>
  <h2 id="area-heading" className="text-4xl font-bold text-gray-900 mb-6">Service Area</h2>
@@ -229,7 +229,7 @@ export default function Home() {
  <div className="rounded-2xl overflow-hidden shadow-xl hover-lift">
  <iframe
  title="ProClean Company Service Area - Dallas Fort Worth"
- src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d214587.69037087046!2d-97.0004!3d32.7767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c19f77b45974b%3A0xb9ec9ba4f647678f!2sDallas%2C%20TX!5e0!3m2!1sen!2sus!4v1700000000000"
+ src="[WEBSITE]/maps/embed?pb=!1m18!1m12!1m3!1d214587.69037087046!2d-97.0004!3d32.7767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c19f77b45974b%3A0xb9ec9ba4f647678f!2sDallas%2C%20TX!5e0!3m2!1sen!2sus!4v1700000000000"
  width="100%"
  style={{ minHeight: '300px', height: '100%' }}
  className="min-h-[300px] md:min-h-[400px]"
@@ -245,7 +245,7 @@ export default function Home() {
 
  {/* Testimonials */}
  <section id="testimonials" aria-labelledby="testimonials-heading" className="py-16 md:py-20 bg-white">
-        <div className=" section-container">
+ <div className=" section-container">
 <div className="animate-fade-in-up text-center mb-12">
 <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">CLIENT REVIEWS</p>
  <h2 id="testimonials-heading" className="text-4xl font-bold text-gray-900 mb-4">What Clients Say</h2>
@@ -273,7 +273,7 @@ export default function Home() {
 
  {/* Contact */}
  <section id="contact" aria-labelledby="contact-heading" className="py-16 md:py-20 bg-gray-50">
-        <div className=" section-container">
+ <div className=" section-container">
  <div>
  <p className="text-sky-800 text-sm font-bold tracking-widest mb-4">GET STARTED</p>
  <h2 id="contact-heading" className="text-4xl font-bold text-gray-900 mb-6">Request Your Free Quote</h2>
@@ -284,8 +284,8 @@ export default function Home() {
  <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true"></div>
  <div>
  <h3 className="font-bold text-gray-900">Visit Us</h3>
- <a href="https://maps.google.com/?q=456+Clean+Street+Dallas+TX+75201" target="_blank" rel="noopener noreferrer" className="text-sky-600 hover:text-sky-800 hover:underline">
- 456 Clean Street<br />Dallas, TX 75201
+ <a href="[GOOGLE_MAPS_URL]" target="_blank" rel="noopener noreferrer" className="text-sky-600 hover:text-sky-800 hover:underline">
+ [ADDRESS]
  </a>
  </div>
  </div>
@@ -293,14 +293,14 @@ export default function Home() {
  <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true"></div>
  <div>
  <h3 className="font-bold text-gray-900">Call Us</h3>
- <a href="tel:+12145552532" className="text-sky-600 hover:text-sky-800 hover:underline">(214) 555-2532</a>
+ <a href="tel:[PHONE]" className="text-sky-600 hover:text-sky-800 hover:underline">[PHONE]</a>
  </div>
  </div>
  <div className="flex items-start gap-3">
- <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true">✉️</div>
+ <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true"></div>
  <div>
  <h3 className="font-bold text-gray-900">Email Us</h3>
- <a href="mailto:info@procleancompany.com" className="text-sky-600 hover:text-sky-800 hover:underline">info@procleancompany.com</a>
+ <a href="mailto:[EMAIL]" className="text-sky-600 hover:text-sky-800 hover:underline">[EMAIL]</a>
  </div>
  </div>
  <div className="flex items-start gap-3">
@@ -314,7 +314,7 @@ export default function Home() {
  <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true"></div>
  <div>
  <h3 className="font-bold text-gray-900">WhatsApp</h3>
- <a href="https://wa.me/12145552532?text=Hi%20ProClean%2C%20I%27d%20like%20a%20free%20quote" target="_blank" rel="noopener noreferrer" className="text-sky-600 hover:text-sky-800 hover:underline">Chat with us on WhatsApp</a>
+ <a href="https://wa.me/[PHONE]?text=Hi%20ProClean%2C%20I%27d%20like%20a%20free%20quote" target="_blank" rel="noopener noreferrer" className="text-sky-600 hover:text-sky-800 hover:underline">Chat with us on WhatsApp</a>
  </div>
  </div>
  </div>
@@ -322,7 +322,7 @@ export default function Home() {
 
  <div className="bg-white rounded-2xl shadow-xl p-8 hover-lift">
  <form action="https://api.web3forms.com/submit" method="POST" className="space-y-5">
- <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+ <input type="hidden" name="access_key" value="[WEB3FORMS_KEY]" />
  <input type="hidden" name="subject" value="New Quote Request — ProClean Company" />
  <input type="checkbox" name="botcheck" className="hidden" />
 
@@ -336,7 +336,7 @@ export default function Home() {
  </div>
  <div>
  <label htmlFor="contact-phone" className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
- <input id="contact-phone" name="phone" type="tel" placeholder="(214) 555-0000" className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 focus:outline-none transition-colors" />
+ <input id="contact-phone" name="phone" type="tel" placeholder="[PHONE]" className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 focus:outline-none transition-colors" />
  </div>
  <div>
  <label htmlFor="contact-service-type" className="block text-sm font-medium text-gray-700 mb-2">Service Type</label>
@@ -374,8 +374,8 @@ export default function Home() {
  </div>
  <p className="text-sky-300 text-sm mb-3">Licensed &amp; insured cleaning services since 2008.</p>
  <p className="text-sky-300 text-sm">
- <a href="tel:+12145552532" className="hover:text-white transition-colors">(214) 555-2532</a><br />
- <a href="mailto:info@procleancompany.com" className="hover:text-white transition-colors">info@procleancompany.com</a>
+ <a href="tel:[PHONE]" className="hover:text-white transition-colors">[PHONE]</a><br />
+ <a href="mailto:[EMAIL]" className="hover:text-white transition-colors">[EMAIL]</a>
  </p>
  </div>
  <div>
@@ -399,13 +399,13 @@ export default function Home() {
  <div>
  <h3 className="text-white font-bold mb-4">Follow Us</h3>
  <div className="flex gap-3">
- <a href="https://instagram.com/procleancompany" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-sky-700 rounded-lg flex items-center justify-center text-white hover:bg-sky-600 transition-colors" aria-label="Instagram">
+ <a href="[INSTAGRAM_URL]" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-sky-700 rounded-lg flex items-center justify-center text-white hover:bg-sky-600 transition-colors" aria-label="Instagram">
  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
  </a>
- <a href="https://facebook.com/procleancompany" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-sky-700 rounded-lg flex items-center justify-center text-white hover:bg-sky-600 transition-colors" aria-label="Facebook">
+ <a href="[FACEBOOK_URL]" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-sky-700 rounded-lg flex items-center justify-center text-white hover:bg-sky-600 transition-colors" aria-label="Facebook">
  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
  </a>
- <a href="https://wa.me/12145552532" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-sky-700 rounded-lg flex items-center justify-center text-white hover:bg-sky-600 transition-colors" aria-label="WhatsApp">
+ <a href="https://wa.me/[PHONE]" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-sky-700 rounded-lg flex items-center justify-center text-white hover:bg-sky-600 transition-colors" aria-label="WhatsApp">
  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
  </a>
  </div>
@@ -413,6 +413,7 @@ export default function Home() {
  </div>
  <div className="border-t border-sky-800 pt-8 text-center">
  <p className="text-sky-300 text-sm">&copy; 2026 ProClean Company. All rights reserved.</p>
+<div className="text-center py-3 text-xs opacity-50 hover:opacity-80 transition-opacity"><span>Designed by </span><a href="https://adeshpreet.vercel.app/" target="_blank" rel="noopener noreferrer" className="underline">Adeshpreet Singh</a></div>
  </div>
  </div>
  </footer>
