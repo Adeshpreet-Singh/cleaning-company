@@ -15,9 +15,9 @@ export default function Home() {
  };
 
  const services = [
- { title: 'Residential', desc: 'Homes, apartments, and condos — regular or one-time cleans.', icon: '🏠' },
- { title: 'Commercial', desc: 'Offices, retail, and warehouses — after-hours available.', icon: '💼' },
- { title: 'Move-Out / Move-In', desc: 'Deep cleans between tenants so you get the deposit back.', icon: '📦' },
+ { title: 'Residential', desc: 'Homes, apartments, and condos — regular or one-time cleans.', icon: '' },
+ { title: 'Commercial', desc: 'Offices, retail, and warehouses — after-hours available.', icon: '' },
+ { title: 'Move-Out / Move-In', desc: 'Deep cleans between tenants so you get the deposit back.', icon: '' },
  { title: 'Deep Cleaning', desc: 'Carpet, windows, appliances, and full sanitization.', icon: '✨' },
  ];
 
@@ -44,7 +44,7 @@ export default function Home() {
  <nav role="navigation" aria-label="Main navigation" className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
  <div className=" section-container">
  <div className="flex items-center gap-3">
- <div className="w-10 h-10 bg-sky-700 rounded-xl flex items-center justify-center text-white text-xl" aria-hidden="true">🧹</div>
+ <div className="w-10 h-10 bg-sky-700 rounded-xl flex items-center justify-center text-white text-xl" aria-hidden="true"></div>
  <div>
  <h1 className="text-lg font-bold text-sky-900">ProClean</h1>
  <p className="text-[9px] text-sky-600 tracking-wider">COMMERCIAL & RESIDENTIAL</p>
@@ -121,7 +121,7 @@ export default function Home() {
  href="tel:+121****2532"
  className="border-2 border-sky-700 text-sky-800 px-8 py-4 rounded-full text-lg font-bold hover:bg-sky-50 transition-all hover:scale-105 focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2 min-h-[52px] inline-flex items-center justify-center"
  >
- 📞 (214) 555-2532
+  (214) 555-2532
  </a>
  </div>
  <div className="flex items-center gap-6 sm:gap-8 flex-wrap">
@@ -281,7 +281,7 @@ export default function Home() {
 
  <div className="space-y-5">
  <div className="flex items-start gap-3">
- <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true">📍</div>
+ <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true"></div>
  <div>
  <h3 className="font-bold text-gray-900">Visit Us</h3>
  <a href="https://maps.google.com/?q=456+Clean+Street+Dallas+TX+75201" target="_blank" rel="noopener noreferrer" className="text-sky-600 hover:text-sky-800 hover:underline">
@@ -290,7 +290,7 @@ export default function Home() {
  </div>
  </div>
  <div className="flex items-start gap-3">
- <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true">📞</div>
+ <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true"></div>
  <div>
  <h3 className="font-bold text-gray-900">Call Us</h3>
  <a href="tel:+12145552532" className="text-sky-600 hover:text-sky-800 hover:underline">(214) 555-2532</a>
@@ -304,14 +304,14 @@ export default function Home() {
  </div>
  </div>
  <div className="flex items-start gap-3">
- <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true">🕒</div>
+ <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true"></div>
  <div>
  <h3 className="font-bold text-gray-900">Hours</h3>
  <p className="text-gray-600">Mon–Fri: 8 AM – 6 PM<br />Sat: 9 AM – 3 PM<br />Sun: Emergency Only</p>
  </div>
  </div>
  <div className="flex items-start gap-3">
- <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true">💬</div>
+ <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true"></div>
  <div>
  <h3 className="font-bold text-gray-900">WhatsApp</h3>
  <a href="https://wa.me/12145552532?text=Hi%20ProClean%2C%20I%27d%20like%20a%20free%20quote" target="_blank" rel="noopener noreferrer" className="text-sky-600 hover:text-sky-800 hover:underline">Chat with us on WhatsApp</a>
@@ -366,7 +366,7 @@ export default function Home() {
  <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
  <div>
  <div className="flex items-center gap-3 mb-4">
- <div className="w-10 h-10 bg-sky-700 rounded-lg flex items-center justify-center text-white" aria-hidden="true">🧹</div>
+ <div className="w-10 h-10 bg-sky-700 rounded-lg flex items-center justify-center text-white" aria-hidden="true"></div>
  <div>
  <h3 className="text-white font-bold">ProClean Company</h3>
  <p className="text-xs text-sky-300">COMMERCIAL & RESIDENTIAL</p>
