@@ -87,7 +87,7 @@ export default function Home() {
  {['services', 'pricing', 'testimonials', 'contact'].map(item => (
  <button key={item} onClick={() => scrollToSection(item)} className="block w-full text-left text-gray-700 hover:text-sky-700 py-3 text-lg capitalize min-h-[48px]">{item}</button>
  ))}
- <a href="tel:+121****2532" className="block bg-sky-700 text-white text-center px-6 py-3 rounded-full font-bold hover:bg-sky-800 transition-colors text-lg min-h-[48px] leading-[48px]">Call: +91 98765 43210</a>
+ <a href="tel:+121****2532" className="block bg-sky-700 text-white text-center px-6 py-3 rounded-full font-bold hover:bg-sky-800 transition-colors text-lg min-h-[48px] leading-[48px]">Call: +1-800-555-0270</a>
  </div>
  )}
  </nav>
@@ -121,7 +121,7 @@ export default function Home() {
  href="tel:+121****2532"
  className="border-2 border-sky-700 text-sky-800 px-8 py-4 rounded-full text-lg font-bold hover:bg-sky-50 transition-all hover:scale-105 focus-visible:outline-2 focus-visible:outline-sky-500 focus-visible:outline-offset-2 min-h-[52px] inline-flex items-center justify-center"
  >
- +91 98765 43210
+ +1-800-555-0270
  </a>
  </div>
  <div className="flex items-center gap-6 sm:gap-8 flex-wrap">
@@ -227,7 +227,7 @@ export default function Home() {
  </div>
  </div>
  <div className="rounded-2xl overflow-hidden shadow-xl hover-lift">
- <div className="w-full h-64 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400 text-sm">Map View</div>
+ <div className="w-full h-64 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-[#666] text-sm">Map View</div>
  </div>
  </div>
  </div>
@@ -250,10 +250,10 @@ export default function Home() {
  </svg>
  ))}
  </div>
- <p className="text-gray-700 mb-3 italic leading-relaxed">&ldquo;{t.text}&rdquo;</p>
+ <p className="text-gray-700 mb-3 italic leading-relaxed">"{t.text}"</p>
  <div className="border-t border-gray-200 pt-4">
  <p className="text-gray-900 font-medium">{t.name}</p>
- <p className="text-gray-600 text-sm">{t.role} &bull; {t.date}</p>
+ <p className="text-gray-600 text-sm">{t.role} • {t.date}</p>
  </div>
  </div>
  ))}
@@ -283,7 +283,7 @@ export default function Home() {
  <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true"></div>
  <div>
  <h3 className="font-bold text-gray-900">Call Us</h3>
- <a href="tel:+91 98765 43210" className="text-sky-600 hover:text-sky-800 hover:underline">+91 98765 43210</a>
+ <a href="tel:+1-800-555-0270" className="text-sky-600 hover:text-sky-800 hover:underline">+1-800-555-0270</a>
  </div>
  </div>
  <div className="flex items-start gap-3">
@@ -304,7 +304,7 @@ export default function Home() {
  <div className="w-10 h-10 bg-sky-700/20 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true"></div>
  <div>
  <h3 className="font-bold text-gray-900">WhatsApp</h3>
- <a href="https://wa.me/+91 98765 43210?text=Hi%20ProClean%2C%20I%27d%20like%20a%20free%20quote" target="_blank" rel="noopener noreferrer" className="text-sky-600 hover:text-sky-800 hover:underline">Chat with us on WhatsApp</a>
+ <a href="https://wa.me/+1-800-555-0270?text=Hi%20ProClean%2C%20I%27d%20like%20a%20free%20quote" target="_blank" rel="noopener noreferrer" className="text-sky-600 hover:text-sky-800 hover:underline">Chat with us on WhatsApp</a>
  </div>
  </div>
  </div>
@@ -312,7 +312,7 @@ export default function Home() {
 
  <div className="bg-white rounded-2xl shadow-xl p-8 hover-lift">
  <form action="https://api.web3forms.com/submit" method="POST" className="space-y-5">
- <input type="hidden" name="access_key" value="[WEB3FORMS_KEY]" />
+ <input type="hidden" name="access_key" value="00000000-0000-0000-0000-000000000000" />
  <input type="hidden" name="subject" value="New Quote Request — ProClean Company" />
  <input type="checkbox" name="botcheck" className="hidden" />
 
@@ -326,7 +326,7 @@ export default function Home() {
  </div>
  <div>
  <label htmlFor="contact-phone" className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
- <input id="contact-phone" name="phone" type="tel" placeholder="+91 98765 43210" className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 focus:outline-none transition-colors" />
+ <input id="contact-phone" name="phone" type="tel" placeholder="+1-800-555-0270" className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 focus:outline-none transition-colors" />
  </div>
  <div>
  <label htmlFor="contact-service-type" className="block text-sm font-medium text-gray-700 mb-2">Service Type</label>
@@ -362,9 +362,9 @@ export default function Home() {
  <p className="text-xs text-sky-300">COMMERCIAL & RESIDENTIAL</p>
  </div>
  </div>
- <p className="text-sky-300 text-sm mb-3">Licensed &amp; insured cleaning services since 2008.</p>
+ <p className="text-sky-300 text-sm mb-3">Licensed & insured cleaning services since 2008.</p>
  <p className="text-sky-300 text-sm">
- <a href="tel:+91 98765 43210" className="hover:text-white transition-colors">+91 98765 43210</a><br />
+ <a href="tel:+1-800-555-0270" className="hover:text-white transition-colors">+1-800-555-0270</a><br />
  <a href="mailto:contact@example.com" className="hover:text-white transition-colors">contact@example.com</a>
  </p>
  </div>
@@ -395,14 +395,14 @@ export default function Home() {
  <a href="[FACEBOOK_URL]" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-sky-700 rounded-lg flex items-center justify-center text-white hover:bg-sky-600 transition-colors" aria-label="Facebook">
  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
  </a>
- <a href="https://wa.me/+91 98765 43210" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-sky-700 rounded-lg flex items-center justify-center text-white hover:bg-sky-600 transition-colors" aria-label="WhatsApp">
+ <a href="https://wa.me/+1-800-555-0270" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-sky-700 rounded-lg flex items-center justify-center text-white hover:bg-sky-600 transition-colors" aria-label="WhatsApp">
  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
  </a>
  </div>
  </div>
  </div>
  <div className="border-t border-sky-800 pt-8 text-center">
- <p className="text-sky-300 text-sm">&copy; 2026 ProClean Company. All rights reserved.</p>
+ <p className="text-sky-300 text-sm">© 2026 ProClean Company. All rights reserved.</p>
 <div className="text-center py-3 text-xs opacity-50 hover:opacity-80 transition-opacity"><span>Designed by </span><a href="https://adeshpreet.vercel.app/" target="_blank" rel="noopener noreferrer" className="underline">Adeshpreet Singh</a></div>
  </div>
  </div>

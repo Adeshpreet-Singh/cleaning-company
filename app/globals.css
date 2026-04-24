@@ -4,7 +4,7 @@
   --bg-canvas: #f0f7f4;
   --bg-panel: #ffffff;
   --bg-elevated: #f0f7f4;
-  --text-primary: #1b2a2a;
+  --text-primary: #ffffff;
   --text-secondary: #5a7d7a;
   --text-tertiary: #5a7d7a;
   --accent-brand: #e8f5e9;
@@ -485,13 +485,4 @@ section, .section { margin-bottom: 0; }
 .vt-md { margin-top: 2.5rem; margin-bottom: 2.5rem; }
 .vt-lg { margin-top: 4rem; margin-bottom: 4rem; }
 .vt-xl { margin-top: 5rem; margin-bottom: 5rem; }
-/* DESIGN_SYSTEM_INJECTED */
-body {
-  background-color: #f0f7f4;
-  color: #1b2a2a;
-}
-.bg-primary { background-color: #0d7377 !important; }
-.bg-secondary { background-color: #14a085 !important; }
-.text-primary { color: #0d7377 !important; }
-.text-accent { color: #e8f5e9 !important; }
-.bg-accent { background-color: #e8f5e9 !important; }
+
